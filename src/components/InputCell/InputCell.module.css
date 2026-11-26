@@ -1,0 +1,247 @@
+/*
+ * Input-cell — Figma `8016:286`. Корень H, align center, gap Space/xs, ширина fill.
+ * Фон Surface/s2, обводка 1px INSIDE Outline/input-field-default, Radius/small-component/<size>.
+ * Значение Text/med-em, плейсхолдер Text/low-em, Secondary-text Text/low-em.
+ * Состояния — оверрайды Input-field `12022:7132`:
+ *   hover +Surface/hover-overlay-inverse · default-dark Surface/component/secondary-alpha-base + Outline/input-field-low-em
+ *   filled-dark Surface/special/light-s3-dark-s4, текст Text/high-em · active Surface/special/light-s0-dark-s2 + Pressed/gray
+ *   danger тот же фон + Outline/danger-low-em-alpha + Pressed/danger · disabled Surface/disabled-base-em, без обводки, Text/base-em
+ *   naked: без фона и обводки, px Space/xxs, Left gap Space/xxs, Text-wrap только pl Space/xs.
+ * Без токена: 1px обводки; min-height textarea xl 128 = 2 × Space/18xl.
+ * Цвет иконок в Figma не сверен — Text/low-em.
+ */
+.root {
+  --cell-bg: var(--surface-s2);
+  --cell-stroke: var(--outline-input-field-default);
+  --cell-text: var(--text-med-em);
+  --cell-placeholder: var(--text-low-em);
+  --cell-text-2: var(--text-low-em);
+
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-xs);
+  border: 1px solid var(--cell-stroke);
+  background: var(--cell-bg);
+  color: var(--text-low-em);
+  transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+
+/* ---------- Size (default / default-with-button) ---------- */
+.xs {
+  --icon-size: var(--space-2xl);
+  --cell-image: var(--space-xl);
+  --cell-left-gap: var(--space-xs);
+  --cell-text-pad: var(--space-xxs);
+  --cell-text-gap: var(--space-xs);
+  --cell-px: var(--space-sm);
+  height: var(--space-7xl);
+  border-radius: var(--radius-small-component-xs);
+}
+.sm {
+  --icon-size: var(--space-3xl);
+  --cell-image: var(--space-3xl);
+  --cell-left-gap: var(--space-sm);
+  --cell-text-pad: var(--space-xs);
+  --cell-text-gap: var(--space-xs);
+  --cell-px: var(--space-md);
+  height: var(--space-10xl);
+  border-radius: var(--radius-small-component-sm);
+}
+.md {
+  --icon-size: var(--space-4xl);
+  --cell-image: var(--space-5xl);
+  --cell-left-gap: var(--space-sm);
+  --cell-text-pad: var(--space-xs);
+  --cell-text-gap: var(--space-xs);
+  --cell-px: var(--space-lg);
+  height: var(--space-12xl);
+  border-radius: var(--radius-small-component-md);
+}
+.lg {
+  --icon-size: var(--space-5xl);
+  --cell-image: var(--space-7xl);
+  --cell-left-gap: var(--space-md);
+  --cell-text-pad: var(--space-xs);
+  --cell-text-gap: var(--space-xs);
+  --cell-px: var(--space-xl);
+  height: var(--space-14xl);
+  border-radius: var(--radius-small-component-lg);
+}
+.xl {
+  --icon-size: var(--space-7xl);
+  --cell-image: var(--space-9xl);
+  --cell-left-gap: var(--space-md);
+  --cell-text-pad: var(--space-sm);
+  --cell-text-gap: var(--space-sm);
+  --cell-px: var(--space-2xl);
+  height: var(--space-16xl);
+  border-radius: var(--radius-small-component-xl);
+}
+
+.default,
+.default-with-button {
+  padding-inline: var(--cell-px);
+}
+.default-with-button {
+  padding-right: var(--space-xs);
+}
+.default-with-button.xs {
+  padding-right: var(--space-zero);
+}
+
+/* ---------- textarea ---------- */
+.textarea {
+  align-items: flex-start;
+  gap: var(--space-xxs);
+  height: auto;
+}
+.textarea.xs {
+  --icon-size: var(--space-3xl);
+  min-height: var(--space-16xl);
+  padding: var(--space-md) var(--space-sm);
+}
+.textarea.sm {
+  --icon-size: var(--space-5xl);
+  min-height: var(--space-19xl);
+  padding: var(--space-md);
+}
+.textarea.md {
+  --icon-size: var(--space-5xl);
+  min-height: var(--space-22xl);
+  padding: var(--space-md) var(--space-lg);
+}
+.textarea.lg {
+  --icon-size: var(--space-7xl);
+  min-height: var(--space-23xl);
+  padding: var(--space-lg) var(--space-xl);
+}
+.textarea.xl {
+  --icon-size: var(--space-7xl);
+  min-height: calc(2 * var(--space-18xl));
+  padding: var(--space-xl) var(--space-2xl);
+}
+.textarea .text {
+  align-self: stretch;
+  padding-inline: var(--space-xxs);
+}
+.textarea .control {
+  height: 100%;
+  resize: none;
+}
+.resize {
+  flex: none;
+}
+
+/* ---------- Слоты ---------- */
+.left,
+.right {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+}
+.left {
+  gap: var(--cell-left-gap);
+}
+.image {
+  width: var(--cell-image);
+  height: var(--cell-image);
+  border-radius: var(--radius-round);
+  object-fit: cover;
+  box-shadow: var(--elevation-e1);
+}
+.text {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+  gap: var(--cell-text-gap);
+  padding-inline: var(--cell-text-pad);
+}
+.control {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-zero);
+  border: 0;
+  background: none;
+  color: var(--cell-text);
+  outline: none;
+}
+.control::placeholder {
+  color: var(--cell-placeholder);
+  opacity: 1;
+}
+.secondaryText {
+  flex: none;
+  color: var(--cell-text-2);
+  white-space: nowrap;
+}
+.buttonGroup {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-xs);
+  padding-left: var(--space-sm);
+}
+
+/* ---------- State ---------- */
+.root[data-state='default-dark'],
+.root[data-state='default-dark-hover'] {
+  --cell-bg: var(--surface-component-secondary-alpha-base);
+  --cell-stroke: var(--outline-input-field-low-em);
+}
+.root[data-state='filled-dark'] {
+  --cell-bg: var(--surface-special-light-s3-dark-s4);
+  --cell-text: var(--text-high-em);
+}
+
+.root:hover:not([data-disabled]):not(:focus-within),
+.root[data-state='hover'],
+.root[data-state='default-dark-hover'] {
+  background: linear-gradient(var(--surface-hover-overlay-inverse), var(--surface-hover-overlay-inverse)),
+    var(--cell-bg);
+}
+
+.root:focus-within,
+.root[data-state='active'] {
+  background: var(--surface-special-light-s0-dark-s2);
+  box-shadow: var(--pressed-gray);
+}
+
+.root[data-state='danger'] {
+  --cell-stroke: var(--outline-danger-low-em-alpha);
+  background: var(--surface-special-light-s0-dark-s2);
+  box-shadow: var(--pressed-danger);
+}
+
+.root[data-disabled] {
+  --cell-text: var(--text-base-em);
+  --cell-placeholder: var(--text-base-em);
+  --cell-text-2: var(--text-base-em);
+  border-color: var(--outline-none);
+  background: var(--surface-disabled-base-em);
+  box-shadow: none;
+  color: var(--text-base-em);
+}
+.root[data-disabled] .control {
+  cursor: not-allowed;
+}
+
+.root[data-state='naked'],
+.root[data-state='naked-disabled'] {
+  --cell-left-gap: var(--space-xxs);
+  padding-inline: var(--space-xxs);
+  gap: var(--space-zero);
+  border-color: var(--outline-none);
+  background: none;
+  box-shadow: none;
+}
+.root[data-state='naked'] .text,
+.root[data-state='naked-disabled'] .text {
+  padding-left: var(--space-xs);
+  padding-right: 0;
+}

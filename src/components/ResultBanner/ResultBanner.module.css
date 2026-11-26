@@ -1,0 +1,38 @@
+/*
+ * ResultBanner — Figma kpi-bro · web `174:1349` (Type: month-result · my-matrix), сверено get_design_context 2026-11-26.
+ * Карточка раздела (patterns.md «Тени»): без заливки, Liquid-glass, обводка Surface/s3 1px, Radius/8xl, padding Space/7xl, ширина 600.
+ * month-result — H, center, gap Space/xl (высота 74 — HUG); my-matrix — V, start, gap Space/sm.
+ * Title UI/title-1/semibold Text/high-em, 1 строка. KpiStatus Type=1. Link кита primary md.
+ * Приближение: Liquid-glass (GLASS r8) не переносится — backdrop-filter Blur/16 без преломления и дисперсии.
+ * Расхождение Figma, не перенесено: во вложенном Link стиль сброшен (tracking −1px) — в коде стиль мастера Link UI/para/medium.
+ * Без токена: ширина 600 (--result-banner-width), обводка 1px.
+ */
+.root {
+  --result-banner-width: 600px;
+
+  display: flex;
+  box-sizing: border-box;
+  width: var(--result-banner-width);
+  max-width: 100%;
+  padding: var(--space-7xl);
+  border: 1px solid var(--surface-s3);
+  border-radius: var(--radius-8xl);
+  backdrop-filter: var(--blur-16);
+}
+.month-result {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-xl);
+}
+.my-matrix {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+.title {
+  color: var(--text-high-em);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}

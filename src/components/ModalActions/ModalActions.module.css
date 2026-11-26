@@ -1,0 +1,35 @@
+/*
+ * Modal-actions/CTAs — Figma `14158:28302`. Сверено через Figma (дамп), 2026-11-26.
+ * Корень: Auto Layout V, p Space/7xl · 5xl, gap 3xl, обводка сверху 1px Outline/base-em.
+ * CTAs: H, gap Space/xl, кнопки Fill (поровну). Description: H, center, gap md; UI/caption-2 normal Text/low-em.
+ * Без токена: 1px обводки.
+ */
+.root {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-7xl) var(--space-5xl);
+  gap: var(--space-3xl);
+  box-shadow: inset 0 1px 0 var(--outline-base-em);
+}
+
+.ctas {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: var(--space-xl);
+}
+
+.description {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+}
+.descriptionText {
+  margin: 0;
+  color: var(--text-low-em);
+}

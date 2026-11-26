@@ -1,0 +1,105 @@
+/*
+ * Modal — Figma `16414:19664`. Сверено через Figma (дамп вариантов), 2026-11-26.
+ * Корень: обводка 1px INSIDE Outline/base-em; compact — Radius/big-component/sm, Elevation/e4;
+ *   large — Radius/big-component/md, Elevation/e5. Ширина в ките 480.
+ * Wrap: V, градиент Surface/component/alpha-base-medium -> Surface/special/light-s0-dark-s2, Blur/48 (фоновое размытие).
+ * Body: V, gap 3xl; compact p Space/5xl; large p Space/7xl · 5xl. Scroller vertical — справа поверх Body.
+ * Без токена: 1px обводки, ширина 480 (`--modal-width`), отступ слоя от краёв вьюпорта — Space/5xl.
+ * Не сверено: направление градиента Wrap (взято сверху вниз); в compact Scroller в ките стоит в потоке Body — у нас поверх, как в large.
+ */
+.layer {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: var(--space-5xl);
+  pointer-events: none;
+}
+.layer > * {
+  pointer-events: auto;
+}
+
+.root {
+  --modal-width: 480px;
+
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  width: var(--modal-width);
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+.root::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--outline-base-em);
+  pointer-events: none;
+}
+.compact {
+  border-radius: var(--radius-big-component-sm);
+  box-shadow: var(--elevation-e4);
+}
+.large {
+  border-radius: var(--radius-big-component-md);
+  box-shadow: var(--elevation-e5);
+}
+
+.wrap {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  background: linear-gradient(180deg, var(--surface-component-alpha-base-medium), var(--surface-special-light-s0-dark-s2));
+  backdrop-filter: var(--blur-48);
+}
+
+.body {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  gap: var(--space-3xl);
+  overflow: auto;
+  padding: var(--space-5xl);
+  color: var(--text-low-em);
+  scrollbar-width: none;
+}
+.large .content {
+  padding: var(--space-7xl) var(--space-5xl);
+}
+.scroller {
+  position: absolute;
+  top: var(--space-zero);
+  right: var(--space-zero);
+}
+
+/*
+ * Появление (2026-11-26, каталог Storybook): окно — из прозрачности с лёгким увеличением, 0.2s ease-out.
+ * В ките анимации нет, motion-токенов нет: длительность как у переходов базы (0.15–0.2s), масштаб 0.96 без токена.
+ * Срабатывает при каждом открытии (закрытая модалка не рендерится). Выключено при prefers-reduced-motion.
+ */
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+.root {
+  animation: modal-appear 0.2s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    animation: none;
+  }
+}

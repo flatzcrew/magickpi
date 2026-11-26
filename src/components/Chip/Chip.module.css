@@ -1,0 +1,169 @@
+/*
+ * Chip — Figma `10005:4414` (3 типа × 3 размера × default · hover · pressed · drag · disabled).
+ * Корень: Auto Layout H, center, py Space/xs; слоты Left (image + icon) · Text-wrap · Right, как у Button.
+ * unselected: Surface/component/secondary-alpha-base, текст Text/high-em · Text/low-em, без обводки и тени.
+ *   hover — + Surface/hover-overlay-inverse; pressed — Pressed/gray; drag — overlay + Component-effect/primary-drag.
+ * selected: Surface/primary-base-em-alpha, текст Text/primary-high-em · Text/primary-med-em.
+ * selected-solid: Surface/primary-med-em, обводка Outline/primary (градиент Outline/primary-button-*),
+ *   текст Text/primary-on-primary · Text/secondary-on-primary.
+ * disabled: Surface/disabled-base-em, текст Text/base-em, картинка с непрозрачностью 16%.
+ * Size: xs 24 · sm 32 · md 40 (Space/7xl·10xl·12xl), px Space/sm·md·lg, радиус Radius/small-component/xs·sm·md;
+ *   картинка 12·16·20, иконка 14·16·18; текст caption-1 · caption-2 · body-1.
+ * Классы Type и State этого модуля переиспользует ChipSpecial.
+ * Без токена: 1px обводки, маска linear-gradient(#000 0 0), стоп 48%; opacity 0.16 у картинки disabled.
+ * Не сверено: hover / pressed / drag у selected и selected-solid (взяты overlay своего типа и Pressed/primary).
+ */
+.root {
+  --chip-bg: var(--surface-component-secondary-alpha-base);
+  --chip-overlay: var(--surface-hover-overlay-inverse);
+  --chip-text: var(--text-high-em);
+  --chip-text-2: var(--text-low-em);
+  --chip-stroke-display: none;
+  --chip-pressed: var(--pressed-gray);
+
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  padding-block: var(--space-xs);
+  gap: var(--space-xxs);
+  background: var(--chip-bg);
+  color: var(--chip-text);
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.root::before {
+  content: '';
+  display: var(--chip-stroke-display);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--outline-primary-button-top) 48%, var(--outline-primary-button-bottom) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+/* ---------- Type ---------- */
+.unselected {
+  --chip-bg: var(--surface-component-secondary-alpha-base);
+}
+.selected {
+  --chip-bg: var(--surface-primary-base-em-alpha);
+  --chip-overlay: var(--surface-primary-base-em-alpha);
+  --chip-text: var(--text-primary-high-em);
+  --chip-text-2: var(--text-primary-med-em);
+  --chip-pressed: var(--pressed-primary);
+}
+.selected-solid {
+  --chip-bg: var(--surface-primary-med-em);
+  --chip-overlay: var(--surface-hover-overlay);
+  --chip-text: var(--text-primary-on-primary);
+  --chip-text-2: var(--text-secondary-on-primary);
+  --chip-stroke-display: block;
+  --chip-pressed: var(--pressed-primary);
+}
+
+/* ---------- State ---------- */
+.root:hover:not(:disabled),
+.root[data-state='hover'] {
+  background: linear-gradient(var(--chip-overlay), var(--chip-overlay)), var(--chip-bg);
+}
+.root:active:not(:disabled),
+.root:focus-visible,
+.root[data-state='pressed'] {
+  box-shadow: var(--chip-pressed);
+}
+.root[data-state='drag'] {
+  background: linear-gradient(var(--chip-overlay), var(--chip-overlay)), var(--chip-bg);
+  box-shadow: var(--component-effect-primary-drag);
+  backdrop-filter: var(--component-effect-primary-drag-backdrop);
+  cursor: grabbing;
+}
+.root:disabled,
+.root[data-state='disabled'] {
+  --chip-text-2: var(--text-base-em);
+  --chip-media-opacity: 0.16;
+  background: var(--surface-disabled-base-em);
+  color: var(--text-base-em);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.root:disabled::before,
+.root[data-state='disabled']::before {
+  display: none;
+}
+
+/* ---------- Size ---------- */
+.xs {
+  --icon-size: var(--space-2xl);
+  --chip-image: var(--space-xl);
+  --chip-left-gap: var(--space-xs);
+  height: var(--space-7xl);
+  padding-inline: var(--space-sm);
+  gap: var(--space-zero);
+  border-radius: var(--radius-small-component-xs);
+}
+.sm {
+  --icon-size: var(--space-3xl);
+  --chip-image: var(--space-3xl);
+  --chip-left-gap: var(--space-sm);
+  height: var(--space-10xl);
+  padding-inline: var(--space-md);
+  border-radius: var(--radius-small-component-sm);
+}
+.md {
+  --icon-size: var(--space-4xl);
+  --chip-image: var(--space-5xl);
+  --chip-left-gap: var(--space-sm);
+  height: var(--space-12xl);
+  padding-inline: var(--space-lg);
+  border-radius: var(--radius-small-component-md);
+}
+
+/* ---------- Слоты ---------- */
+.left,
+.right {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+}
+.left {
+  gap: var(--chip-left-gap);
+}
+.image {
+  width: var(--chip-image);
+  height: var(--chip-image);
+  border-radius: var(--radius-round);
+  object-fit: cover;
+  box-shadow: var(--elevation-e1);
+  opacity: var(--chip-media-opacity, 1);
+}
+.text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  gap: var(--space-xs);
+  padding-inline: var(--space-xs);
+}
+.primaryText,
+.secondaryText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.secondaryText {
+  color: var(--chip-text-2);
+}

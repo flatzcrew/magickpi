@@ -1,0 +1,46 @@
+/*
+ * Profile-dropdown — Figma `16451:77325`. Сверено через Figma (дамп), 2026-11-26.
+ * Корень: H, center, p Space/xs · md · xs · sm, gap xxs, Radius/small-component/md, Inverse-white/alpha-8
+ *   (обводка Outline/base-em толщиной 0 — не рисуем). Hug по содержимому.
+ * Left: Avatar image xs (28). Text-wrap: px Space/sm, gap xs; UI/body-1 medium Text/high-em + UI/body-1 normal Text/med-em.
+ * Right: Icon-button flat xs. Состояний hover / pressed у набора в ките нет.
+ */
+.root {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: var(--space-xs) var(--space-md) var(--space-xs) var(--space-sm);
+  gap: var(--space-xxs);
+  border-radius: var(--radius-small-component-md);
+  background: var(--inverse-white-alpha-8);
+  cursor: pointer;
+}
+
+.left,
+.right {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+}
+
+.textWrap {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  padding-inline: var(--space-sm);
+  gap: var(--space-xs);
+}
+.primary,
+.secondary {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.primary {
+  color: var(--text-high-em);
+}
+.secondary {
+  flex: none;
+  color: var(--text-med-em);
+}

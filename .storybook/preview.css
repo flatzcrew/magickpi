@@ -1,0 +1,21 @@
+/*
+ * Стили страниц каталога (preview) — только токены.
+ * Закреплённый главный пример на странице компонента: sticky внутри блока «пример + настройки», фон Surface/s0,
+ * не выше 65% экрана (большие примеры прокручиваются внутри), снизу тень Elevation/e2 — отделяет от таблицы.
+ */
+.ds-docs-live {
+  position: relative;
+}
+.ds-docs-primary {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding-top: var(--space-md);
+  background: var(--surface-s0);
+}
+.ds-docs-primary > * {
+  max-height: 65vh;
+  overflow: auto;
+  margin-bottom: var(--space-md) !important;
+  box-shadow: var(--elevation-e2);
+}

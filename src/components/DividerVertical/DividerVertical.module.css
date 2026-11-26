@@ -1,0 +1,35 @@
+/*
+ * Divider-vertical — Figma `12124:22532`. Полоса 8px (`--space-md`), высота Fill, линия 1px Outline/base-em.
+ * center-double: полоса 2px (`--space-xxs`), слева Outline/high-em, справа Outline/base-em.
+ * Без токена: толщина линии 1px.
+ */
+.root {
+  position: relative;
+  width: var(--space-md);
+  height: 100%;
+  align-self: stretch;
+  flex: none;
+}
+
+.root::before,
+.root::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.root::before { background: var(--outline-base-em); }
+.root::after { display: none; }
+
+.left::before { left: 0; }
+.center::before { left: calc(50% - 0.5px); }
+.right::before { right: 0; }
+
+.center-double { width: var(--space-xxs); }
+.center-double::before { left: 0; background: var(--outline-high-em); }
+.center-double::after { display: block; right: 0; background: var(--outline-base-em); }
+
+.rounded::before,
+.rounded::after { border-radius: var(--radius-round); }

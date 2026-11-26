@@ -1,0 +1,231 @@
+/*
+ * Input-cell-special — Figma `12041:566` (Type default · default-with-button · textarea × Size md · lg × State resting · pressed).
+ * Корень H, align center, gap Space/xxs, px Space/3xl, Radius/round; фон Surface/s2, обводка 1px INSIDE Outline/low-em.
+ * Высота md 56 (Space/16xl) · lg 64 (Space/18xl). default-with-button: pr Space/md, Button tertiary md / lg, pl группы Space/sm.
+ * textarea: align top, md px Space/lg · py Space/md · Radius/small-component/lg · 96 (Space/22xl);
+ *   lg px Space/xl · py Space/lg · Radius/small-component/xl · 104 (Space/23xl).
+ * Слоты: Left — gap md Space/sm · lg Space/md, картинка 24 / 32, иконки 20 / 22. Label и Text-wrap — px md Space/sm · lg Space/md
+ *   (textarea Space/xxs), gap Space/xs.
+ * resting: подпись UI/para|body-2/medium Text/med-em на месте значения, Text-wrap скрыт.
+ * pressed: подпись UI/caption-1|caption-2/normal Text/low-em, значение UI/para|body-2/medium Text/med-em;
+ *   левая иконка Text/med-em, правая low-em -> med-em.
+ * Оверрайды InputFieldSpecial `12041:1143` (data-tone): default — подпись и иконки Text/low-em;
+ *   hover + Surface/hover-overlay-inverse; default-dark Surface/component/secondary-alpha-base (hover-dark + overlay);
+ *   filled-dark / active Surface/special/light-s3-dark-s4, значение Text/high-em (active — и левая иконка);
+ *   danger Surface/danger-base-em-alpha, иконки Text/danger-med-em, подпись Text/high-em; disabled — всё Text/base-em.
+ * Фокус = active (в ките у active нет кольца фокуса).
+ * Без токена: 1px обводки.
+ */
+.root {
+  --ics-bg: var(--surface-s2);
+  --ics-label: var(--text-med-em);
+  --ics-value: var(--text-med-em);
+  --ics-text-2: var(--text-low-em);
+  --ics-left-icon: var(--text-med-em);
+  --ics-right-icon: var(--text-low-em);
+
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-xxs);
+  padding-inline: var(--space-3xl);
+  border: 1px solid var(--outline-low-em);
+  border-radius: var(--radius-round);
+  background: var(--ics-bg);
+  transition: background 0.15s ease;
+}
+
+/* ---------- Size ---------- */
+.md {
+  --icon-size: var(--space-5xl);
+  --ics-image: var(--space-7xl);
+  --ics-left-gap: var(--space-sm);
+  --ics-text-pad: var(--space-sm);
+  height: var(--space-16xl);
+}
+.lg {
+  --icon-size: var(--space-6xl);
+  --ics-image: var(--space-10xl);
+  --ics-left-gap: var(--space-md);
+  --ics-text-pad: var(--space-md);
+  height: var(--space-18xl);
+}
+
+.default-with-button {
+  padding-right: var(--space-md);
+}
+
+/* ---------- textarea ---------- */
+.textarea {
+  --ics-text-pad: var(--space-xxs);
+  align-items: flex-start;
+  height: auto;
+}
+.textarea.md {
+  --icon-size: var(--space-5xl);
+  min-height: var(--space-22xl);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-small-component-lg);
+}
+.textarea.lg {
+  --icon-size: var(--space-7xl);
+  min-height: var(--space-23xl);
+  padding: var(--space-lg) var(--space-xl);
+  border-radius: var(--radius-small-component-xl);
+}
+.textarea .text {
+  align-self: stretch;
+}
+.textarea .control {
+  resize: none;
+}
+.resize {
+  flex: none;
+  color: var(--text-low-em);
+}
+
+/* ---------- Слоты ---------- */
+.left,
+.right {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+}
+.left {
+  gap: var(--ics-left-gap);
+}
+.leftIcon {
+  color: var(--ics-left-icon);
+}
+.right {
+  color: var(--ics-right-icon);
+}
+.image {
+  width: var(--ics-image);
+  height: var(--ics-image);
+  border-radius: var(--radius-round);
+  object-fit: cover;
+  box-shadow: var(--elevation-e1);
+}
+.text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.label,
+.wrap {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: var(--space-xs);
+  padding-inline: var(--ics-text-pad);
+}
+.label {
+  cursor: text;
+}
+.labelText {
+  overflow: hidden;
+  color: var(--ics-label);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.labelSupport {
+  flex: none;
+  color: var(--text-low-em);
+  white-space: nowrap;
+}
+.control {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-zero);
+  border: 0;
+  background: none;
+  color: var(--ics-value);
+  outline: none;
+}
+.secondaryText {
+  flex: none;
+  color: var(--ics-text-2);
+  white-space: nowrap;
+}
+.buttonGroup {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  padding-left: var(--space-sm);
+}
+
+/* ---------- State: resting / pressed ---------- */
+.root[data-state='resting'] .wrap {
+  height: 0;
+  overflow: hidden;
+}
+.root[data-state='pressed'] {
+  --ics-label: var(--text-low-em);
+  --ics-right-icon: var(--text-med-em);
+}
+.root[data-state='pressed'].default-with-button {
+  --ics-right-icon: var(--text-low-em);
+}
+
+/* ---------- Tone (оверрайды InputFieldSpecial) ---------- */
+.root[data-tone='default'],
+.root[data-tone='hover'],
+.root[data-tone='default-dark'],
+.root[data-tone='hover-dark'] {
+  --ics-left-icon: var(--text-low-em);
+}
+.root[data-tone][data-state='resting'] {
+  --ics-label: var(--text-low-em);
+}
+.root[data-tone='default-dark'],
+.root[data-tone='hover-dark'] {
+  --ics-bg: var(--surface-component-secondary-alpha-base);
+}
+.root[data-tone='filled-dark'] {
+  --ics-bg: var(--surface-special-light-s3-dark-s4);
+  --ics-value: var(--text-high-em);
+}
+.root[data-tone='active'],
+.root:focus-within:not([data-tone='danger']) {
+  --ics-bg: var(--surface-special-light-s3-dark-s4);
+  --ics-value: var(--text-high-em);
+  --ics-left-icon: var(--text-high-em);
+}
+.root[data-tone='danger'] {
+  --ics-bg: var(--surface-danger-base-em-alpha);
+  --ics-left-icon: var(--text-danger-med-em);
+  --ics-right-icon: var(--text-danger-med-em);
+}
+.root[data-tone='danger'][data-state] {
+  --ics-label: var(--text-high-em);
+}
+
+.root:hover:not([data-disabled]):not(:focus-within):not([data-tone='danger']),
+.root[data-tone='hover'],
+.root[data-tone='hover-dark'] {
+  background: linear-gradient(var(--surface-hover-overlay-inverse), var(--surface-hover-overlay-inverse)),
+    var(--ics-bg);
+}
+
+.root[data-disabled],
+.root[data-disabled][data-state] {
+  --ics-label: var(--text-base-em);
+  --ics-value: var(--text-base-em);
+  --ics-text-2: var(--text-base-em);
+  --ics-left-icon: var(--text-base-em);
+  --ics-right-icon: var(--text-base-em);
+}
+.root[data-disabled] .label,
+.root[data-disabled] .control {
+  cursor: not-allowed;
+}
+.root[data-disabled] .labelSupport {
+  color: var(--text-base-em);
+}

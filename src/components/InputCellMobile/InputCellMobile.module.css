@@ -1,0 +1,183 @@
+/*
+ * Input-cell-mobile — Figma `53469:2145` (Type default · default-with-action · textarea × Size md · lg).
+ * Корень H, align center, gap Space/xxs, px Space/3xl; Radius/5xl (md) · Radius/7xl (lg); высота 56 · 64 (Space/16xl · 18xl).
+ * Стекло: фон Surface/component/alpha-base-medium + BACKGROUND_BLUR 48 (--blur-48), обводка 3px INSIDE Outline/low-em.
+ * Текст: подпись (hug) + значение (fill), px Space/sm; UI/body-2/medium (md) · UI/title-2/medium (lg);
+ *   подпись Text/med-em, плейсхолдер Text/low-em, значение Text/med-em; support-тексты UI/caption-2/medium Text/low-em.
+ * Left: gap md Space/sm · lg Space/md, картинка 24 / 32, иконка 20 / 22, Text/med-em.
+ * default-with-action: подписи нет, значение + Button secondary sm / md, pl группы Space/sm.
+ * textarea: колонка подпись (Text/low-em, UI/caption-2|body-1/medium) + значение (UI/body-2|title-2/medium);
+ *   md px/py Space/xl · lg px Space/3xl py Space/xl; высота от 96 / 104 (Space/22xl · 23xl).
+ * Оверрайды InputFieldMobile `53469:2117` (data-tone): подпись Text/high-em, иконка Text/low-em;
+ *   filled — значение med-em; active / фокус — обводка Outline/primary-med-em, значение high-em, иконка med-em;
+ *   danger — без фона, обводка Outline/danger-med-em, иконка Text/danger-med-em, значение high-em; disabled — всё Text/base-em.
+ * Без токена: толщина обводки 3px.
+ */
+.root {
+  --icm-label: var(--text-med-em);
+  --icm-value: var(--text-med-em);
+  --icm-placeholder: var(--text-low-em);
+  --icm-icon: var(--text-med-em);
+  --icm-stroke: var(--outline-low-em);
+  --icm-bg: var(--surface-component-alpha-base-medium);
+
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-xxs);
+  padding-inline: var(--space-3xl);
+  border: 3px solid var(--icm-stroke);
+  background: var(--icm-bg);
+  backdrop-filter: var(--blur-48);
+  -webkit-backdrop-filter: var(--blur-48);
+  transition: border-color 0.15s ease;
+}
+
+/* ---------- Size ---------- */
+.md {
+  --icon-size: var(--space-5xl);
+  --icm-image: var(--space-7xl);
+  --icm-left-gap: var(--space-sm);
+  height: var(--space-16xl);
+  border-radius: var(--radius-5xl);
+}
+.lg {
+  --icon-size: var(--space-6xl);
+  --icm-image: var(--space-10xl);
+  --icm-left-gap: var(--space-md);
+  height: var(--space-18xl);
+  border-radius: var(--radius-7xl);
+}
+
+/* ---------- textarea ---------- */
+.textarea {
+  align-items: flex-start;
+  height: auto;
+}
+.textarea.md {
+  --icon-size: var(--space-5xl);
+  min-height: var(--space-22xl);
+  padding: var(--space-xl);
+}
+.textarea.lg {
+  --icon-size: var(--space-7xl);
+  min-height: var(--space-23xl);
+  padding: var(--space-xl) var(--space-3xl);
+}
+.textarea .text {
+  flex-direction: column;
+  align-items: stretch;
+  align-self: stretch;
+}
+.textarea .label {
+  --icm-label: var(--text-low-em);
+  padding-inline: var(--space-xxs);
+}
+.textarea .control {
+  flex: 1 1 auto;
+  padding-inline: var(--space-xxs);
+  resize: none;
+}
+.resize {
+  flex: none;
+  color: var(--text-low-em);
+}
+
+/* ---------- Слоты ---------- */
+.left {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--icm-left-gap);
+  color: var(--icm-icon);
+}
+.image {
+  width: var(--icm-image);
+  height: var(--icm-image);
+  border-radius: var(--radius-round);
+  object-fit: cover;
+  box-shadow: var(--elevation-e1);
+}
+.text {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+}
+.labelWrap,
+.valueWrap {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-inline: var(--space-sm);
+}
+.labelWrap {
+  flex: none;
+}
+.valueWrap {
+  flex: 1 1 auto;
+}
+.label {
+  color: var(--icm-label);
+  white-space: nowrap;
+}
+.support {
+  color: var(--text-low-em);
+}
+.control {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-zero);
+  border: 0;
+  background: none;
+  color: var(--icm-value);
+  outline: none;
+}
+.control::placeholder {
+  color: var(--icm-placeholder);
+  opacity: 1;
+}
+.action {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  padding-left: var(--space-sm);
+}
+
+/* ---------- Tone (оверрайды InputFieldMobile) ---------- */
+.root[data-tone] {
+  --icm-label: var(--text-high-em);
+  --icm-icon: var(--text-low-em);
+}
+.root[data-tone].textarea .label {
+  --icm-label: var(--text-low-em);
+}
+.root[data-tone='active'],
+.root:focus-within:not([data-tone='danger']) {
+  --icm-stroke: var(--outline-primary-med-em);
+  --icm-value: var(--text-high-em);
+  --icm-icon: var(--text-med-em);
+}
+.root[data-tone='danger'] {
+  --icm-stroke: var(--outline-danger-med-em);
+  --icm-value: var(--text-high-em);
+  --icm-icon: var(--text-danger-med-em);
+  --icm-bg: none;
+}
+.root[data-disabled] {
+  --icm-label: var(--text-base-em);
+  --icm-value: var(--text-base-em);
+  --icm-placeholder: var(--text-base-em);
+  --icm-icon: var(--text-base-em);
+}
+.root[data-disabled] .label,
+.root[data-disabled] .support {
+  color: var(--text-base-em);
+}
+.root[data-disabled] .control {
+  cursor: not-allowed;
+}

@@ -1,0 +1,60 @@
+/*
+ * Button-danger — Figma `10076:1687`. Сверено через Figma (variables / effect styles), 2026-11-25.
+ * Перекрывает переменные Button.module.css (классы .root/.<type> Button остаются на элементе).
+ * Специфичность 0,2,0 (.root.<type>) — выше, чем у классов Type в Button.
+ * primary / primary-gradient: Surface/danger-med-em (градиент Surface/component/danger-gradient-*), текст Text/primary-on-base.
+ * Остальные: текст Text/danger-high-em, вторичный Text/danger-med-em. tertiary — обводка 1px Outline/danger-base-em-alpha.
+ * primary-light / quaternary: hover-слой и pressed-фон Surface/danger-base-em-alpha. Pressed — Pressed/danger.
+ */
+.root[class] {
+  --btn-pressed: var(--pressed-danger);
+}
+
+.root.primary {
+  --btn-bg: var(--surface-danger-med-em);
+  --btn-text: var(--text-primary-on-base);
+  --btn-text-hover: var(--text-primary-on-base);
+  --btn-text-2: var(--text-secondary-on-base);
+}
+
+.root.primary-gradient {
+  --btn-bg: linear-gradient(
+    180deg,
+    var(--surface-component-danger-gradient-top) 0%,
+    var(--surface-danger-med-em) 56%,
+    var(--surface-component-danger-gradient-bottom) 100%
+  );
+  --btn-text: var(--text-primary-on-base);
+  --btn-text-hover: var(--text-primary-on-base);
+  --btn-text-2: var(--text-secondary-on-base);
+}
+
+.root.primary-light,
+.root.secondary,
+.root.tertiary,
+.root.quaternary {
+  --btn-text: var(--text-danger-high-em);
+  --btn-text-hover: var(--text-danger-high-em);
+  --btn-text-2: var(--text-danger-med-em);
+}
+
+.root.primary-light {
+  --btn-bg: var(--surface-danger-base-em-alpha);
+  --btn-overlay: var(--surface-danger-base-em-alpha);
+}
+
+.root.tertiary {
+  --btn-stroke-top: var(--outline-danger-base-em-alpha);
+  --btn-stroke-bottom: var(--outline-danger-base-em-alpha);
+}
+
+.root.quaternary {
+  --btn-overlay: var(--surface-danger-base-em-alpha);
+  --btn-bg-pressed: var(--surface-danger-base-em-alpha);
+}
+
+/* Disabled — общий для набора: тексты Text/base-em (как в Button). */
+.root:disabled,
+.root[data-state='disabled'] {
+  --btn-text-2: var(--text-base-em);
+}

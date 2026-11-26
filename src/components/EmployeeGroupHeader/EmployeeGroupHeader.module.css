@@ -1,0 +1,68 @@
+/*
+ * EmployeeGroupHeader — Figma kpi-bro · web `176:2694` (Offer: false · true — 2 ячейки, 1040 × 68 / 108), сверено get_design_context 2026-11-26 по 176:2704.
+ * Корень V, gap Space/md, padding Space/xl × Space/3xl; fill Surface/s1; обводка Surface/s3 1px со всех сторон; Radius/5xl; ширина 1040 (как TaskRow).
+ * Row H, center, gap Space/xl: SelectAll — Checkbox-label sm left · Avatar sm (text) · Content V FILL gap Space/xxs
+ *   (Name UI/body-2/semibold Text/high-em, Role UI/caption-2/normal Text/med-em — по 1 строке + «…») · Count UI/caption-2/normal Text/med-em ·
+ *   MatrixLink — Link primary sm «Матрица» (стрелка Arrow-right-up — проп, в мастере выключена).
+ * Offer (только Offer=true) H, center, gap Space/md: OfferText FILL UI/body-2/normal Text/high-em · Button primary-gradient sm «Оценить» · Button tertiary sm «Позже».
+ * Целиком не кликается; состояния — у Checkbox, Link, кнопок.
+ * Без токена: ширина 1040 (--employee-group-header-width), обводка 1px.
+ */
+.root {
+  --employee-group-header-width: 1040px;
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--employee-group-header-width);
+  max-width: 100%;
+  padding: var(--space-xl) var(--space-3xl);
+  gap: var(--space-md);
+  border: 1px solid var(--surface-s3);
+  border-radius: var(--radius-5xl);
+  background: var(--surface-s1);
+}
+.row,
+.offer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.row {
+  gap: var(--space-xl);
+}
+.offer {
+  gap: var(--space-md);
+}
+.row > *:not(.content),
+.offer > *:not(.offerText) {
+  flex: none;
+}
+.content {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  min-width: 0;
+  gap: var(--space-xxs);
+}
+.name,
+.role {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.name {
+  color: var(--text-high-em);
+}
+.role,
+.count {
+  color: var(--text-med-em);
+}
+.count {
+  white-space: nowrap;
+}
+.offerText {
+  flex: 1 0 0;
+  min-width: 0;
+  color: var(--text-high-em);
+}

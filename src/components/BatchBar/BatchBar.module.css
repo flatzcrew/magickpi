@@ -1,0 +1,44 @@
+/*
+ * BatchBar — Figma kpi-bro · web `176:2623` (State: default · hint — 2 ячейки, 720), сверено get_design_context 2026-11-26 по 176:2630.
+ * Корень H, center, padding Space/xl × Space/3xl, gap Space/3xl; fill Surface/s0; обводка 1px Outline/low-em; Radius/big-component/xs; тень Elevation/e4.
+ * Text-wrap V FILL, gap Space/xxs: Count UI/body-2/medium Text/high-em, 1 строка + «…»; Hint UI/caption-2/normal Text/med-em (только State=hint).
+ * Actions H gap Space/md: Clear — Button quaternary md «Снять выбор» (showClear) · Primary — Button secondary md «Сменить статус».
+ * Без токена: ширина 720 (--batch-bar-width), обводка 1px.
+ */
+.root {
+  --batch-bar-width: 720px;
+
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--batch-bar-width);
+  max-width: 100%;
+  padding: var(--space-xl) var(--space-3xl);
+  gap: var(--space-3xl);
+  border: 1px solid var(--outline-low-em);
+  border-radius: var(--radius-big-component-xs);
+  background: var(--surface-s0);
+  box-shadow: var(--elevation-e4);
+}
+.text {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  min-width: 0;
+  gap: var(--space-xxs);
+}
+.count {
+  overflow: hidden;
+  color: var(--text-high-em);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hint {
+  color: var(--text-med-em);
+}
+.actions {
+  display: flex;
+  flex: none;
+  align-items: flex-start;
+  gap: var(--space-md);
+}

@@ -1,0 +1,115 @@
+/*
+ * Toast — Figma `12071:5771`. Сверено через Figma (дамп вариантов), 2026-11-26.
+ * Корень: V, center, p Space/xl, gap xl, Radius/big-component/md, Blur/24 (фоновое размытие); ширина в ките 592.
+ *   Фон: default / info — Inverse-white/alpha-2; success / warning / danger — Surface/<state>-base-em-alpha.
+ * List-wrap: H, p Space/xl, gap md, Radius/big-component/xs, Elevation/e5;
+ *   фон default / info — Surface/special/light-s0-dark-s2, остальные — Surface/special/light-s0-dark-s1.
+ * Text-wrap: Fill, px Space/xs, gap 0; Heading-top gap xs: UI/body-2 medium Text/high-em + UI/body-2 normal Text/low-em;
+ *   описание UI/para normal Text/low-em. Right: gap Space/md.
+ * Support-text: UI/caption-2 normal; цвет в ките смешанный (mixed) — взят Text/low-em, не сверено.
+ * Без токена: ширина 592 (`--toast-width`).
+ */
+.root {
+  --toast-width: 592px;
+  --toast-bg: var(--inverse-white-alpha-2);
+  --toast-card: var(--surface-special-light-s0-dark-s2);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--toast-width);
+  max-width: 100%;
+  padding: var(--space-xl);
+  gap: var(--space-xl);
+  border-radius: var(--radius-big-component-md);
+  background: var(--toast-bg);
+  backdrop-filter: var(--blur-24);
+}
+/*
+ * success — без зелёной подложки вокруг карточки (решение дизайнера 2026-11-26, отступление от кита):
+ * внешний слой как у default (Inverse-white/alpha-2), карточка — с обычной тенью Elevation/e5. Иконка остаётся зелёной.
+ */
+.root[data-state='success'] {
+  --toast-card: var(--surface-special-light-s0-dark-s1);
+}
+.root[data-state='warning'] {
+  --toast-bg: var(--surface-warning-base-em-alpha);
+  --toast-card: var(--surface-special-light-s0-dark-s1);
+}
+.root[data-state='danger'] {
+  --toast-bg: var(--surface-danger-base-em-alpha);
+  --toast-card: var(--surface-special-light-s0-dark-s1);
+}
+
+.wrap {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-xl);
+  gap: var(--space-md);
+  border-radius: var(--radius-big-component-xs);
+  background: var(--toast-card);
+  box-shadow: var(--elevation-e5);
+}
+
+.left,
+.right {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.textWrap {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding-inline: var(--space-xs);
+}
+.headingTop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+.title {
+  min-width: 0;
+  color: var(--text-high-em);
+}
+.secondary {
+  flex: none;
+  color: var(--text-low-em);
+}
+.description {
+  margin: 0;
+  color: var(--text-low-em);
+}
+
+.support {
+  margin: 0;
+  color: var(--text-low-em);
+  text-align: center;
+}
+
+/*
+ * Появление (2026-11-26): всплывает снизу на Space/md из прозрачности, 0.2s ease-out.
+ * В ките анимации нет; выключено при prefers-reduced-motion.
+ */
+@keyframes toast-appear {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-md));
+  }
+}
+.root {
+  animation: toast-appear 0.2s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    animation: none;
+  }
+}

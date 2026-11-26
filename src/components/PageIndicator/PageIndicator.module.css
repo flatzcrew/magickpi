@@ -1,0 +1,10 @@
+/*
+ * Page-indicator — Figma `14195:5866` (одиночный, +2: Dot_3 · Dot_4). Auto Layout H, center, gap Space/sm.
+ * Точки — Indicator (active-1 · inactive), размеры и заливки — в Indicator.module.css.
+ */
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}

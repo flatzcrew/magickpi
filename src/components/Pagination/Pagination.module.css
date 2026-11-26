@@ -1,0 +1,124 @@
+/*
+ * Pagination — Figma `12124:22612`. Сверено через Figma (дамп вариантов), 2026-11-26.
+ * first · center · last: H, p Space/xl · 3xl · xs · 3xl, gap 12 (в ките без переменной = Space/xl);
+ *   Pages H gap Space/xl, Numbers gap Space/xs; Right — Fill, gap Space/xl; Results gap 8 (без переменной = Space/md);
+ *   подписи UI/para normal Text/low-em.
+ * less-pages: H, center, p Space/xs · 3xl, gap md; счётчик — p Space/sm · md, gap sm, Radius/small-component/sm,
+ *   Surface/special/light-s0-dark-s2, обводка-градиент Outline/secondary-button-*, Component-effect/secondary-default;
+ *   текущая Text/primary-med-em, «/ 10» Text/low-em.
+ * mobile: V, center, p Space/xl · 3xl · xs · 3xl, gap xl. load-more: V, center, тот же padding, gap xl;
+ *   «Отображается N из M» — UI/para normal Text/low-em, число Text/high-em.
+ * Без токена: 1px обводки и маска linear-gradient(#000 0 0), стоп 48% (как у Dropdown).
+ * Не сверено: Dropdown «строк на странице» в ките высотой 32 и в состоянии pressed (оверрайды) — у нас Dropdown default 40.
+ */
+.root {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-xl) var(--space-3xl) var(--space-xs);
+  gap: var(--space-xl);
+}
+
+.mobile,
+.load-more {
+  flex-direction: column;
+  justify-content: center;
+}
+.less-pages {
+  justify-content: center;
+  width: auto;
+  padding: var(--space-xs) var(--space-3xl);
+  gap: var(--space-md);
+}
+
+.pages {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xl);
+}
+.less-pages .pages {
+  gap: var(--space-md);
+}
+.numbers {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.right {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+  gap: var(--space-xl);
+}
+.mobile .right {
+  flex: none;
+}
+.results {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-md);
+}
+.label {
+  color: var(--text-low-em);
+  white-space: nowrap;
+}
+.goto {
+  display: inline-flex;
+  width: var(--space-23xl);
+}
+.pageSize {
+  display: inline-flex;
+}
+.divider {
+  height: var(--space-3xl);
+}
+
+/* ---------- less-pages ---------- */
+.counter {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: var(--space-sm) var(--space-md);
+  gap: var(--space-sm);
+  border-radius: var(--radius-small-component-sm);
+  background: var(--surface-special-light-s0-dark-s2);
+  box-shadow: var(--component-effect-secondary-default);
+}
+.counter::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--outline-secondary-button-top) 48%, var(--outline-secondary-button-bottom) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+.counterActive {
+  color: var(--text-primary-med-em);
+}
+.counterTotal {
+  color: var(--text-low-em);
+}
+
+/* ---------- load-more ---------- */
+.info {
+  margin: 0;
+  color: var(--text-low-em);
+}
+.infoAccent {
+  color: var(--text-high-em);
+}

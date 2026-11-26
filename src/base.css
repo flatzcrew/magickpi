@@ -1,0 +1,33 @@
+/*
+ * Базовые стили документа — только токены ДС.
+ * Шрифт по умолчанию — семейство body (Geist), цвет и фон — семантика темы,
+ * чтобы текст вне классов ui-* и фон страницы следовали Light/Dark.
+ */
+html {
+  color-scheme: light;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: var(--typeface-family-body), system-ui, sans-serif;
+  color: var(--text-high-em);
+  background: var(--surface-s0);
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}

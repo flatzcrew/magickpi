@@ -1,0 +1,189 @@
+/*
+ * Table-cell — Figma `16115:25252`. Сверено через Figma (дамп вариантов), 2026-11-26.
+ * Корень: Auto Layout H, center, gap Space/xl, обводка снизу 1px Outline/base-em.
+ * header (md): p Space/xs · 3xl · xl · 3xl (высота 40), Left gap sm, иконка 18, картинка 20, иконки справа 14,
+ *   Icon-button xs; Primary и Secondary — Text/low-em, UI/para.
+ * default md: p Space/lg · 3xl (56), Left gap md, иконка 18, картинки 20/28/36, иконки справа 18, Right gap sm.
+ * default lg: p Space/xl · 3xl (64), Left gap xl, иконка 20, картинки 24/32/40, иконки справа 20, Right gap md, UI/body-2.
+ * Primary Text/med-em, Secondary и Description Text/low-em; Description — UI/caption-2, иконка 16.
+ * loading: круги Radius/round с заливкой Surface/disabled-low-em -> disabled-med-em, полоса Surface/disabled-base-em -> disabled-low-em.
+ *   header: p md · 3xl · xl · 3xl, круги 20/16, Left gap sm, полоса 10; md: p 3xl, круги 24/16, gap sm, полоса 12;
+ *   lg: p 4xl · 3xl, круги 28/20, gap md, полоса 14.
+ * Без токена: 1px обводки. Не сверено: направление градиентов скелетона (взято слева направо).
+ */
+.root {
+  --tc-pad-top: var(--space-lg);
+  --tc-pad-bottom: var(--space-lg);
+  --tc-left-gap: var(--space-md);
+  --tc-icon: var(--space-4xl);
+  --tc-img-sm: var(--space-5xl);
+  --tc-img-md: var(--space-9xl);
+  --tc-img-lg: var(--space-11xl);
+  --tc-right-icon: var(--space-4xl);
+  --tc-right-gap: var(--space-sm);
+  --tc-primary: var(--text-med-em);
+  --tc-loader-lg: var(--space-7xl);
+  --tc-loader-sm: var(--space-3xl);
+  --tc-bar: var(--space-xl);
+
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: var(--tc-pad-top) var(--space-3xl) var(--tc-pad-bottom);
+  gap: var(--space-xl);
+  box-shadow: inset 0 -1px 0 var(--outline-base-em);
+}
+
+.header {
+  --tc-pad-top: var(--space-xs);
+  --tc-pad-bottom: var(--space-xl);
+  --tc-left-gap: var(--space-sm);
+  --tc-img-md: var(--space-5xl);
+  --tc-right-icon: var(--space-2xl);
+  --tc-primary: var(--text-low-em);
+  --tc-loader-lg: var(--space-5xl);
+  --tc-loader-sm: var(--space-3xl);
+  --tc-bar: var(--space-lg);
+}
+.md {
+  --tc-pad-top: var(--space-lg);
+  --tc-pad-bottom: var(--space-lg);
+}
+.lg {
+  --tc-pad-top: var(--space-xl);
+  --tc-pad-bottom: var(--space-xl);
+  --tc-left-gap: var(--space-xl);
+  --tc-icon: var(--space-5xl);
+  --tc-img-sm: var(--space-7xl);
+  --tc-img-md: var(--space-10xl);
+  --tc-img-lg: var(--space-12xl);
+  --tc-right-icon: var(--space-5xl);
+  --tc-right-gap: var(--space-md);
+  --tc-loader-lg: var(--space-9xl);
+  --tc-loader-sm: var(--space-5xl);
+  --tc-bar: var(--space-2xl);
+}
+
+/* ---------- loading ---------- */
+.loading.header {
+  --tc-pad-top: var(--space-md);
+}
+.loading.md {
+  --tc-pad-top: var(--space-3xl);
+  --tc-pad-bottom: var(--space-3xl);
+}
+.loading.lg {
+  --tc-pad-top: var(--space-4xl);
+  --tc-pad-bottom: var(--space-4xl);
+  --tc-left-gap: var(--space-md);
+}
+.loading.md,
+.loading.header {
+  --tc-left-gap: var(--space-sm);
+}
+.loader {
+  flex: none;
+  border-radius: var(--radius-round);
+  background: linear-gradient(90deg, var(--surface-disabled-low-em), var(--surface-disabled-med-em));
+}
+.loaderLg {
+  width: var(--tc-loader-lg);
+  height: var(--tc-loader-lg);
+}
+.loaderSm {
+  width: var(--tc-loader-sm);
+  height: var(--tc-loader-sm);
+}
+.bar {
+  flex: 1 1 auto;
+  height: var(--tc-bar);
+  border-radius: var(--radius-round);
+  background: linear-gradient(90deg, var(--surface-disabled-base-em), var(--surface-disabled-low-em));
+}
+
+/* ---------- Слоты ---------- */
+.left,
+.right {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+}
+.left {
+  gap: var(--tc-left-gap);
+  color: var(--text-med-em);
+}
+.right {
+  gap: var(--tc-right-gap);
+  color: var(--text-med-em);
+}
+.leftIcon {
+  --icon-size: var(--tc-icon);
+}
+.rightIcon {
+  --icon-size: var(--tc-right-icon);
+}
+.image {
+  flex: none;
+  border-radius: var(--radius-round);
+  object-fit: cover;
+}
+.image-sm {
+  width: var(--tc-img-sm);
+  height: var(--tc-img-sm);
+}
+.image-md {
+  width: var(--tc-img-md);
+  height: var(--tc-img-md);
+}
+.image-lg {
+  width: var(--tc-img-lg);
+  height: var(--tc-img-lg);
+}
+.dropdown {
+  display: inline-flex;
+  flex: none;
+}
+
+.textWrap {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.trail {
+  flex: none;
+}
+.headingTop,
+.bottom {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+.bottom {
+  color: var(--text-low-em);
+}
+.descIcon {
+  --icon-size: var(--space-3xl);
+}
+.primary,
+.secondary,
+.description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.primary {
+  color: var(--tc-primary);
+}
+.secondary {
+  flex: none;
+  color: var(--text-low-em);
+}
+.description {
+  min-width: 0;
+  color: var(--text-low-em);
+}

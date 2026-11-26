@@ -1,0 +1,15 @@
+/*
+ * NavDot — Figma kpi-bro · web `165:840` (одна ячейка). 8×8 Space/md, Radius/round, fill Surface/danger-high-em,
+ * обводка Surface/s0 1.5 OUTSIDE (box-shadow, чтобы не съедать размер). Позиция absolute — у родителя на экране.
+ * Без токена: толщина обводки 1.5px.
+ */
+.root {
+  display: inline-block;
+  flex: none;
+  box-sizing: content-box;
+  width: var(--space-md);
+  height: var(--space-md);
+  border-radius: var(--radius-round);
+  background: var(--surface-danger-high-em);
+  box-shadow: 0 0 0 1.5px var(--surface-s0);
+}

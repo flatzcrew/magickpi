@@ -1,0 +1,77 @@
+/*
+ * Digit-input — Figma `12045:686`. Ширина — fill (56 в наборе, 44 в Input-field), высота по контенту.
+ * md: px Space/lg, py Space/xl, UI/heading-2/medium (60). lg (оверрайд из Input-field digit-lg):
+ * px Space/xl, py Space/5xl, UI/heading-4/medium (88). Radius/small-component/md.
+ * default Surface/s2 · hover +Surface/hover-overlay-inverse · *-dark Surface/special/light-s3-dark-s4
+ * active / danger Surface/special/light-s0-dark-s2 + Pressed/gray | Pressed/danger · disabled Surface/disabled-base-em.
+ * Текст: пусто ("-") Text/low-em · filled Text/med-em · filled-dark / active / danger Text/high-em · disabled Text/base-em.
+ */
+.root {
+  --digit-bg: var(--surface-s2);
+  --digit-text: var(--text-med-em);
+
+  flex: 1 1 0;
+  min-width: 0;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  border-radius: var(--radius-small-component-md);
+  background: var(--digit-bg);
+  color: var(--digit-text);
+  text-align: center;
+  outline: none;
+  transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.root::placeholder {
+  color: var(--text-low-em);
+  opacity: 1;
+}
+
+.md {
+  padding: var(--space-xl) var(--space-lg);
+}
+.lg {
+  padding: var(--space-5xl) var(--space-xl);
+}
+
+/* dark-варианты кита */
+.root[data-state='default-dark'],
+.root[data-state='hover-dark'] {
+  --digit-bg: var(--surface-special-light-s3-dark-s4);
+}
+.root[data-state='filled-dark'] {
+  --digit-bg: var(--surface-special-light-s3-dark-s4);
+  --digit-text: var(--text-high-em);
+}
+
+.root:hover:not(:disabled):not(:focus),
+.root[data-state='hover'],
+.root[data-state='hover-dark'] {
+  background: linear-gradient(var(--surface-hover-overlay-inverse), var(--surface-hover-overlay-inverse)),
+    var(--digit-bg);
+}
+
+.root:focus,
+.root[data-state='active'] {
+  --digit-text: var(--text-high-em);
+  background: var(--surface-special-light-s0-dark-s2);
+  box-shadow: var(--pressed-gray);
+}
+
+.root[data-state='danger'] {
+  --digit-text: var(--text-high-em);
+  background: var(--surface-special-light-s0-dark-s2);
+  box-shadow: var(--pressed-danger);
+}
+
+.root:disabled,
+.root[data-state='disabled'] {
+  --digit-text: var(--text-base-em);
+  background: var(--surface-disabled-base-em);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.root:disabled::placeholder {
+  color: var(--text-base-em);
+}

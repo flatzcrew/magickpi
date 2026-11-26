@@ -1,0 +1,718 @@
+/*
+ * Типографика: 🖍️ Typography (Typeface-1; мобильный Typeface-1-Mobile — @media (max-width: 767px)) и классы TextStyle кита (84).
+ * Класс = имя TextStyle в kebab-case (UI/heading-1/bold -> .ui-heading-1-bold). Цвет в классы не зашит — только Text/*.
+ * Источник: Figma «Pitonize Design System» (Atomize PRO 3.4), fileKey eXsMwWilMH7f3cOWXFRwM5.
+ * Снято только чтением 2026-11-25. Файл сгенерирован — не править руками, перегенерировать из Figma.
+ * Имя переменной = имя Variable/стиля в Figma в kebab-case с сохранением иерархии
+ * (Color/brand/500 -> --color-brand-500, Surface/s0 -> --surface-s0, Space/xl -> --space-xl).
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap");
+
+/* 🖍️ Typography · Typeface-1 (web) */
+:root {
+  --typeface-family-display: var(--font-family-display-1);
+  --typeface-family-body: var(--font-family-body-1);
+  --typeface-size-xl-heading-4: var(--font-size-web-xl-heading-4);
+  --typeface-size-xl-heading-3: var(--font-size-web-xl-heading-3);
+  --typeface-size-xl-heading-2: var(--font-size-web-xl-heading-2);
+  --typeface-size-xl-heading-1: var(--font-size-web-xl-heading-1);
+  --typeface-size-display-3: var(--font-size-web-display-3);
+  --typeface-size-display-2: var(--font-size-web-display-2);
+  --typeface-size-display-1: var(--font-size-web-display-1);
+  --typeface-size-heading-6: var(--font-size-web-heading-6);
+  --typeface-size-heading-5: var(--font-size-web-heading-5);
+  --typeface-size-heading-4: var(--font-size-web-heading-4);
+  --typeface-size-heading-3: var(--font-size-web-heading-3);
+  --typeface-size-heading-2: var(--font-size-web-heading-2);
+  --typeface-size-heading-1: var(--font-size-web-heading-1);
+  --typeface-size-title-2: var(--font-size-web-title-2);
+  --typeface-size-title-1: var(--font-size-web-title-1);
+  --typeface-size-body-2: var(--font-size-web-body-2);
+  --typeface-size-body-1: var(--font-size-web-body-1);
+  --typeface-size-caption-2: var(--font-size-web-caption-2);
+  --typeface-size-caption-1: var(--font-size-web-caption-1);
+  --typeface-size-overline: var(--font-size-web-overline);
+  --typeface-line-height-xl-heading-4: var(--font-line-height-web-xl-heading-4);
+  --typeface-line-height-xl-heading-3: var(--font-line-height-web-xl-heading-3);
+  --typeface-line-height-xl-heading-2: var(--font-line-height-web-xl-heading-2);
+  --typeface-line-height-xl-heading-1: var(--font-line-height-web-xl-heading-1);
+  --typeface-line-height-display-3: var(--font-line-height-web-display-3);
+  --typeface-line-height-display-2: var(--font-line-height-web-display-2);
+  --typeface-line-height-display-1: var(--font-line-height-web-display-1);
+  --typeface-line-height-heading-6: var(--font-line-height-web-heading-6);
+  --typeface-line-height-heading-5: var(--font-line-height-web-heading-5);
+  --typeface-line-height-heading-4: var(--font-line-height-web-heading-4);
+  --typeface-line-height-heading-3: var(--font-line-height-web-heading-3);
+  --typeface-line-height-heading-2: var(--font-line-height-web-heading-2);
+  --typeface-line-height-heading-1: var(--font-line-height-web-heading-1);
+  --typeface-line-height-title-2: var(--font-line-height-web-title-2);
+  --typeface-line-height-title-1: var(--font-line-height-web-title-1);
+  --typeface-line-height-body-2: var(--font-line-height-web-body-2);
+  --typeface-line-height-body-1: var(--font-line-height-web-body-1);
+  --typeface-line-height-para: var(--font-line-height-web-para);
+  --typeface-line-height-caption-2: var(--font-line-height-web-caption-2);
+  --typeface-line-height-caption-1: var(--font-line-height-web-caption-1);
+  --typeface-line-height-overline: var(--font-line-height-web-overline);
+  --typeface-letter-spacing-none: var(--font-letter-spacing-web-none);
+  --typeface-letter-spacing-xs: var(--font-letter-spacing-web-xs);
+  --typeface-letter-spacing-sm: var(--font-letter-spacing-web-sm);
+  --typeface-letter-spacing-md: var(--font-letter-spacing-web-md);
+  --typeface-letter-spacing-lg: var(--font-letter-spacing-web-lg);
+  --typeface-letter-spacing-spaced-out: var(--font-letter-spacing-web-spaced-out);
+  --typeface-weight-display-normal: var(--font-weight-display-normal);
+  --typeface-weight-display-medium: var(--font-weight-display-medium);
+  --typeface-weight-display-semibold: var(--font-weight-display-semibold);
+  --typeface-weight-display-bold: var(--font-weight-display-bold);
+  --typeface-weight-body-normal: var(--font-weight-body-normal);
+  --typeface-weight-body-medium: var(--font-weight-body-medium);
+  --typeface-weight-body-semibold: var(--font-weight-body-semibold);
+  --typeface-weight-body-bold: var(--font-weight-body-bold);
+}
+
+/* 🖍️ Typography · Typeface-1-Mobile: меняются только size / line-height / letter-spacing */
+@media (max-width: 767px) {
+  :root {
+    --typeface-size-xl-heading-4: var(--font-size-mobile-xl-heading-4);
+    --typeface-size-xl-heading-3: var(--font-size-mobile-xl-heading-3);
+    --typeface-size-xl-heading-2: var(--font-size-mobile-xl-heading-2);
+    --typeface-size-xl-heading-1: var(--font-size-mobile-xl-heading-1);
+    --typeface-size-display-3: var(--font-size-mobile-display-3);
+    --typeface-size-display-2: var(--font-size-mobile-display-2);
+    --typeface-size-display-1: var(--font-size-mobile-display-1);
+    --typeface-size-heading-6: var(--font-size-mobile-heading-6);
+    --typeface-size-heading-5: var(--font-size-mobile-heading-5);
+    --typeface-size-heading-4: var(--font-size-mobile-heading-4);
+    --typeface-size-heading-3: var(--font-size-mobile-heading-3);
+    --typeface-size-heading-2: var(--font-size-mobile-heading-2);
+    --typeface-size-heading-1: var(--font-size-mobile-heading-1);
+    --typeface-size-title-2: var(--font-size-mobile-title-2);
+    --typeface-size-title-1: var(--font-size-mobile-title-1);
+    --typeface-size-body-2: var(--font-size-mobile-body-2);
+    --typeface-size-body-1: var(--font-size-mobile-body-1);
+    --typeface-size-caption-2: var(--font-size-mobile-caption-2);
+    --typeface-size-caption-1: var(--font-size-mobile-caption-1);
+    --typeface-size-overline: var(--font-size-mobile-overline);
+    --typeface-line-height-xl-heading-4: var(--font-line-height-mobile-xl-heading-4);
+    --typeface-line-height-xl-heading-3: var(--font-line-height-mobile-xl-heading-3);
+    --typeface-line-height-xl-heading-2: var(--font-line-height-mobile-xl-heading-2);
+    --typeface-line-height-xl-heading-1: var(--font-line-height-mobile-xl-heading-1);
+    --typeface-line-height-display-3: var(--font-line-height-mobile-display-3);
+    --typeface-line-height-display-2: var(--font-line-height-mobile-display-2);
+    --typeface-line-height-display-1: var(--font-line-height-mobile-display-1);
+    --typeface-line-height-heading-6: var(--font-line-height-mobile-heading-6);
+    --typeface-line-height-heading-5: var(--font-line-height-mobile-heading-5);
+    --typeface-line-height-heading-4: var(--font-line-height-mobile-heading-4);
+    --typeface-line-height-heading-3: var(--font-line-height-mobile-heading-3);
+    --typeface-line-height-heading-2: var(--font-line-height-mobile-heading-2);
+    --typeface-line-height-heading-1: var(--font-line-height-mobile-heading-1);
+    --typeface-line-height-title-2: var(--font-line-height-mobile-title-2);
+    --typeface-line-height-title-1: var(--font-line-height-mobile-title-1);
+    --typeface-line-height-body-2: var(--font-line-height-mobile-body-2);
+    --typeface-line-height-body-1: var(--font-line-height-mobile-body-1);
+    --typeface-line-height-para: var(--font-line-height-mobile-para);
+    --typeface-line-height-caption-2: var(--font-line-height-mobile-caption-2);
+    --typeface-line-height-caption-1: var(--font-line-height-mobile-caption-1);
+    --typeface-line-height-overline: var(--font-line-height-mobile-overline);
+    --typeface-letter-spacing-none: var(--font-letter-spacing-mobile-none);
+    --typeface-letter-spacing-xs: var(--font-letter-spacing-mobile-xs);
+    --typeface-letter-spacing-sm: var(--font-letter-spacing-mobile-sm);
+    --typeface-letter-spacing-md: var(--font-letter-spacing-mobile-md);
+    --typeface-letter-spacing-lg: var(--font-letter-spacing-mobile-lg);
+    --typeface-letter-spacing-spaced-out: var(--font-letter-spacing-mobile-spaced-out);
+  }
+}
+
+/* TextStyle кита: семейство / размер / вес / межстрочный / трекинг — через Typeface/* (как привязано в Figma) */
+.xl-heading-4-normal {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-4);
+  font-weight: var(--typeface-weight-display-normal);
+  line-height: var(--typeface-line-height-xl-heading-4);
+  letter-spacing: var(--typeface-letter-spacing-lg);
+}
+.xl-heading-4-medium {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-4);
+  font-weight: var(--typeface-weight-display-medium);
+  line-height: var(--typeface-line-height-xl-heading-4);
+  letter-spacing: var(--typeface-letter-spacing-lg);
+}
+.xl-heading-4-semibold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-4);
+  font-weight: var(--typeface-weight-display-semibold);
+  line-height: var(--typeface-line-height-xl-heading-4);
+  letter-spacing: var(--typeface-letter-spacing-lg);
+}
+.xl-heading-4-bold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-4);
+  font-weight: var(--typeface-weight-display-bold);
+  line-height: var(--typeface-line-height-xl-heading-4);
+  letter-spacing: var(--typeface-letter-spacing-lg);
+}
+.xl-heading-3-normal {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-3);
+  font-weight: var(--typeface-weight-display-normal);
+  line-height: var(--typeface-line-height-xl-heading-3);
+  letter-spacing: var(--typeface-letter-spacing-lg);
+}
+.xl-heading-3-medium {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-3);
+  font-weight: var(--typeface-weight-display-medium);
+  line-height: var(--typeface-line-height-xl-heading-3);
+  letter-spacing: var(--typeface-letter-spacing-lg);
+}
+.xl-heading-3-semibold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-3);
+  font-weight: var(--typeface-weight-display-semibold);
+  line-height: var(--typeface-line-height-xl-heading-3);
+  letter-spacing: var(--typeface-letter-spacing-lg);
+}
+.xl-heading-3-bold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-3);
+  font-weight: var(--typeface-weight-display-bold);
+  line-height: var(--typeface-line-height-xl-heading-3);
+  letter-spacing: var(--typeface-letter-spacing-lg);
+}
+.xl-heading-2-normal {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-2);
+  font-weight: var(--typeface-weight-display-normal);
+  line-height: var(--typeface-line-height-xl-heading-2);
+  letter-spacing: var(--typeface-letter-spacing-md);
+}
+.xl-heading-2-medium {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-2);
+  font-weight: var(--typeface-weight-display-medium);
+  line-height: var(--typeface-line-height-xl-heading-2);
+  letter-spacing: var(--typeface-letter-spacing-md);
+}
+.xl-heading-2-semibold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-2);
+  font-weight: var(--typeface-weight-display-semibold);
+  line-height: var(--typeface-line-height-xl-heading-2);
+  letter-spacing: var(--typeface-letter-spacing-md);
+}
+.xl-heading-2-bold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-2);
+  font-weight: var(--typeface-weight-display-bold);
+  line-height: var(--typeface-line-height-xl-heading-2);
+  letter-spacing: var(--typeface-letter-spacing-md);
+}
+.xl-heading-1-normal {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-1);
+  font-weight: var(--typeface-weight-display-normal);
+  line-height: var(--typeface-line-height-xl-heading-1);
+  letter-spacing: var(--typeface-letter-spacing-md);
+}
+.xl-heading-1-medium {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-1);
+  font-weight: var(--typeface-weight-display-medium);
+  line-height: var(--typeface-line-height-xl-heading-1);
+  letter-spacing: var(--typeface-letter-spacing-md);
+}
+.xl-heading-1-semibold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-1);
+  font-weight: var(--typeface-weight-display-semibold);
+  line-height: var(--typeface-line-height-xl-heading-1);
+  letter-spacing: var(--typeface-letter-spacing-md);
+}
+.xl-heading-1-bold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-xl-heading-1);
+  font-weight: var(--typeface-weight-display-bold);
+  line-height: var(--typeface-line-height-xl-heading-1);
+  letter-spacing: var(--typeface-letter-spacing-md);
+}
+.ui-display-3-normal {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-display-3);
+  font-weight: var(--typeface-weight-display-normal);
+  line-height: var(--typeface-line-height-display-3);
+  letter-spacing: var(--typeface-letter-spacing-sm);
+}
+.ui-display-3-medium {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-display-3);
+  font-weight: var(--typeface-weight-display-medium);
+  line-height: var(--typeface-line-height-display-3);
+  letter-spacing: var(--typeface-letter-spacing-sm);
+}
+.ui-display-3-semibold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-display-3);
+  font-weight: var(--typeface-weight-display-semibold);
+  line-height: var(--typeface-line-height-display-3);
+  letter-spacing: var(--typeface-letter-spacing-sm);
+}
+.ui-display-3-bold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-display-3);
+  font-weight: var(--typeface-weight-display-bold);
+  line-height: var(--typeface-line-height-display-3);
+  letter-spacing: var(--typeface-letter-spacing-sm);
+}
+.ui-display-2-normal {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-display-2);
+  font-weight: var(--typeface-weight-display-normal);
+  line-height: var(--typeface-line-height-display-2);
+  letter-spacing: var(--typeface-letter-spacing-sm);
+}
+.ui-display-2-medium {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-display-2);
+  font-weight: var(--typeface-weight-display-medium);
+  line-height: var(--typeface-line-height-display-2);
+  letter-spacing: var(--typeface-letter-spacing-sm);
+}
+.ui-display-2-semibold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-display-2);
+  font-weight: var(--typeface-weight-display-semibold);
+  line-height: var(--typeface-line-height-display-2);
+  letter-spacing: var(--typeface-letter-spacing-sm);
+}
+.ui-display-2-bold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-display-2);
+  font-weight: var(--typeface-weight-display-bold);
+  line-height: var(--typeface-line-height-display-2);
+  letter-spacing: var(--typeface-letter-spacing-sm);
+}
+.ui-display-1-normal {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-display-1);
+  font-weight: var(--typeface-weight-display-normal);
+  line-height: var(--typeface-line-height-display-1);
+  letter-spacing: var(--typeface-letter-spacing-sm);
+}
+.ui-display-1-medium {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-display-1);
+  font-weight: var(--typeface-weight-display-medium);
+  line-height: var(--typeface-line-height-display-1);
+  letter-spacing: var(--typeface-letter-spacing-sm);
+}
+.ui-display-1-semibold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-display-1);
+  font-weight: var(--typeface-weight-display-semibold);
+  line-height: var(--typeface-line-height-display-1);
+  letter-spacing: var(--typeface-letter-spacing-sm);
+}
+.ui-display-1-bold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-display-1);
+  font-weight: var(--typeface-weight-display-bold);
+  line-height: var(--typeface-line-height-display-1);
+  letter-spacing: var(--typeface-letter-spacing-sm);
+}
+.ui-heading-6-normal {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-6);
+  font-weight: var(--typeface-weight-display-normal);
+  line-height: var(--typeface-line-height-heading-6);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-6-medium {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-6);
+  font-weight: var(--typeface-weight-display-medium);
+  line-height: var(--typeface-line-height-heading-6);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-6-semibold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-6);
+  font-weight: var(--typeface-weight-display-semibold);
+  line-height: var(--typeface-line-height-heading-6);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-6-bold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-6);
+  font-weight: var(--typeface-weight-display-bold);
+  line-height: var(--typeface-line-height-heading-6);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-5-normal {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-5);
+  font-weight: var(--typeface-weight-display-normal);
+  line-height: var(--typeface-line-height-heading-5);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-5-medium {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-5);
+  font-weight: var(--typeface-weight-display-medium);
+  line-height: var(--typeface-line-height-heading-5);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-5-semibold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-5);
+  font-weight: var(--typeface-weight-display-semibold);
+  line-height: var(--typeface-line-height-heading-5);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-5-bold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-5);
+  font-weight: var(--typeface-weight-display-bold);
+  line-height: var(--typeface-line-height-heading-5);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-4-normal {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-4);
+  font-weight: var(--typeface-weight-display-normal);
+  line-height: var(--typeface-line-height-heading-4);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-4-medium {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-4);
+  font-weight: var(--typeface-weight-display-medium);
+  line-height: var(--typeface-line-height-heading-4);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-4-semibold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-4);
+  font-weight: var(--typeface-weight-display-semibold);
+  line-height: var(--typeface-line-height-heading-4);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-4-bold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-4);
+  font-weight: var(--typeface-weight-display-bold);
+  line-height: var(--typeface-line-height-heading-4);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-3-normal {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-3);
+  font-weight: var(--typeface-weight-display-normal);
+  line-height: var(--typeface-line-height-heading-3);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-3-medium {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-3);
+  font-weight: var(--typeface-weight-display-medium);
+  line-height: var(--typeface-line-height-heading-3);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-3-semibold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-3);
+  font-weight: var(--typeface-weight-display-semibold);
+  line-height: var(--typeface-line-height-heading-3);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-3-bold {
+  font-family: var(--typeface-family-display);
+  font-size: var(--typeface-size-heading-3);
+  font-weight: var(--typeface-weight-display-bold);
+  line-height: var(--typeface-line-height-heading-3);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-2-normal {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-heading-2);
+  font-weight: var(--typeface-weight-body-normal);
+  line-height: var(--typeface-line-height-heading-2);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-2-medium {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-heading-2);
+  font-weight: var(--typeface-weight-body-medium);
+  line-height: var(--typeface-line-height-heading-2);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-2-semibold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-heading-2);
+  font-weight: var(--typeface-weight-body-semibold);
+  line-height: var(--typeface-line-height-heading-2);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-2-bold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-heading-2);
+  font-weight: var(--typeface-weight-body-bold);
+  line-height: var(--typeface-line-height-heading-2);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-1-normal {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-heading-1);
+  font-weight: var(--typeface-weight-body-normal);
+  line-height: var(--typeface-line-height-heading-1);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-1-medium {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-heading-1);
+  font-weight: var(--typeface-weight-body-medium);
+  line-height: var(--typeface-line-height-heading-1);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-1-semibold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-heading-1);
+  font-weight: var(--typeface-weight-body-semibold);
+  line-height: var(--typeface-line-height-heading-1);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-heading-1-bold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-heading-1);
+  font-weight: var(--typeface-weight-body-bold);
+  line-height: var(--typeface-line-height-heading-1);
+  letter-spacing: var(--typeface-letter-spacing-xs);
+}
+.ui-title-2-normal {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-title-2);
+  font-weight: var(--typeface-weight-body-normal);
+  line-height: var(--typeface-line-height-title-2);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-title-2-medium {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-title-2);
+  font-weight: var(--typeface-weight-body-medium);
+  line-height: var(--typeface-line-height-title-2);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-title-2-semibold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-title-2);
+  font-weight: var(--typeface-weight-body-semibold);
+  line-height: var(--typeface-line-height-title-2);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-title-2-bold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-title-2);
+  font-weight: var(--typeface-weight-body-bold);
+  line-height: var(--typeface-line-height-title-2);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-title-1-normal {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-title-1);
+  font-weight: var(--typeface-weight-body-normal);
+  line-height: var(--typeface-line-height-title-1);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-title-1-medium {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-title-1);
+  font-weight: var(--typeface-weight-body-medium);
+  line-height: var(--typeface-line-height-title-1);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-title-1-semibold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-title-1);
+  font-weight: var(--typeface-weight-body-semibold);
+  line-height: var(--typeface-line-height-title-1);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-title-1-bold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-title-1);
+  font-weight: var(--typeface-weight-body-bold);
+  line-height: var(--typeface-line-height-title-1);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-body-2-normal {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-body-2);
+  font-weight: var(--typeface-weight-body-normal);
+  line-height: var(--typeface-line-height-body-2);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-body-2-medium {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-body-2);
+  font-weight: var(--typeface-weight-body-medium);
+  line-height: var(--typeface-line-height-body-2);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-body-2-semibold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-body-2);
+  font-weight: var(--typeface-weight-body-semibold);
+  line-height: var(--typeface-line-height-body-2);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-body-2-bold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-body-2);
+  font-weight: var(--typeface-weight-body-bold);
+  line-height: var(--typeface-line-height-body-2);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-body-1-normal {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-body-1);
+  font-weight: var(--typeface-weight-body-normal);
+  line-height: var(--typeface-line-height-body-1);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-body-1-medium {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-body-1);
+  font-weight: var(--typeface-weight-body-medium);
+  line-height: var(--typeface-line-height-body-1);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-body-1-semibold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-body-1);
+  font-weight: var(--typeface-weight-body-semibold);
+  line-height: var(--typeface-line-height-body-1);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-body-1-bold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-body-1);
+  font-weight: var(--typeface-weight-body-bold);
+  line-height: var(--typeface-line-height-body-1);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-para-normal {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-body-1);
+  font-weight: var(--typeface-weight-body-normal);
+  line-height: var(--typeface-line-height-para);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-para-medium {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-body-1);
+  font-weight: var(--typeface-weight-body-medium);
+  line-height: var(--typeface-line-height-para);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-para-semibold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-body-1);
+  font-weight: var(--typeface-weight-body-semibold);
+  line-height: var(--typeface-line-height-para);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-para-bold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-body-1);
+  font-weight: var(--typeface-weight-body-bold);
+  line-height: var(--typeface-line-height-para);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-caption-2-normal {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-caption-2);
+  font-weight: var(--typeface-weight-body-normal);
+  line-height: var(--typeface-line-height-caption-2);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-caption-2-medium {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-caption-2);
+  font-weight: var(--typeface-weight-body-medium);
+  line-height: var(--typeface-line-height-caption-2);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-caption-2-semibold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-caption-2);
+  font-weight: var(--typeface-weight-body-semibold);
+  line-height: var(--typeface-line-height-caption-2);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-caption-2-bold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-caption-2);
+  font-weight: var(--typeface-weight-body-bold);
+  line-height: var(--typeface-line-height-caption-2);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-caption-1-normal {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-caption-1);
+  font-weight: var(--typeface-weight-body-normal);
+  line-height: var(--typeface-line-height-caption-1);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-caption-1-medium {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-caption-1);
+  font-weight: var(--typeface-weight-body-medium);
+  line-height: var(--typeface-line-height-caption-1);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-caption-1-semibold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-caption-1);
+  font-weight: var(--typeface-weight-body-semibold);
+  line-height: var(--typeface-line-height-caption-1);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-caption-1-bold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-caption-1);
+  font-weight: var(--typeface-weight-body-bold);
+  line-height: var(--typeface-line-height-caption-1);
+  letter-spacing: var(--typeface-letter-spacing-none);
+}
+.ui-overline-normal {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-overline);
+  font-weight: var(--typeface-weight-body-normal);
+  line-height: var(--typeface-line-height-overline);
+  letter-spacing: var(--typeface-letter-spacing-spaced-out);
+  text-transform: uppercase;
+}
+.ui-overline-medium {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-overline);
+  font-weight: var(--typeface-weight-body-medium);
+  line-height: var(--typeface-line-height-overline);
+  letter-spacing: var(--typeface-letter-spacing-spaced-out);
+  text-transform: uppercase;
+}
+.ui-overline-semibold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-overline);
+  font-weight: var(--typeface-weight-body-semibold);
+  line-height: var(--typeface-line-height-overline);
+  letter-spacing: var(--typeface-letter-spacing-spaced-out);
+  text-transform: uppercase;
+}
+.ui-overline-bold {
+  font-family: var(--typeface-family-body);
+  font-size: var(--typeface-size-overline);
+  font-weight: var(--typeface-weight-body-bold);
+  line-height: var(--typeface-line-height-overline);
+  letter-spacing: var(--typeface-letter-spacing-spaced-out);
+  text-transform: uppercase;
+}

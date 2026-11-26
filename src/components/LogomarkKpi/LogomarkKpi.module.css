@@ -1,0 +1,31 @@
+/*
+ * Logomark-KPI — 36 (Space/11xl, Sidebar expanded) · 28 (Space/9xl, collapsed-compact).
+ * Знак — src/assets/logomark-kpi/logomark.svg (сайдбар экранов kpi-bro · web, 2026-11-26): сквиркл в самом SVG,
+ * поэтому корень без радиуса и фона. Тень знака выходит за рамку вниз на ~1.65%, как в ките: img по ширине, высота своя.
+ */
+.root {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.size-28 {
+  width: var(--space-9xl);
+  height: var(--space-9xl);
+}
+.size-32 {
+  width: var(--space-10xl);
+  height: var(--space-10xl);
+}
+.size-36 {
+  width: var(--space-11xl);
+  height: var(--space-11xl);
+}
+.root > :global(svg),
+.root > img {
+  display: block;
+  align-self: flex-start;
+  width: 100%;
+  height: auto;
+}

@@ -1,0 +1,21 @@
+/*
+ * Icon — рамка --icon-size (по умолчанию Space/7xl = 24), SVG кита на всю рамку, цвет — currentColor.
+ * Имени нет в ките — заглушка: обводка 1px currentColor (токена нет), Radius/xxs.
+ */
+.root {
+  display: inline-flex;
+  flex: none;
+  box-sizing: border-box;
+  width: var(--icon-size, var(--space-7xl));
+  height: var(--icon-size, var(--space-7xl));
+  color: inherit;
+}
+.root > :global(svg) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.root[data-missing] {
+  border: 1px solid currentColor;
+  border-radius: var(--radius-xxs);
+}

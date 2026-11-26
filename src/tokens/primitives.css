@@ -1,0 +1,560 @@
+/*
+ * Слой 1 — примитивы: 🍄 Primitives (Atomize), 🎨 Color Accent (Accent-1), 🆎 Font (KPI Bro), 📐 Space (Default), 🟢 Radius (Regular), тени и размытия (Effect styles)
+ * Источник: Figma «Pitonize Design System» (Atomize PRO 3.4), fileKey eXsMwWilMH7f3cOWXFRwM5.
+ * Снято только чтением 2026-11-25. Файл сгенерирован — не править руками, перегенерировать из Figma.
+ * Имя переменной = имя Variable/стиля в Figma в kebab-case с сохранением иерархии
+ * (Color/brand/500 -> --color-brand-500, Surface/s0 -> --surface-s0, Space/xl -> --space-xl).
+ */
+
+:root {
+  /* 🍄 Primitives · режим Atomize (Color/brand/* — alias на 🎨 Color Accent, как в Figma) */
+  --color-brand-50: var(--project-atomize-50);
+  --color-brand-100: var(--project-atomize-100);
+  --color-brand-200: var(--project-atomize-200);
+  --color-brand-300: var(--project-atomize-300);
+  --color-brand-400: var(--project-atomize-400);
+  --color-brand-500: var(--project-atomize-500);
+  --color-brand-500-alpha-1: var(--project-atomize-500-alpha-1);
+  --color-brand-500-alpha-2: var(--project-atomize-500-alpha-2);
+  --color-brand-500-alpha-3: var(--project-atomize-500-alpha-3);
+  --color-brand-500-alpha-4: var(--project-atomize-500-alpha-4);
+  --color-brand-500-alpha-5: var(--project-atomize-500-alpha-5);
+  --color-brand-600: var(--project-atomize-600);
+  --color-brand-700: var(--project-atomize-700);
+  --color-brand-800: var(--project-atomize-800);
+  --color-brand-900: var(--project-atomize-900);
+  --color-brand-950: var(--project-atomize-950);
+  --color-brand-high-em: var(--project-atomize-high-em);
+  --color-brand-med-em: var(--project-atomize-med-em);
+  --color-brand-low-em: var(--project-atomize-low-em);
+  --color-brand-base-em: var(--project-atomize-base-em);
+  --color-brand-primary-text-on-primary: var(--project-atomize-primary-text-on-primary);
+  --color-brand-secondary-text-on-primary: var(--project-atomize-secondary-text-on-primary);
+  --color-brand-primary-text-on-primary-light: var(--project-atomize-primary-text-on-primary-light);
+  --color-brand-secondary-text-on-primary-light: var(--project-atomize-secondary-text-on-primary-light);
+  --color-brand-primary-text-on-base: var(--project-atomize-primary-text-on-base);
+  --color-brand-secondary-text-on-base: var(--project-atomize-secondary-text-on-base);
+  --color-brand-input-outline-default: var(--color-black-4);
+  --color-brand-input-outline-low-em: var(--color-black-2);
+  --color-white-2: #ffffff05;
+  --color-white-4: #ffffff0a;
+  --color-white-8: #ffffff14;
+  --color-white-12: #ffffff1f;
+  --color-white-18: #ffffff2e;
+  --color-white-24: #ffffff3d;
+  --color-white-32: #ffffff52;
+  --color-white-40: #ffffff66;
+  --color-white-48: #ffffff7a;
+  --color-white-56: #ffffff8f;
+  --color-white-64: #ffffffa3;
+  --color-white-72: #ffffffb8;
+  --color-white-80: #ffffffcc;
+  --color-white-88: #ffffffe0;
+  --color-white-100: #ffffff;
+  --color-black-2: #00000005;
+  --color-black-4: #0000000a;
+  --color-black-8: #00000014;
+  --color-black-12: #0000001f;
+  --color-black-18: #0000002e;
+  --color-black-24: #0000003d;
+  --color-black-32: #00000052;
+  --color-black-40: #00000066;
+  --color-black-48: #0000007a;
+  --color-black-56: #0000008f;
+  --color-black-64: #000000a3;
+  --color-black-72: #000000b8;
+  --color-black-80: #000000cc;
+  --color-black-88: #000000e0;
+  --color-black-100: #000000;
+  --color-info-50: #effaff;
+  --color-info-100: #dff3ff;
+  --color-info-200: #b8eaff;
+  --color-info-300: #78daff;
+  --color-info-400: #18c1ff;
+  --color-info-500: #06b1f1;
+  --color-info-500-alpha-1: #06b1f11f;
+  --color-info-500-alpha-2: #06b1f133;
+  --color-info-500-alpha-3: #06b1f13d;
+  --color-info-500-alpha-4: #06b1f166;
+  --color-info-500-alpha-5: #06b1f18f;
+  --color-info-600: #008ece;
+  --color-info-700: #0071a7;
+  --color-info-800: #025f8a;
+  --color-info-900: #084f72;
+  --color-info-950: #06324b;
+  --color-success-50: #f4faf3;
+  --color-success-100: #e3f6e2;
+  --color-success-200: #c8ebc7;
+  --color-success-300: #9cda9b;
+  --color-success-400: #69c068;
+  --color-success-500: #409b3f;
+  --color-success-500-alpha-1: #409b3f1f;
+  --color-success-500-alpha-2: #409b3f33;
+  --color-success-500-alpha-3: #409b3f3d;
+  --color-success-500-alpha-4: #409b3f66;
+  --color-success-500-alpha-5: #409b3f8f;
+  --color-success-600: #338732;
+  --color-success-700: #2c6a2b;
+  --color-success-800: #265526;
+  --color-success-900: #214622;
+  --color-success-950: #0d260e;
+  --color-warning-50: #fffeea;
+  --color-warning-100: #fffbc4;
+  --color-warning-200: #fff67b;
+  --color-warning-300: #ffeb38;
+  --color-warning-400: #ffe020;
+  --color-warning-500: #ffc30a;
+  --color-warning-500-alpha-1: #ffc30a1f;
+  --color-warning-500-alpha-2: #ffc30a33;
+  --color-warning-500-alpha-3: #ffc30a3d;
+  --color-warning-500-alpha-4: #ffc30a66;
+  --color-warning-500-alpha-5: #ffc30a8f;
+  --color-warning-600: #e4a000;
+  --color-warning-700: #b47500;
+  --color-warning-800: #885304;
+  --color-warning-900: #6c4007;
+  --color-warning-950: #3f2300;
+  --color-danger-50: #fff3f2;
+  --color-danger-100: #ffe4e1;
+  --color-danger-200: #ffc7c2;
+  --color-danger-300: #ff9a90;
+  --color-danger-400: #ff6b5d;
+  --color-danger-500: #ed4030;
+  --color-danger-500-alpha-1: #ed40301f;
+  --color-danger-500-alpha-2: #ed403033;
+  --color-danger-500-alpha-3: #ed40303d;
+  --color-danger-500-alpha-4: #ed403066;
+  --color-danger-500-alpha-5: #ed40308f;
+  --color-danger-600: #df2917;
+  --color-danger-700: #ba1e0f;
+  --color-danger-800: #a1120b;
+  --color-danger-900: #800e08;
+  --color-danger-950: #4b0300;
+  --color-gray-50: #f9f9fa;
+  --color-gray-100: #f2f2f4;
+  --color-gray-200: #ececf0;
+  --color-gray-200-alpha-base: #ececf0b8;
+  --color-gray-300: #dddfe4;
+  --color-gray-400: #c3c6cc;
+  --color-gray-500: #afb3bb;
+  --color-gray-600: #8c929c;
+  --color-gray-700: #5b616d;
+  --color-gray-800: #3f444f;
+  --color-gray-900: #1b202a;
+  --color-gray-950: #0a0c11;
+  --color-dark-50: #f8f8f8;
+  --color-dark-100: #f4f4f4;
+  --color-dark-200: #eeeeee;
+  --color-dark-300: #e1e1e1;
+  --color-dark-400: #c7c7c7;
+  --color-dark-500: #3a3a3a;
+  --color-dark-600: #2e2e2e;
+  --color-dark-700: #242424;
+  --color-dark-700-alpha-base-medium: #242424b8;
+  --color-dark-700-alpha-base-dark: #242424e0;
+  --color-dark-800: #1a1a1a;
+  --color-dark-900: #151515;
+  --color-dark-950: #0a0a0a;
+  --color-transparent-white: #ffffff00;
+  --color-transparent-black: #00000000;
+  --color-transparent-subtle: #00000003;
+
+  /* 🎨 Color Accent · режим Accent-1 */
+  --project-atomize-50: #f5f4ff;
+  --project-atomize-100: #e9e6ff;
+  --project-atomize-200: #d8d4ff;
+  --project-atomize-300: #b5aeff;
+  --project-atomize-400: #9187ff;
+  --project-atomize-500: #6f61ff;
+  --project-atomize-500-alpha-1: #6f61ff1f;
+  --project-atomize-500-alpha-2: #6f61ff33;
+  --project-atomize-500-alpha-3: #6f61ff3d;
+  --project-atomize-500-alpha-4: #6f61ff66;
+  --project-atomize-500-alpha-5: #6f61ff8f;
+  --project-atomize-600: #5548d8;
+  --project-atomize-700: #4539c3;
+  --project-atomize-800: #392f9f;
+  --project-atomize-900: #2b237f;
+  --project-atomize-950: #1d184f;
+  --project-atomize-high-em: var(--color-gray-950);
+  --project-atomize-med-em: var(--color-gray-700);
+  --project-atomize-low-em: var(--color-gray-600);
+  --project-atomize-base-em: var(--color-gray-400);
+  --project-atomize-primary-text-on-primary: var(--color-white-100);
+  --project-atomize-secondary-text-on-primary: var(--color-white-72);
+  --project-atomize-primary-text-on-primary-light: #5548d8;
+  --project-atomize-secondary-text-on-primary-light: #6f61ff;
+  --project-atomize-primary-text-on-base: var(--color-white-100);
+  --project-atomize-secondary-text-on-base: var(--color-white-72);
+  --project-project-a-50: #f9f7fd;
+  --project-project-a-100: #f2edfa;
+  --project-project-a-200: #e7ddf7;
+  --project-project-a-300: #d4c3ef;
+  --project-project-a-400: #c3a9e8;
+  --project-project-a-500: #9e75d7;
+  --project-project-a-500-alpha-1: #9e75d71f;
+  --project-project-a-500-alpha-2: #9e75d733;
+  --project-project-a-500-alpha-3: #9e75d73d;
+  --project-project-a-500-alpha-4: #9e75d766;
+  --project-project-a-500-alpha-5: #9e75d78f;
+  --project-project-a-600: #8757c6;
+  --project-project-a-700: #7344ac;
+  --project-project-a-800: #613c8d;
+  --project-project-a-900: #4f3172;
+  --project-project-a-950: #341952;
+  --project-project-a-high-em: var(--color-gray-950);
+  --project-project-a-med-em: var(--color-gray-700);
+  --project-project-a-low-em: var(--color-gray-600);
+  --project-project-a-base-em: var(--color-gray-400);
+  --project-project-a-primary-text-on-primary: var(--color-white-100);
+  --project-project-a-secondary-text-on-primary: var(--color-white-72);
+  --project-project-a-primary-text-on-primary-light: #7344ac;
+  --project-project-a-secondary-text-on-primary-light: #8757c6;
+  --project-project-a-primary-text-on-base: var(--color-black-100);
+  --project-project-a-secondary-text-on-base: var(--color-black-72);
+  --project-project-b-50: #feffe7;
+  --project-project-b-100: #faffc1;
+  --project-project-b-200: #faff86;
+  --project-project-b-300: #fffe41;
+  --project-project-b-400: #fff20d;
+  --project-project-b-500: #ffe400;
+  --project-project-b-500-alpha-1: #ffe4001f;
+  --project-project-b-500-alpha-2: #ffe40033;
+  --project-project-b-500-alpha-3: #ffe4003d;
+  --project-project-b-500-alpha-4: #ffe40066;
+  --project-project-b-500-alpha-5: #ffe4008f;
+  --project-project-b-600: #d1a900;
+  --project-project-b-700: #a67a02;
+  --project-project-b-800: #895e0a;
+  --project-project-b-900: #744d0f;
+  --project-project-b-950: #442904;
+  --project-project-b-high-em: var(--color-gray-800);
+  --project-project-b-med-em: var(--color-gray-700);
+  --project-project-b-low-em: var(--color-gray-600);
+  --project-project-b-base-em: var(--color-gray-400);
+  --project-project-b-primary-text-on-primary: var(--color-gray-800);
+  --project-project-b-secondary-text-on-primary: var(--color-black-72);
+  --project-project-b-primary-text-on-primary-light: #895e0a;
+  --project-project-b-secondary-text-on-primary-light: #a67a02;
+  --project-project-b-primary-text-on-base: var(--color-black-100);
+  --project-project-b-secondary-text-on-base: var(--color-black-72);
+  --project-project-c-50: #f0f9f4;
+  --project-project-c-100: #daf1e4;
+  --project-project-c-200: #b7e3cc;
+  --project-project-c-300: #87ceae;
+  --project-project-c-400: #55b28a;
+  --project-project-c-500: #33966f;
+  --project-project-c-500-alpha-1: #33966f1f;
+  --project-project-c-500-alpha-2: #33966f33;
+  --project-project-c-500-alpha-3: #33966f3d;
+  --project-project-c-500-alpha-4: #33966f66;
+  --project-project-c-500-alpha-5: #33966f8f;
+  --project-project-c-600: #237859;
+  --project-project-c-700: #1c6049;
+  --project-project-c-800: #194c3b;
+  --project-project-c-900: #174536;
+  --project-project-c-950: #0b231c;
+  --project-project-c-high-em: var(--color-gray-800);
+  --project-project-c-med-em: var(--color-gray-700);
+  --project-project-c-low-em: var(--color-gray-600);
+  --project-project-c-base-em: var(--color-gray-400);
+  --project-project-c-primary-text-on-primary: var(--color-white-100);
+  --project-project-c-secondary-text-on-primary: var(--color-white-72);
+  --project-project-c-primary-text-on-primary-light: #237859;
+  --project-project-c-secondary-text-on-primary-light: #33966f;
+  --project-project-c-primary-text-on-base: var(--color-black-100);
+  --project-project-c-secondary-text-on-base: var(--color-black-72);
+  --project-project-d-50: #eef3ff;
+  --project-project-d-100: #d9e3ff;
+  --project-project-d-200: #bccfff;
+  --project-project-d-300: #8eb1ff;
+  --project-project-d-400: #5986ff;
+  --project-project-d-500: #375fff;
+  --project-project-d-500-alpha-1: #375fff1f;
+  --project-project-d-500-alpha-2: #375fff33;
+  --project-project-d-500-alpha-3: #375fff3d;
+  --project-project-d-500-alpha-4: #375fff66;
+  --project-project-d-500-alpha-5: #375fff8f;
+  --project-project-d-600: #1b38f5;
+  --project-project-d-700: #1425e1;
+  --project-project-d-800: #171fb6;
+  --project-project-d-900: #19228f;
+  --project-project-d-950: #141757;
+  --project-project-d-high-em: var(--color-gray-950);
+  --project-project-d-med-em: var(--color-gray-700);
+  --project-project-d-low-em: var(--color-gray-600);
+  --project-project-d-base-em: var(--color-gray-400);
+  --project-project-d-primary-text-on-primary: var(--color-white-100);
+  --project-project-d-secondary-text-on-primary: var(--color-white-72);
+  --project-project-d-primary-text-on-primary-light: #1b38f5;
+  --project-project-d-secondary-text-on-primary-light: #375fff;
+  --project-project-d-primary-text-on-base: var(--color-white-100);
+  --project-project-d-secondary-text-on-base: var(--color-white-72);
+
+  /* 🆎 Font · режим KPI Bro */
+  --font-family-display-1: "Manrope";
+  --font-family-body-1: "Geist";
+  --font-family-display-2: "Cygre ExtraBold";
+  --font-family-body-2: "Geist Mono";
+  --font-size-web-xl-heading-4: 280px;
+  --font-size-web-xl-heading-3: 200px;
+  --font-size-web-xl-heading-2: 160px;
+  --font-size-web-xl-heading-1: 120px;
+  --font-size-web-display-3: 104px;
+  --font-size-web-display-2: 88px;
+  --font-size-web-display-1: 76px;
+  --font-size-web-heading-6: 62px;
+  --font-size-web-heading-5: 52px;
+  --font-size-web-heading-4: 42px;
+  --font-size-web-heading-3: 32px;
+  --font-size-web-heading-2: 25px;
+  --font-size-web-heading-1: 22px;
+  --font-size-web-title-2: 18px;
+  --font-size-web-title-1: 15px;
+  --font-size-web-body-2: 15px;
+  --font-size-web-body-1: 13px;
+  --font-size-web-caption-2: 12px;
+  --font-size-web-caption-1: 10px;
+  --font-size-web-overline: 11px;
+  --font-size-mobile-xl-heading-4: 88px;
+  --font-size-mobile-xl-heading-3: 72px;
+  --font-size-mobile-xl-heading-2: 72px;
+  --font-size-mobile-xl-heading-1: 64px;
+  --font-size-mobile-display-3: 64px;
+  --font-size-mobile-display-2: 56px;
+  --font-size-mobile-display-1: 44px;
+  --font-size-mobile-heading-6: 40px;
+  --font-size-mobile-heading-5: 36px;
+  --font-size-mobile-heading-4: 30px;
+  --font-size-mobile-heading-3: 26px;
+  --font-size-mobile-heading-2: 22px;
+  --font-size-mobile-heading-1: 20px;
+  --font-size-mobile-title-2: 17px;
+  --font-size-mobile-title-1: 17px;
+  --font-size-mobile-body-2: 17px;
+  --font-size-mobile-body-1: 15px;
+  --font-size-mobile-caption-2: 14px;
+  --font-size-mobile-caption-1: 12px;
+  --font-size-mobile-overline: 12px;
+  --font-line-height-web-xl-heading-4: 256px;
+  --font-line-height-web-xl-heading-3: 184px;
+  --font-line-height-web-xl-heading-2: 152px;
+  --font-line-height-web-xl-heading-1: 112px;
+  --font-line-height-web-display-3: 96px;
+  --font-line-height-web-display-2: 80px;
+  --font-line-height-web-display-1: 80px;
+  --font-line-height-web-heading-6: 68px;
+  --font-line-height-web-heading-5: 56px;
+  --font-line-height-web-heading-4: 48px;
+  --font-line-height-web-heading-3: 40px;
+  --font-line-height-web-heading-2: 36px;
+  --font-line-height-web-heading-1: 28px;
+  --font-line-height-web-title-2: 24px;
+  --font-line-height-web-title-1: 24px;
+  --font-line-height-web-body-2: 24px;
+  --font-line-height-web-body-1: 24px;
+  --font-line-height-web-para: 20px;
+  --font-line-height-web-caption-2: 16px;
+  --font-line-height-web-caption-1: 16px;
+  --font-line-height-web-overline: 12px;
+  --font-line-height-mobile-xl-heading-4: 96px;
+  --font-line-height-mobile-xl-heading-3: 80px;
+  --font-line-height-mobile-xl-heading-2: 80px;
+  --font-line-height-mobile-xl-heading-1: 72px;
+  --font-line-height-mobile-display-3: 72px;
+  --font-line-height-mobile-display-2: 60px;
+  --font-line-height-mobile-display-1: 48px;
+  --font-line-height-mobile-heading-6: 44px;
+  --font-line-height-mobile-heading-5: 44px;
+  --font-line-height-mobile-heading-4: 36px;
+  --font-line-height-mobile-heading-3: 32px;
+  --font-line-height-mobile-heading-2: 28px;
+  --font-line-height-mobile-heading-1: 28px;
+  --font-line-height-mobile-title-2: 24px;
+  --font-line-height-mobile-title-1: 24px;
+  --font-line-height-mobile-body-2: 24px;
+  --font-line-height-mobile-body-1: 20px;
+  --font-line-height-mobile-para: 20px;
+  --font-line-height-mobile-caption-2: 20px;
+  --font-line-height-mobile-caption-1: 16px;
+  --font-line-height-mobile-overline: 16px;
+  --font-letter-spacing-web-none: 0px;
+  --font-letter-spacing-web-xs: -0.5px;
+  --font-letter-spacing-web-sm: -3px;
+  --font-letter-spacing-web-md: -5px;
+  --font-letter-spacing-web-lg: -7px;
+  --font-letter-spacing-web-spaced-out: 2px;
+  --font-letter-spacing-mobile-none: 0px;
+  --font-letter-spacing-mobile-xs: -0.5px;
+  --font-letter-spacing-mobile-sm: -2px;
+  --font-letter-spacing-mobile-md: -4px;
+  --font-letter-spacing-mobile-lg: -5px;
+  --font-letter-spacing-mobile-spaced-out: 2px;
+  --font-weight-display-normal: 400;
+  --font-weight-display-medium: 500;
+  --font-weight-display-semibold: 600;
+  --font-weight-display-bold: 700;
+  --font-weight-body-normal: 500;
+  --font-weight-body-medium: 600;
+  --font-weight-body-semibold: 700;
+  --font-weight-body-bold: 800;
+
+  /* 📐 Space · режим Default (в Figma один слой — переносим как есть) */
+  --space-zero: 0px;
+  --space-xxs: 2px;
+  --space-xs: 4px;
+  --space-sm: 6px;
+  --space-md: 8px;
+  --space-lg: 10px;
+  --space-xl: 12px;
+  --space-2xl: 14px;
+  --space-3xl: 16px;
+  --space-4xl: 18px;
+  --space-5xl: 20px;
+  --space-6xl: 22px;
+  --space-7xl: 24px;
+  --space-8xl: 26px;
+  --space-9xl: 28px;
+  --space-10xl: 32px;
+  --space-11xl: 36px;
+  --space-12xl: 40px;
+  --space-13xl: 44px;
+  --space-14xl: 48px;
+  --space-15xl: 52px;
+  --space-16xl: 56px;
+  --space-17xl: 60px;
+  --space-18xl: 64px;
+  --space-19xl: 72px;
+  --space-20xl: 80px;
+  --space-21xl: 88px;
+  --space-22xl: 96px;
+  --space-23xl: 104px;
+  --space-24xl: 120px;
+  --space-25xl: 144px;
+  --space-26xl: 160px;
+
+  /* 🟢 Radius · режим Regular (в Figma один слой — переносим как есть) */
+  --radius-zero: 0px;
+  --radius-xxs: 2px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-2xl: 14px;
+  --radius-3xl: 16px;
+  --radius-4xl: 18px;
+  --radius-5xl: 20px;
+  --radius-6xl: 22px;
+  --radius-7xl: 24px;
+  --radius-8xl: 28px;
+  --radius-9xl: 32px;
+  --radius-10xl: 40px;
+  --radius-11xl: 44px;
+  --radius-12xl: 48px;
+  --radius-13xl: 52px;
+  --radius-14xl: 56px;
+  --radius-15xl: 64px;
+  --radius-16xl: 72px;
+  --radius-round: 1000px;
+  --radius-small-component-xxs: 4px;
+  --radius-small-component-xs: 6px;
+  --radius-small-component-sm: 8px;
+  --radius-small-component-md: 10px;
+  --radius-small-component-lg: 12px;
+  --radius-small-component-xl: 14px;
+  --radius-small-component-2xl: 16px;
+  --radius-small-component-3xl: 18px;
+  --radius-small-component-4xl: 20px;
+  --radius-small-component-5xl: 24px;
+  --radius-small-component-6xl: 28px;
+  --radius-big-component-xs: 16px;
+  --radius-big-component-sm: 20px;
+  --radius-big-component-md: 24px;
+  --radius-big-component-lg: 28px;
+}
+
+/*
+ * Effect styles (30 в ките). Геометрия — точно из Figma, цвет — через Theme-переменную, привязанную в Figma.
+ * Объявлены на :root и на [data-theme]: var() внутри custom property вычисляется на элементе объявления,
+ * поэтому тень должна пересчитываться там, где переключается тема.
+ * Тень: --<стиль>; размытие фона у смешанных стилей: --<стиль>-backdrop (для backdrop-filter).
+ * BACKGROUND_BLUR радиус R -> blur(R/2), как в CSS-экспорте Figma Dev Mode.
+ * Не переносится (нет CSS-аналога): Liquid-glass (GLASS r8, refraction 1, depth 48, light 315°/0.8, dispersion 0.48),
+ * NOISE-слой в Special и Special-sm.
+ */
+:root,
+[data-theme] {
+  --elevation-e1: 0px 1px 1px -0.5px var(--elevation-shadow-low);
+  --elevation-e2: 0px 3px 3px -1.5px var(--elevation-shadow-low),
+    0px 1px 1px -0.5px var(--elevation-shadow-low);
+  --elevation-e3: 0px 20px 20px -12px var(--elevation-shadow-low),
+    0px 3px 3px -1.5px var(--elevation-shadow-low),
+    0px 1px 1px -0.5px var(--elevation-shadow-low);
+  --elevation-e4: 0px 32px 32px -16px var(--elevation-shadow-base),
+    0px 20px 20px -12px var(--elevation-shadow-low),
+    0px 3px 3px -1.5px var(--elevation-shadow-low),
+    0px 1px 1px -0.5px var(--elevation-shadow-low);
+  --elevation-e5: 0px 56px 56px -28px var(--elevation-shadow-base),
+    0px 32px 32px -16px var(--elevation-shadow-base),
+    0px 20px 20px -12px var(--elevation-shadow-low),
+    0px 3px 3px -1.5px var(--elevation-shadow-low),
+    0px 1px 1px -0.5px var(--elevation-shadow-low);
+  --elevation-e6: 0px 72px 72px -36px var(--elevation-shadow-base),
+    0px 56px 56px -28px var(--elevation-shadow-base),
+    0px 32px 32px -16px var(--elevation-shadow-base),
+    0px 20px 20px -12px var(--elevation-shadow-low),
+    0px 3px 3px -1.5px var(--elevation-shadow-low),
+    0px 1px 1px -0.5px var(--elevation-shadow-low);
+  --card-shadow: 0px 56px 56px -28px var(--elevation-shadow-base),
+    0px 32px 32px -16px var(--elevation-shadow-base),
+    0px 20px 20px -12px var(--elevation-shadow-base),
+    0px 3px 3px -1.5px var(--elevation-shadow-base),
+    0px 1px 1px -0.5px var(--elevation-shadow-base),
+    inset 0px 4px 12px -2px var(--elevation-highlight-high);
+  --card-inner-shadow: inset 0px -1px 3px 0px var(--inverse-white-alpha-4);
+  --card-inner-shadow-backdrop: blur(24px);
+  --small-dark-shadow: 0px 2px 3px -1.5px var(--elevation-shadow-high);
+  /* Special: NOISE (multitone, #000 12%, opacity 3%) не переносится */
+  --special: 0px 2px 2px -1.5px var(--elevation-shadow-base),
+    inset 0px -8px 8px 0px var(--elevation-shadow-low),
+    inset 0px 1px 1px 0px var(--elevation-highlight-med);
+  /* Special-sm: NOISE (multitone, #000 12%, opacity 3%) не переносится */
+  --special-sm: 0px 1px 2px -1.5px var(--inverse-white-alpha-4),
+    inset 0px -4px 6px 0px var(--elevation-shadow-med);
+  --component-effect-primary-default: 0px 1px 1px -0.5px var(--elevation-shadow-base),
+    inset 0px 3px 3px 0px var(--elevation-highlight-med);
+  --component-effect-primary-default-backdrop: blur(12px);
+  --component-effect-secondary-default: 0px 2px 1.5px -0.5px var(--elevation-shadow-base),
+    inset 0px 1px 2px 0px var(--elevation-highlight-low);
+  --component-effect-secondary-default-backdrop: blur(12px);
+  --component-effect-primary-hover: 0px 20px 20px -12px var(--elevation-shadow-low),
+    0px 3px 3px -1.5px var(--elevation-shadow-low),
+    0px 1px 1px -0.5px var(--elevation-shadow-low),
+    inset 0px 3px 3px 0px var(--elevation-highlight-high);
+  --component-effect-primary-hover-backdrop: blur(12px);
+  --component-effect-secondary-hover: 0px 3px 3px -1.5px var(--elevation-shadow-base),
+    0px 1px 1px -0.5px var(--elevation-shadow-low),
+    inset 0px 2px 3px 0px var(--elevation-highlight-low);
+  --component-effect-secondary-hover-backdrop: blur(12px);
+  --component-effect-primary-drag: 0px 20px 20px -12px var(--elevation-shadow-med),
+    0px 3px 3px -1.5px var(--elevation-shadow-med),
+    0px 1px 1px -0.5px var(--elevation-shadow-med);
+  --component-effect-primary-drag-backdrop: blur(12px);
+  --pressed-primary: 0px 0px 0px 3px var(--outline-primary-base-em-alpha);
+  --pressed-info: 0px 0px 0px 3px var(--outline-info-base-em-alpha);
+  --pressed-success: 0px 0px 0px 3px var(--outline-success-base-em-alpha);
+  --pressed-warning: 0px 0px 0px 3px var(--outline-warning-base-em-alpha);
+  --pressed-danger: 0px 0px 0px 3px var(--outline-danger-base-em-alpha);
+  --pressed-gray: 0px 0px 0px 3px var(--outline-med-em);
+
+  /* Blur/* — значения для backdrop-filter */
+  --blur-8: blur(4px);
+  --blur-16: blur(8px);
+  --blur-24: blur(12px);
+  --blur-48: blur(24px);
+  --blur-96: blur(48px);
+  /* Blur/40-* в Figma — PROGRESSIVE (градиентное по вертикали): здесь максимум; градиент — mask-image в компоненте */
+  --blur-40-bot-0-top: blur(20px); /* 0 сверху -> 40 снизу */
+  --blur-40-top-0-bot: blur(20px); /* 40 сверху -> 0 снизу */
+}

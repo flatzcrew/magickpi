@@ -1,0 +1,159 @@
+/*
+ * Mobile-nav-item — Figma `14246:19681` (7 типов × Size lg · xl × State default · pressed = 28 ячеек), сверено 2026-11-26.
+ * Корень V, center, padding Space/sm; lg: min-h 48 (Space/14xl), gap Space/zero, Radius/small-component/lg;
+ *   xl: min-h 56 (Space/16xl), gap Space/xs, Radius/small-component/xl.
+ * Left: gap Space/md, иконка 20 (lg) · 24 (xl), картинка 20 Radius/round + Elevation/e1.
+ * Text-wrap: px Space/xs (lg) · Space/sm (xl); UI/caption-1/normal.
+ * active-primary: Surface/primary-med-em, обводка Outline/primary-button-*, Component-effect/primary-default; текст Text/primary-on-primary;
+ *   pressed + Surface/hover-overlay, тень e3 + highlight-high (= Component-effect/primary-hover).
+ * active-neutral: Inverse-white/alpha-88, обводка primary; текст Text/inverse-black; эффекты как у active-primary.
+ * active: Surface/special/light-s0-dark-s4, обводка Outline/secondary-button-*, Elevation/e3; pressed + hover-overlay, Elevation/e4; Text/high-em.
+ * active-primary-light: Surface/primary-base-em-alpha, без обводки, Elevation/e1; pressed — второй слой primary-base-em-alpha; Text/primary-med-em.
+ * active-naked / active-primary-naked: без фона; pressed Surface/hover-overlay; текст Text/high-em / Text/primary-med-em.
+ * inactive: Transparent-inverse, Text/low-em; pressed — текст Text/med-em, фон не меняется.
+ * Без токена: 1px обводки, маска linear-gradient(#000 0 0), стоп 48%.
+ */
+.root {
+  --mni-bg: var(--surface-primary-med-em);
+  --mni-overlay: var(--surface-hover-overlay);
+  --mni-text: var(--text-primary-on-primary);
+  --mni-text-pressed: var(--mni-text);
+  --mni-stroke-top: var(--outline-primary-button-top);
+  --mni-stroke-bottom: var(--outline-primary-button-bottom);
+  --mni-stroke-display: block;
+  --mni-shadow: var(--component-effect-primary-default);
+  --mni-shadow-pressed: var(--component-effect-primary-hover);
+  --mni-backdrop: var(--component-effect-primary-default-backdrop);
+
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0;
+  border: 0;
+  padding: var(--space-sm);
+  background: var(--mni-bg);
+  color: var(--mni-text);
+  box-shadow: var(--mni-shadow);
+  backdrop-filter: var(--mni-backdrop);
+  cursor: pointer;
+  outline: none;
+  white-space: nowrap;
+  transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+.root::before {
+  content: '';
+  display: var(--mni-stroke-display);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--mni-stroke-top) 48%, var(--mni-stroke-bottom) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+/* ---------- Type ---------- */
+.active-neutral {
+  --mni-bg: var(--inverse-white-alpha-88);
+  --mni-text: var(--text-inverse-black);
+}
+.active {
+  --mni-bg: var(--surface-special-light-s0-dark-s4);
+  --mni-text: var(--text-high-em);
+  --mni-stroke-top: var(--outline-secondary-button-top);
+  --mni-stroke-bottom: var(--outline-secondary-button-bottom);
+  --mni-shadow: var(--elevation-e3);
+  --mni-shadow-pressed: var(--elevation-e4);
+  --mni-backdrop: none;
+}
+.active-primary-light {
+  --mni-bg: var(--surface-primary-base-em-alpha);
+  --mni-overlay: var(--surface-primary-base-em-alpha);
+  --mni-text: var(--text-primary-med-em);
+  --mni-stroke-display: none;
+  --mni-shadow: var(--elevation-e1);
+  --mni-shadow-pressed: var(--elevation-e1);
+  --mni-backdrop: none;
+}
+.active-naked,
+.active-primary-naked {
+  --mni-bg: var(--transparent-inverse);
+  --mni-text: var(--text-high-em);
+  --mni-stroke-display: none;
+  --mni-shadow: none;
+  --mni-shadow-pressed: none;
+  --mni-backdrop: none;
+}
+.active-primary-naked {
+  --mni-text: var(--text-primary-med-em);
+}
+.inactive {
+  --mni-bg: var(--transparent-inverse);
+  --mni-overlay: var(--transparent-inverse);
+  --mni-text: var(--text-low-em);
+  --mni-text-pressed: var(--text-med-em);
+  --mni-stroke-display: none;
+  --mni-shadow: none;
+  --mni-shadow-pressed: none;
+  --mni-backdrop: none;
+}
+
+/* ---------- State ---------- */
+.root:active:not(:disabled),
+.root[data-state='pressed'] {
+  background: linear-gradient(var(--mni-overlay), var(--mni-overlay)), var(--mni-bg);
+  box-shadow: var(--mni-shadow-pressed);
+  color: var(--mni-text-pressed);
+}
+.root:focus-visible {
+  box-shadow: var(--pressed-primary);
+}
+.root:disabled {
+  cursor: not-allowed;
+}
+
+/* ---------- Size ---------- */
+.lg {
+  --icon-size: var(--space-5xl);
+  --mni-text-pad: var(--space-xs);
+  min-height: var(--space-14xl);
+  gap: var(--space-zero);
+  border-radius: var(--radius-small-component-lg);
+}
+.xl {
+  --icon-size: var(--space-7xl);
+  --mni-text-pad: var(--space-sm);
+  min-height: var(--space-16xl);
+  gap: var(--space-xs);
+  border-radius: var(--radius-small-component-xl);
+}
+
+/* ---------- Слоты ---------- */
+.top {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+}
+.image {
+  width: var(--space-5xl);
+  height: var(--space-5xl);
+  border-radius: var(--radius-round);
+  object-fit: cover;
+  box-shadow: var(--elevation-e1);
+}
+.text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--mni-text-pad);
+}

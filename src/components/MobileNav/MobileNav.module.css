@@ -1,0 +1,72 @@
+/*
+ * Mobile-nav — Figma `14246:19645` (ячейки: floating md · floating lg · default lg), сверено 2026-11-26.
+ * Корень H, gap Space/zero, ширина 402; пункты fill, текущий — Mobile-nav-item active, остальные inactive.
+ * floating: padding Space/xs; подложка Surface/component/alpha-base-medium + Blur/48; радиус Radius/small-component/2xl (md) · 3xl (lg);
+ *   тень 0 12 12 Elevation/shadow-med; внутренняя тень 0 -1 2 Elevation/shadow-base.
+ * default (lg): Inverse-black/alpha-4 + Blur/48, обводка Outline/base-em; pt / px Space/xs, pb Space/16xl;
+ *   радиус сверху Radius/4xl, снизу 56 (Radius/14xl); Home-indicator — полоса 144 (Space/25xl) × 5, Inverse-white/alpha-80, Radius/round.
+ * Без токена: ширина 402 (--mobile-nav-width), тень 0 12px 12px и inset 0 -1px 2px (effect style в ките не назван),
+ *   1px обводки, полоса Home-indicator 5px, её отступ сверху 11px и ширина зоны 338px.
+ */
+.root {
+  --mobile-nav-width: 402px;
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--mobile-nav-width);
+  max-width: 100%;
+  gap: var(--space-zero);
+  padding: var(--space-xs);
+}
+.item {
+  flex: 1 1 0;
+}
+
+/* ---------- Type ---------- */
+.floating {
+  background: var(--surface-component-alpha-base-medium);
+  backdrop-filter: var(--blur-48);
+  box-shadow:
+    0 12px 12px 0 var(--elevation-shadow-med),
+    inset 0 -1px 2px 0 var(--elevation-shadow-base);
+}
+.floating.md {
+  border-radius: var(--radius-small-component-2xl);
+}
+.floating.lg {
+  border-radius: var(--radius-small-component-3xl);
+}
+
+.default {
+  padding-bottom: var(--space-16xl);
+  border: 1px solid var(--outline-base-em);
+  border-radius: var(--radius-4xl) var(--radius-4xl) var(--radius-14xl) var(--radius-14xl);
+  background: var(--inverse-black-alpha-4);
+  backdrop-filter: var(--blur-48);
+}
+
+/* ---------- Home-indicator ---------- */
+.homeIndicator {
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 338px;
+  max-width: 100%;
+  padding: 11px var(--space-zero) var(--space-md);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.homeBar {
+  width: var(--space-25xl);
+  height: 5px;
+  border-radius: var(--radius-round);
+  background: var(--inverse-white-alpha-80);
+  backdrop-filter: var(--blur-24);
+}

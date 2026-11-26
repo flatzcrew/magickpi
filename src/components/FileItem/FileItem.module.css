@@ -1,0 +1,48 @@
+/*
+ * FileItem — Figma kpi-bro · web `225:1041` (State 3 ячейки), сверено get_design_context 2026-11-26.
+ * Карточка-строка (patterns.md «Тени»): H, center, fill Surface/s0, обводка Surface/s3 1px, Radius/5xl, padding и gap Space/xl,
+ * без тени; ширина мастера 520, на экране FILL.
+ * Feature-icon tertiary xs (32) · Content V FILL, gap Space/zero, clip: Name UI/body-1/medium Text/high-em, 1 строка с «…» ·
+ * Meta UI/caption-2/normal Text/med-em, в error Text/danger-high-em · Icon-button tertiary sm.
+ * Не сверено: иконки Cross / Bin — в мастере на Icon-button стоит Icon / Placeholder-sm; имена взяты из каталога ДС.
+ * Без токена: ширина 520 (--file-item-width), обводка 1px.
+ */
+.root {
+  --file-item-width: 520px;
+
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--file-item-width);
+  max-width: 100%;
+  padding: var(--space-xl);
+  gap: var(--space-xl);
+  border: 1px solid var(--surface-s3);
+  border-radius: var(--radius-5xl);
+  background: var(--surface-s0);
+}
+.content {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  gap: var(--space-zero);
+  overflow: hidden;
+}
+.name,
+.meta {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.name {
+  color: var(--text-high-em);
+}
+.meta {
+  color: var(--text-med-em);
+}
+.root[data-state='error'] .meta {
+  color: var(--text-danger-high-em);
+}

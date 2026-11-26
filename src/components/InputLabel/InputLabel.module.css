@@ -1,0 +1,28 @@
+/*
+ * Input-label — Figma `12021:6068`. Строка H, align center, px Space/xxs, gap Space/xs.
+ * Primary-text Text/med-em (medium), Support-text Text/low-em (normal), иконка 16 справа.
+ * Цвет иконки в Figma не сверен — берётся Text/low-em.
+ */
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding-inline: var(--space-xxs);
+  min-width: 0;
+}
+
+.primaryText {
+  color: var(--text-med-em);
+}
+.secondaryText {
+  color: var(--text-low-em);
+}
+.icon {
+  color: var(--text-low-em);
+}
+
+.root[data-disabled] .primaryText,
+.root[data-disabled] .secondaryText,
+.root[data-disabled] .icon {
+  color: var(--text-base-em);
+}

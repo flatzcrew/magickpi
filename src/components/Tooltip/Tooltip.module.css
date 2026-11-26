@@ -1,0 +1,144 @@
+/*
+ * Tooltip — Figma `12089:7621`. Сверено через Figma (дамп вариантов), 2026-11-26.
+ * Корень: V (left-center / right-center — H), Radius/3xl, Elevation/e4; ширина тела в ките 280.
+ * Body: V, p Space/xl, gap xl, Radius/big-component/xs, градиент Surface/component/alpha-base-medium -> Surface/special/light-s0-dark-s2,
+ *   обводка-градиент 1px Outline/secondary-button-top -> bottom (со стороны указателя обводки нет), Blur/48.
+ * Text-wrap: gap Space/xs, pb xs; заголовок UI/para medium Text/high-em, описание UI/caption-2 normal Text/low-em.
+ * CTAs: gap Space/md. Медиа-слот — Radius/md.
+ * Pointer 16 × 8: botom-* / bottom-center — снизу, заливка Surface/special/light-s0-dark-s2;
+ *   top-* — сверху, заливка Surface/component/alpha-base-medium; left- / right-center — сбоку по центру.
+ *   *-left — отступ Space/10xl слева, *-right — справа, *-center — по центру.
+ * Без токена: 1px обводки, маска linear-gradient(#000 0 0), стоп 48%, ширина 280 (`--tooltip-width`), clip-path треугольника.
+ * Упрощено: Blur/96 у обёртки указателя не переносим (у самого треугольника — Blur/48).
+ */
+.root {
+  --tooltip-width: 280px;
+  --tt-stroke-pad: 1px 1px 0 1px;
+  --tt-arrow-fill: var(--surface-special-light-s0-dark-s2);
+  --tt-arrow-clip: polygon(0 0, 100% 0, 50% 100%);
+  --tt-arrow-w: var(--space-3xl);
+  --tt-arrow-h: var(--space-md);
+
+  display: inline-flex;
+  flex-direction: column;
+  width: var(--tooltip-width);
+  max-width: 100%;
+  border-radius: var(--radius-3xl);
+  box-shadow: var(--elevation-e4);
+}
+
+.body {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-xl);
+  gap: var(--space-xl);
+  border-radius: var(--radius-big-component-xs);
+  background: linear-gradient(180deg, var(--surface-component-alpha-base-medium), var(--surface-special-light-s0-dark-s2));
+  backdrop-filter: var(--blur-48);
+}
+.body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: var(--tt-stroke-pad);
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--outline-secondary-button-top) 48%, var(--outline-secondary-button-bottom) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+.textWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-bottom: var(--space-xs);
+}
+.heading,
+.description {
+  margin: 0;
+}
+.heading {
+  color: var(--text-high-em);
+}
+.description {
+  color: var(--text-low-em);
+}
+.media {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+.ctas {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* ---------- Pointer ---------- */
+.pointer {
+  display: flex;
+  flex: none;
+  justify-content: flex-start;
+  padding-inline: var(--space-10xl) var(--space-zero);
+}
+.arrow {
+  width: var(--tt-arrow-w);
+  height: var(--tt-arrow-h);
+  background: var(--tt-arrow-fill);
+  backdrop-filter: var(--blur-48);
+  clip-path: var(--tt-arrow-clip);
+}
+
+.root[data-direction='botom-right'] .pointer,
+.root[data-direction='top-right'] .pointer {
+  justify-content: flex-end;
+  padding-inline: var(--space-zero) var(--space-10xl);
+}
+.root[data-direction='bottom-center'] .pointer,
+.root[data-direction='top-center'] .pointer {
+  justify-content: center;
+  padding-inline: var(--space-zero);
+}
+
+.root[data-direction^='top'] {
+  --tt-stroke-pad: 0 1px 1px 1px;
+  --tt-arrow-fill: var(--surface-component-alpha-base-medium);
+  --tt-arrow-clip: polygon(50% 0, 100% 100%, 0 100%);
+}
+.root[data-direction^='top'] .pointer {
+  order: -1;
+}
+
+.root[data-direction='left-center'],
+.root[data-direction='right-center'] {
+  --tt-arrow-w: var(--space-md);
+  --tt-arrow-h: var(--space-3xl);
+  flex-direction: row;
+  align-items: center;
+}
+.root[data-direction='left-center'] .pointer,
+.root[data-direction='right-center'] .pointer {
+  padding-inline: var(--space-zero);
+}
+.root[data-direction='left-center'] {
+  --tt-stroke-pad: 1px 1px 1px 0;
+  --tt-arrow-clip: polygon(100% 0, 100% 100%, 0 50%);
+}
+.root[data-direction='left-center'] .pointer {
+  order: -1;
+}
+.root[data-direction='right-center'] {
+  --tt-stroke-pad: 1px 0 1px 1px;
+  --tt-arrow-clip: polygon(0 0, 100% 50%, 0 100%);
+}
+.root[data-direction='left-center'] .body,
+.root[data-direction='right-center'] .body {
+  flex: 1 1 auto;
+  min-width: 0;
+}

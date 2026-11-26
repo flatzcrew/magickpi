@@ -1,0 +1,38 @@
+/*
+ * Button-group — Figma `12147:7059` (Size xs…xl × Type combined · spaced-out; видимость кнопок 2–5).
+ * В ките — 6 кнопок Button tertiary того же Size (крайние всегда видны, 2–5 — булевы).
+ * combined: gap Space/zero, внутренние углы без скругления, соседние обводки сливаются (сдвиг на 1px).
+ * spaced-out: отдельные кнопки, gap xs Space/xs · sm Space/xs · md Space/sm · lg Space/md · xl Space/lg
+ *   (выведено из ширины вариантов в Figma).
+ * Модуль переиспользует IconButtonGroup (только combined).
+ * Без токена: сдвиг -1px для слияния обводок.
+ */
+.root {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  padding: var(--space-zero);
+}
+
+.combined {
+  gap: var(--space-zero);
+}
+.combined > .item:not(:first-child) {
+  margin-inline-start: -1px;
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+.combined > .item:not(:last-child) {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+.combined > .item:hover,
+.combined > .item:focus-visible {
+  z-index: 1;
+}
+
+.spaced-out.xs { gap: var(--space-xs); }
+.spaced-out.sm { gap: var(--space-xs); }
+.spaced-out.md { gap: var(--space-sm); }
+.spaced-out.lg { gap: var(--space-md); }
+.spaced-out.xl { gap: var(--space-lg); }

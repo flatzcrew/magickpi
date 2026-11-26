@@ -1,0 +1,266 @@
+/*
+ * Datepicker — Figma `14131:86649` (Type: range 832 · single 304 · single-sm 304), сверено get_design_context 2026-11-26.
+ * Корень: обводка Outline/base-em, Radius/big-component/md, тень 0 1 1 · 0 3 3 · 0 20 20 Elevation/shadow-low, clip.
+ * Тело («Range»): градиент Surface/component/alpha-base-medium → Surface/special/light-s0-dark-s2 + Blur/96;
+ *   padding Space/xl, gap Space/xl (single-sm — Space/3xl).
+ * Month-year: градиент Surface/s1 → Surface/special/light-s0-dark-s3, обводка Outline/low-em, padding Space/xs,
+ *   Radius/small-component/lg; Icon-button tertiary sm по краям; месяц Text/med-em, год Text/base-em (para, body-1).
+ * Дни недели: UI/caption-1/medium Text/base-em, по центру колонок; Divider-horizontal center rounded.
+ * Ячейки: Button md 40×40 (single-sm — Button sm 32 × 40); обычная — Transparent-inverse, Text/med-em; вне месяца Text/base-em;
+ *   выбранная — Button primary. range: края периода — подложка Surface/primary-base-em-alpha (скругление со стороны края,
+ *   тень 0 1 1 · 0 3 3 shadow-low) с Button primary внутри; дни внутри — Surface/primary-base-em-alpha,
+ *   Text/primary-on-primary-light, без скругления, кроме краёв строки.
+ * single — «Range-Wrap»: pl Space/12xl, pr Space/13xl, py Space/3xl, Radius/round, градиент Surface/s1 → light-s0-dark-s3,
+ *   обводка Outline/low-em, Special-sm; число UI/display-1/normal Text/high-em, «-» UI/heading-5/normal Text/base-em,
+ *   месяц UI/heading-1/semibold Text/med-em, день недели UI/title-1/medium Text/base-em. Wrap: gap Space/10xl, py Space/md.
+ * range: Wrap pb Space/3xl; Sidebar шорткатов pr Space/18xl, ширина 144 — Sidebar-item sm (active-tertiary / inactive);
+ *   два месяца, gap Space/12xl, Dates gap Space/7xl; Footer: поля дат 120 + «—» Text/low-em, CTAs gap Space/md справа.
+ * single / single-sm: Footer V, gap Space/3xl; CTAs Cancel (secondary) + Apply (primary) fill.
+ * Без токена: ширины месяца 280, полей 120, шорткатов 144 (переменные --datepicker-*), тень корня (спреды 0, effect style
+ *   не назван), 1px обводок. Special-sm — NOISE не переносится (primitives.css), берётся --special-sm.
+ * Не сверено: вес текста месяца в Month-year (para medium / semibold), разделитель между днями и сеткой в range.
+ */
+.root {
+  --datepicker-month-width: 280px;
+  --datepicker-field-width: 128px; /* в ките 120 — «30 / 06 / 2026» не помещалась на 3px, расширено на Space/md (2026-11-26) */
+  --datepicker-shortcuts-width: 144px;
+
+  display: inline-flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-width: 100%;
+  border: 1px solid var(--outline-base-em);
+  border-radius: var(--radius-big-component-md);
+  box-shadow:
+    0 1px 1px 0 var(--elevation-shadow-low),
+    0 3px 3px 0 var(--elevation-shadow-low),
+    0 20px 20px 0 var(--elevation-shadow-low);
+  overflow: hidden;
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding: var(--space-xl);
+  background: linear-gradient(180deg, var(--surface-component-alpha-base-medium), var(--surface-special-light-s0-dark-s2));
+  backdrop-filter: var(--blur-96);
+}
+.single-sm .body {
+  gap: var(--space-3xl);
+}
+
+/* ---------- Month-year ---------- */
+.monthYear {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-xs);
+  border: 1px solid var(--outline-low-em);
+  border-radius: var(--radius-small-component-lg);
+  background: linear-gradient(180deg, var(--surface-s1), var(--surface-special-light-s0-dark-s3));
+}
+.info {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding-inline: var(--space-xs);
+  white-space: nowrap;
+}
+.monthName {
+  color: var(--text-med-em);
+}
+.year {
+  color: var(--text-base-em);
+}
+
+/* ---------- Месяц ---------- */
+.dates {
+  display: flex;
+  flex-direction: column;
+  width: var(--datepicker-month-width);
+  max-width: 100%;
+  gap: var(--space-md);
+}
+.range .dates {
+  gap: var(--space-7xl);
+}
+.single-sm .dates {
+  gap: var(--space-xl);
+}
+.weekdays,
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.weekdays {
+  color: var(--text-base-em);
+  text-align: center;
+}
+.cell,
+.edge {
+  display: flex;
+  min-width: 0;
+}
+
+/* Ячейка дня — Button flat / primary; переопределения (0,2,0), чтобы не зависеть от порядка CSS. */
+.grid .day {
+  width: 100%;
+  min-width: 0;
+}
+.grid .day:not([aria-pressed='true']) {
+  --btn-bg: var(--transparent-inverse);
+  --btn-text: var(--text-med-em);
+}
+.grid .outside {
+  --btn-text: var(--text-base-em);
+  --btn-text-hover: var(--text-med-em);
+  backdrop-filter: var(--blur-24);
+}
+.grid .inRange {
+  --btn-bg: var(--surface-primary-base-em-alpha);
+  --btn-text: var(--text-primary-on-primary-light);
+  --btn-text-hover: var(--text-primary-on-primary-light);
+  border-radius: 0;
+}
+.grid .rowStart {
+  border-top-left-radius: var(--radius-small-component-md);
+  border-bottom-left-radius: var(--radius-small-component-md);
+}
+.grid .rowEnd {
+  border-top-right-radius: var(--radius-small-component-md);
+  border-bottom-right-radius: var(--radius-small-component-md);
+}
+.edge {
+  background: var(--surface-primary-base-em-alpha);
+  box-shadow:
+    0 1px 1px 0 var(--elevation-shadow-low),
+    0 3px 3px 0 var(--elevation-shadow-low);
+}
+.edge-start {
+  border-top-left-radius: var(--radius-small-component-md);
+  border-bottom-left-radius: var(--radius-small-component-md);
+}
+.edge-end {
+  border-top-right-radius: var(--radius-small-component-md);
+  border-bottom-right-radius: var(--radius-small-component-md);
+}
+
+/* ---------- single: крупная дата ---------- */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-10xl);
+  padding: var(--space-md) var(--space-zero);
+}
+.single-sm .wrap {
+  padding: var(--space-md) var(--space-zero) var(--space-zero);
+}
+.display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-3xl) var(--space-13xl) var(--space-3xl) var(--space-12xl);
+  border: 1px solid var(--outline-low-em);
+  border-radius: var(--radius-round);
+  background: linear-gradient(180deg, var(--surface-s1), var(--surface-special-light-s0-dark-s3));
+  box-shadow: var(--special-sm);
+  white-space: nowrap;
+}
+.displayDay {
+  color: var(--text-high-em);
+}
+.displayDash {
+  color: var(--text-base-em);
+}
+.displayMonth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+.displayMonthName {
+  color: var(--text-med-em);
+}
+.displayWeekday {
+  color: var(--text-base-em);
+}
+
+/* ---------- range: шорткаты и два месяца ---------- */
+.rangeWrap {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: var(--space-3xl);
+}
+.shortcuts {
+  display: flex;
+  flex-direction: column;
+  padding-right: var(--space-18xl);
+}
+.shortcutNav {
+  display: flex;
+  flex-direction: column;
+  width: var(--datepicker-shortcuts-width);
+  gap: var(--space-zero);
+}
+.datesWrap {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-12xl);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xl);
+}
+.range .footer {
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.fields {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+.field {
+  width: var(--datepicker-field-width);
+}
+.dash {
+  color: var(--text-low-em);
+}
+.ctas {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+.ctasFill > * {
+  flex: 1 1 0;
+}
+
+/*
+ * Исправления 2026-11-26 (замечания дизайнера):
+ * — цифры дней не помещались: у Button md поля Space/lg + у текста Space/xs по бокам — в ячейке 40 на цифры оставалось 12px.
+ *   В ячейке дня поля обнулены, цифра по центру (как в ките: число занимает ячейку целиком).
+ * — дни внутри периода были без подложки: правило «невыбранный день прозрачный» (.grid .day:not(…), 0,3,0) перебивало
+ *   .grid .inRange (0,2,0). Подложка периода — с той же специфичностью ниже по файлу.
+ */
+.grid .day {
+  padding-inline: var(--space-zero);
+}
+.grid .day > span {
+  padding-inline: var(--space-zero);
+  overflow: visible;
+}
+.grid .day.inRange:not([aria-pressed='true']) {
+  --btn-bg: var(--surface-primary-base-em-alpha);
+  --btn-text: var(--text-primary-on-primary-light);
+  --btn-text-hover: var(--text-primary-on-primary-light);
+}

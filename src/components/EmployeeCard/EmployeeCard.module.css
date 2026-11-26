@@ -1,0 +1,111 @@
+/*
+ * EmployeeCard — Figma kpi-bro · web `171:1455` (Footer × State = 8 ячеек), сверено get_design_context 2026-11-26
+ * по 171:1252 (false/default), 171:1360 (true/hover), 171:1422 (true/selected).
+ * Card: V, gap Space/xl, padding Space/xl, fill Surface/s0, обводка Surface/s3 1px, Radius/5xl, clip; ширина 432.
+ * Row: H, center, gap Space/xl — Avatar md (40) · Content V FILL, gap Space/xxs, clip (Name UI/body-2/medium Text/high-em,
+ * Role UI/caption-2/normal Text/med-em) · Icon-button tertiary md.
+ * Footer=true: корень Surface/s2, обводка Surface/s3 1px, Radius/5xl, clip; Footer padding Space/md × Space/xl,
+ * UI/caption-2/normal Text/med-em, 1 строка.
+ * Состояния (patterns.md): hover — Card Surface/s1; focus — FocusRing 2px Outline/primary-high-em;
+ * selected — Card Surface/s2 + SelectRing 1px Outline/primary-high-em. Кольца — ::after поверх обводки, высота не меняется.
+ * Упрощено: в Figma default собран иначе (› снаружи колонки, снизу справа) — в коде одна раскладка для всех State,
+ * › не «прыгает» на hover (замечание аудита 2026-11-21). У Footer=true focus кольцо на Card, а не на корне.
+ * Без токена: ширина 432 (--employee-card-width), обводка 1px, кольца 1 / 2 px.
+ */
+.root {
+  --employee-card-width: 432px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+  width: var(--employee-card-width);
+  max-width: 100%;
+  padding: var(--space-zero);
+  gap: var(--space-zero);
+  border-radius: var(--radius-5xl);
+  outline: none;
+}
+.withFooter {
+  background: var(--surface-s2);
+  border: 1px solid var(--surface-s3);
+  overflow: hidden;
+}
+
+.card {
+  /* Живой переход между состояниями — как у Button (0.15s ease; motion-токенов в ките нет) */
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-xl);
+  gap: var(--space-xl);
+  border: 1px solid var(--surface-s3);
+  border-radius: var(--radius-5xl);
+  background: var(--surface-s0);
+}
+.card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.root:hover .card,
+.root[data-state='hover'] .card {
+  background: var(--surface-s1);
+}
+.root[data-state='focus'] .card::after {
+  box-shadow: inset 0 0 0 2px var(--outline-primary-high-em);
+}
+.root[data-state='selected'] .card {
+  background: var(--surface-s2);
+}
+.root[data-state='selected'] .card::after {
+  box-shadow: inset 0 0 0 1px var(--outline-primary-high-em);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: var(--space-xl);
+}
+.content {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  gap: var(--space-xxs);
+  overflow: hidden;
+}
+.name {
+  width: 100%;
+  color: var(--text-high-em);
+}
+.role {
+  width: 100%;
+  color: var(--text-med-em);
+}
+
+.footer {
+  display: flex;
+  padding: var(--space-md) var(--space-xl);
+  overflow: hidden;
+}
+.footerText {
+  color: var(--text-med-em);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Нативный фокус — после selected, чтобы кольцо 2px перекрывало SelectRing. */
+.root:focus-visible .card::after {
+  box-shadow: inset 0 0 0 2px var(--outline-primary-high-em);
+}

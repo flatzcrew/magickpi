@@ -1,0 +1,31 @@
+/*
+ * Avatar-group — Figma `10087:2600` (Size xs…xl). Стопка Avatar с наложением и кнопка «+N» в конце.
+ * Аватары: xs → Avatar xxs (20), sm → sm (32), md → md (40), lg → lg (48), xl → xl (56).
+ * Наложение: xs / sm −Space/md (8), md / lg / xl −Space/xl (12) — по координатам в Figma.
+ * «+N»: Button secondary того же Size, пилюля (Radius/round), min-width = высота; в xs кнопки нет.
+ * Без токена: нет (отрицательный отступ — calc от токена).
+ */
+.root {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  padding: var(--space-zero);
+}
+
+.xs { --ag-overlap: var(--space-md); }
+.sm { --ag-overlap: var(--space-md); }
+.md { --ag-overlap: var(--space-xl); }
+.lg { --ag-overlap: var(--space-xl); }
+.xl { --ag-overlap: var(--space-xl); }
+
+.root > :not(:last-child) {
+  margin-inline-end: calc(-1 * var(--ag-overlap));
+}
+
+.sm .more { min-width: var(--space-10xl); }
+.md .more { min-width: var(--space-12xl); }
+.lg .more { min-width: var(--space-14xl); }
+.xl .more { min-width: var(--space-16xl); }
+.root .more {
+  border-radius: var(--radius-round);
+}

@@ -1,0 +1,40 @@
+/*
+ * Checkbox-label — Figma `10095:3846` (Direction left · right × Size sm · md).
+ * Модуль общий для CheckboxLabel, RadioLabel (`10100:3931`) и ToggleLabel (`10101:3995`): у трёх наборов
+ * одинаковая раскладка, отличается только контрол.
+ * Корень: Auto Layout H, items-start, padding Space/zero; gap sm Space/md · md Space/xl.
+ * Text-wrap: колонка, fill; gap sm Space/xs · md Space/zero.
+ * sm: Label UI/para/medium, Description UI/caption-2/normal. md: Label UI/body-2/normal, Description UI/para/normal.
+ * Label — Text/high-em, Description — Text/low-em.
+ * В Figma ширина рамки фиксирована (104/112, у Toggle-label 128/136) — здесь ширина по контенту/родителю.
+ */
+.root {
+  display: inline-flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: var(--space-zero);
+  cursor: pointer;
+}
+.root:has(input:disabled) {
+  cursor: not-allowed;
+}
+
+.left { flex-direction: row; }
+.right { flex-direction: row-reverse; }
+
+.sm { gap: var(--space-md); }
+.md { gap: var(--space-xl); }
+
+.text {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.sm .text { gap: var(--space-xs); }
+.md .text { gap: var(--space-zero); }
+
+.label { color: var(--text-high-em); }
+.description { color: var(--text-low-em); }

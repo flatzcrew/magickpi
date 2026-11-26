@@ -1,0 +1,85 @@
+/*
+ * Экран «Ассистент Кипи» — по макету Screen/Home (95:2136, SCR-13): колонка чата + сводки справа.
+ * Чат: ширина 464 (решение 2026-11-19), Surface/s1, Radius/7xl, padding Space/10xl сверху/снизу · Space/12xl по бокам;
+ *   шапка — KipiAvatar 36 + «Ассистент Кипи» (UI/heading-2 medium) + подпись-состояние (UI/body-2 normal, Text/med-em);
+ *   лента сообщений прокручивается; подсказки — Chip sm; поле — Input-cell с кнопкой, прижато к низу.
+ * Справа: заголовок UI/heading-1 semibold, Dashboard-info — две в ряд, третья на всю ширину; карточка «Моя матрица».
+ * Без токена: ширина чата 464 (--kipi-chat-width), 1px обводки карточки.
+ */
+.page {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: var(--space-md);
+}
+.chat {
+  --kipi-chat-width: 464px;
+
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--kipi-chat-width);
+  min-height: 0;
+  gap: var(--space-5xl);
+  padding: var(--space-10xl) var(--space-12xl);
+  border-radius: var(--radius-7xl);
+  background: var(--surface-s1);
+}
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+.headText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.headText h2,
+.side h2,
+.card p {
+  margin: 0;
+}
+.state {
+  color: var(--text-med-em);
+}
+.feed {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  gap: var(--space-3xl);
+  overflow: auto;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+.side {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: var(--space-5xl);
+  padding: var(--space-10xl) var(--space-7xl);
+}
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-xl);
+}
+.tiles > :last-child {
+  grid-column: 1 / -1;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-xl);
+  padding: var(--space-5xl);
+  border-radius: var(--radius-7xl);
+  background: var(--surface-s0);
+  box-shadow: inset 0 0 0 1px var(--outline-low-em), var(--elevation-e2);
+}

@@ -1,0 +1,184 @@
+/*
+ * Dropdown — Figma `12041:1595` (State × Auto-layout; Auto-layout технический). Вертикально, gap Space/xs.
+ * Ячейка = Input-cell default md: высота 40 (Space/12xl), px Space/lg, gap Space/xs, Radius/small-component/md;
+ *   Left gap Space/sm (картинка 20, иконка 18), Text-wrap px Space/xs gap Space/xs, UI/body-1 medium / normal.
+ * default: Surface/special/light-s0-dark-s2, обводка-градиент Outline/primary-button-top -> bottom,
+ *   Component-effect/secondary-default; текст и иконки Text/high-em, Secondary-text Text/low-em.
+ * hover + Surface/hover-overlay-inverse · pressed (open) Surface/special/light-s0-dark-s4, градиент Outline/secondary-button-*,
+ *   текст и иконки Text/med-em · active (focus-visible) — тень Pressed/gray.
+ * danger: обводка Outline/danger-low-em-alpha, Pressed/danger, иконки Text/danger-med-em.
+ * disabled: Surface/disabled-base-em, обводка Outline/input-field-default, всё Text/base-em.
+ * default-dark: Surface/component/secondary-alpha-base, обводка Outline/input-field-low-em, без тени.
+ * primary-light: Surface/primary-base-em-alpha, обводка Outline/input-field-default; Text/primary-high-em,
+ *   Secondary-text и правая иконка Text/primary-med-em.
+ * naked / naked-disabled: без фона и обводки, pl Space/xxs, gap и Left gap Space/xxs.
+ * Без токена: 1px обводки, маска linear-gradient(#000 0 0), стоп 48% (как у Button / Switcher-item).
+ * Упрощено: у naked в ките остаётся Component-effect/secondary-default — без фона тень не рисуем.
+ */
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: 100%;
+  min-width: 0;
+}
+
+.cell {
+  --dd-bg: var(--surface-special-light-s0-dark-s2);
+  --dd-stroke-top: var(--outline-primary-button-top);
+  --dd-stroke-bottom: var(--outline-primary-button-bottom);
+  --dd-stroke-display: block;
+  --dd-shadow: var(--component-effect-secondary-default);
+  --dd-backdrop: var(--component-effect-secondary-default-backdrop);
+  --dd-text: var(--text-high-em);
+  --dd-text-2: var(--text-low-em);
+  --dd-left-icon: var(--text-high-em);
+  --dd-right-icon: var(--text-high-em);
+  --dd-left-gap: var(--space-sm);
+  --icon-size: var(--space-4xl);
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: var(--space-12xl);
+  margin: 0;
+  padding: var(--space-md) var(--space-lg);
+  gap: var(--space-xs);
+  border: 0;
+  border-radius: var(--radius-small-component-md);
+  background: var(--dd-bg);
+  box-shadow: var(--dd-shadow);
+  backdrop-filter: var(--dd-backdrop);
+  color: var(--dd-text);
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+.cell::before {
+  content: '';
+  display: var(--dd-stroke-display);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--dd-stroke-top) 48%, var(--dd-stroke-bottom) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+/* ---------- Слоты ---------- */
+.left,
+.right {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+}
+.left {
+  gap: var(--dd-left-gap);
+  color: var(--dd-left-icon);
+}
+.right {
+  color: var(--dd-right-icon);
+}
+.image {
+  width: var(--space-5xl);
+  height: var(--space-5xl);
+  border-radius: var(--radius-round);
+  object-fit: cover;
+  box-shadow: var(--elevation-e1);
+}
+.text {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+  gap: var(--space-xs);
+  padding-inline: var(--space-xs);
+}
+.primaryText {
+  overflow: hidden;
+  color: var(--dd-text);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.secondaryText {
+  flex: none;
+  color: var(--dd-text-2);
+  white-space: nowrap;
+}
+
+/* ---------- State ---------- */
+.cell:hover:not(:disabled),
+.cell[data-state='hover'] {
+  background: linear-gradient(var(--surface-hover-overlay-inverse), var(--surface-hover-overlay-inverse)), var(--dd-bg);
+}
+.cell:active:not(:disabled),
+.cell[data-state='pressed'] {
+  --dd-bg: var(--surface-special-light-s0-dark-s4);
+  --dd-stroke-top: var(--outline-secondary-button-top);
+  --dd-stroke-bottom: var(--outline-secondary-button-bottom);
+  --dd-text: var(--text-med-em);
+  --dd-left-icon: var(--text-med-em);
+  --dd-right-icon: var(--text-med-em);
+  background: var(--dd-bg);
+}
+.cell:focus-visible,
+.cell[data-state='active'] {
+  --dd-shadow: var(--pressed-gray);
+}
+.cell[data-state='danger'] {
+  --dd-stroke-top: var(--outline-danger-low-em-alpha);
+  --dd-stroke-bottom: var(--outline-danger-low-em-alpha);
+  --dd-shadow: var(--pressed-danger);
+  --dd-left-icon: var(--text-danger-med-em);
+  --dd-right-icon: var(--text-danger-med-em);
+}
+.cell[data-state='default-dark'] {
+  --dd-bg: var(--surface-component-secondary-alpha-base);
+  --dd-stroke-top: var(--outline-input-field-low-em);
+  --dd-stroke-bottom: var(--outline-input-field-low-em);
+  --dd-shadow: none;
+  --dd-backdrop: none;
+}
+.cell[data-state='primary-light'] {
+  --dd-bg: var(--surface-primary-base-em-alpha);
+  --dd-stroke-top: var(--outline-input-field-default);
+  --dd-stroke-bottom: var(--outline-input-field-default);
+  --dd-text: var(--text-primary-high-em);
+  --dd-text-2: var(--text-primary-med-em);
+  --dd-left-icon: var(--text-primary-high-em);
+  --dd-right-icon: var(--text-primary-med-em);
+}
+.cell[data-state='naked'],
+.cell[data-state='naked-disabled'] {
+  --dd-stroke-display: none;
+  --dd-shadow: none;
+  --dd-backdrop: none;
+  --dd-left-gap: var(--space-xxs);
+  padding-left: var(--space-xxs);
+  gap: var(--space-xxs);
+  background: none;
+}
+.cell:disabled {
+  --dd-text: var(--text-base-em);
+  --dd-text-2: var(--text-base-em);
+  --dd-left-icon: var(--text-base-em);
+  --dd-right-icon: var(--text-base-em);
+  cursor: not-allowed;
+}
+.cell:disabled:not([data-state='naked-disabled']) {
+  --dd-bg: var(--surface-disabled-base-em);
+  --dd-stroke-top: var(--outline-input-field-default);
+  --dd-stroke-bottom: var(--outline-input-field-default);
+  --dd-shadow: var(--component-effect-secondary-default);
+  background: var(--dd-bg);
+}

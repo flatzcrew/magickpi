@@ -1,0 +1,89 @@
+/*
+ * Notification-bell — Figma `37569:3495` (Type numeric · status · numeric-sm · status-sm).
+ * Корень: фон Inverse-white/alpha-8, иконка «notification» по центру.
+ *   обычный: padding Space/md, Radius/xl, иконка 24; sm: padding Space/sm, Radius/md, иконка 20.
+ * numeric: счётчик-пилюля h 20 (Space/5xl), padding Space/xs, Surface/danger-med-em, обводка Outline/primary
+ *   (градиент Outline/primary-button-*), Component-effect/primary-default; текст UI/caption-1/medium
+ *   Text/primary-on-primary с px Space/xxs. Позиция: left 17px, top −2px (в обоих размерах).
+ * status: точка Status danger + Outline (6×6, Space/sm); позиция right Space/lg · top Space/lg, у sm — right Space/md · top 7px.
+ * Без токена: позиции счётчика (17px, −2px) и точки sm (top 7px); 1px обводки счётчика, маска, стоп 48%.
+ */
+.root {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  background: var(--inverse-white-alpha-8);
+  color: var(--text-high-em);
+}
+button.root {
+  cursor: pointer;
+}
+/* Состояний в ките нет; фокус — как у Button secondary (Pressed/gray). */
+button.root:focus-visible {
+  outline: none;
+  box-shadow: var(--pressed-gray);
+}
+
+.md {
+  --icon-size: var(--space-7xl);
+  padding: var(--space-md);
+  border-radius: var(--radius-xl);
+}
+.sm {
+  --icon-size: var(--space-5xl);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+}
+
+.badge {
+  position: absolute;
+  top: -2px;
+  left: 17px;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: var(--space-5xl);
+  padding: var(--space-xs);
+  border-radius: var(--radius-round);
+  background: var(--surface-danger-med-em);
+  color: var(--text-primary-on-primary);
+  box-shadow: var(--component-effect-primary-default);
+  backdrop-filter: var(--component-effect-primary-default-backdrop);
+  white-space: nowrap;
+}
+.badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--outline-primary-button-top) 48%, var(--outline-primary-button-bottom) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+.count {
+  padding-inline: var(--space-xxs);
+}
+
+.dot {
+  --status-size: var(--space-sm);
+  position: absolute;
+}
+.md .dot {
+  top: var(--space-lg);
+  right: var(--space-lg);
+}
+.sm .dot {
+  top: 7px;
+  right: var(--space-md);
+}

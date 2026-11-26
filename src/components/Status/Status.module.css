@@ -1,0 +1,18 @@
+/* Status — Figma `10009:933`. 4×4, Radius/round, фон Surface/<type>-med-em, Blur/16. */
+.root {
+  display: inline-block;
+  flex: none;
+  box-sizing: border-box;
+  width: var(--status-size, var(--space-xs));
+  height: var(--status-size, var(--space-xs));
+  border-radius: var(--radius-round);
+  backdrop-filter: var(--blur-16);
+}
+
+.success { background: var(--surface-success-med-em); }
+.warning { background: var(--surface-warning-med-em); }
+.danger { background: var(--surface-danger-med-em); }
+.disabled { background: var(--surface-disabled-high-em); }
+
+/* Outline=true: обводка 2px снаружи (в Avatar — strokeAlign OUTSIDE). 2px — токена нет. */
+.outline { box-shadow: 0 0 0 2px var(--inverse-black-alpha-64); }

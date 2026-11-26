@@ -1,0 +1,5 @@
+/*
+ * Radio-label — Figma `10100:3931`. Своих стилей нет: раскладка (Direction, Size, Text-wrap, типографика)
+ * совпадает с Checkbox-label и берётся из CheckboxLabel/CheckboxLabel.module.css — так же, как IconButton
+ * берёт Type/State из модуля Button. Файл оставлен, чтобы структура папок была одинаковой.
+ */

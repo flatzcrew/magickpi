@@ -1,0 +1,75 @@
+/*
+ * KipiAvatar — Figma kpi-bro · web `165:719` (State 5 × Size 36 · 96 = 10 ячеек).
+ * Обёртка: width/height Space/11xl (36) · Space/22xl (96), Radius/round, padding/gap Space/zero, без заливки, clip.
+ * Art — вектор дизайнера без правок, масштабируется (×2.667 для 96). Подложки нет — решение пользователя 2026-11-19.
+ * Без интерактивных состояний: клик — у внешней кнопки-обёртки. Liquid-glass / NOISE в наборе нет.
+ */
+.root {
+  display: inline-flex;
+  flex: none;
+  box-sizing: border-box;
+  padding: var(--space-zero);
+  border-radius: var(--radius-round);
+  overflow: hidden;
+}
+.size-36 {
+  width: var(--space-11xl);
+  height: var(--space-11xl);
+}
+.size-96 {
+  width: var(--space-22xl);
+  height: var(--space-22xl);
+}
+.art {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/*
+ * Движение (2026-11-26, просьба дизайнера; в Figma анимации нет, motion-токенов нет):
+ * — прыжок при смене State и по bounceKey: вверх на Space/xs·Space/md по размеру, с отскоком, 0.45s;
+ *   два одинаковых keyframes под разными именами — чтобы прыжок перезапускался при каждой смене;
+ * — thinking: Art тихо «дышит» (scale 1 → 1.06), 1.4s по кругу.
+ * Всё выключено при prefers-reduced-motion.
+ */
+.size-36 {
+  --kipi-jump: calc(-1 * var(--space-md));
+}
+.size-96 {
+  --kipi-jump: calc(-1 * var(--space-3xl));
+}
+@keyframes kipi-bounce-a {
+  0% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(var(--kipi-jump)) scale(1.04, 0.98); }
+  55% { transform: translateY(0) scale(1.03, 0.95); }
+  75% { transform: translateY(calc(var(--kipi-jump) / 3)) scale(1); }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes kipi-bounce-b {
+  0% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(var(--kipi-jump)) scale(1.04, 0.98); }
+  55% { transform: translateY(0) scale(1.03, 0.95); }
+  75% { transform: translateY(calc(var(--kipi-jump) / 3)) scale(1); }
+  100% { transform: translateY(0) scale(1); }
+}
+.bounce-a {
+  animation: kipi-bounce-a 0.45s ease-out;
+}
+.bounce-b {
+  animation: kipi-bounce-b 0.45s ease-out;
+}
+@keyframes kipi-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+.root[data-state='thinking'] .art {
+  animation: kipi-breathe 1.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bounce-a,
+  .bounce-b,
+  .root[data-state='thinking'] .art {
+    animation: none;
+  }
+}

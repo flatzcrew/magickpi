@@ -1,0 +1,77 @@
+/*
+ * KpiStatus — Figma kpi-bro · web `164:663` (Status 4 × Type 1 · 1+1 = 8 ячеек), сверено get_design_context 2026-11-26.
+ * Бейдж: Auto Layout H, center; padding L/T/B Space/xs, R Space/sm; gap Space/xs; Radius/small-component/sm; высота 24.
+ * Круг: padding Space/xxs, Radius/round, иконка 12 (Space/xl). Подпись UI/caption-2/medium, 1 строка.
+ * Type=1+1: два бейджа подряд, gap 0; второй — только подпись, padding Space/xs × Space/sm.
+ * | Status   | Подложка                     | Круг                                   | Иконка             | Подпись                                  |
+ * | done     | Surface/success-low-em       | Surface/component/success-gradient-bottom | Text/inverse-black | Surface/component/success-gradient-bottom |
+ * | progress | Surface/warning-base-em-alpha | Surface/warning-high-em               | Text/warning-base-em | Text/warning-high-em                   |
+ * | fail     | Surface/danger-low-em        | Surface/danger-med-em                  | Text/inverse-black | Surface/component/danger-gradient-bottom |
+ * | nodata   | Surface/disabled-low-em      | Surface/disabled-med-em                | Text/med-em        | Text/med-em                              |
+ * Подписи done / fail на компонентных токенах — решение пользователя 2026-11-21 (kpi-status.md), перенесено как есть.
+ */
+.root {
+  --kpis-bg: var(--surface-success-low-em);
+  --kpis-circle: var(--surface-component-success-gradient-bottom);
+  --kpis-icon: var(--text-inverse-black);
+  --kpis-text: var(--surface-component-success-gradient-bottom);
+
+  display: inline-flex;
+  align-items: flex-start;
+  flex: none;
+  gap: var(--space-zero);
+}
+
+.progress {
+  --kpis-bg: var(--surface-warning-base-em-alpha);
+  --kpis-circle: var(--surface-warning-high-em);
+  --kpis-icon: var(--text-warning-base-em);
+  --kpis-text: var(--text-warning-high-em);
+}
+.fail {
+  --kpis-bg: var(--surface-danger-low-em);
+  --kpis-circle: var(--surface-danger-med-em);
+  --kpis-icon: var(--text-inverse-black);
+  --kpis-text: var(--surface-component-danger-gradient-bottom);
+}
+.nodata {
+  --kpis-bg: var(--surface-disabled-low-em);
+  --kpis-circle: var(--surface-disabled-med-em);
+  --kpis-icon: var(--text-med-em);
+  --kpis-text: var(--text-med-em);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-small-component-sm);
+  background: var(--kpis-bg);
+}
+.statusBadge {
+  padding-left: var(--space-xs);
+}
+
+.circle {
+  --icon-size: var(--space-xl);
+
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xxs);
+  border-radius: var(--radius-round);
+  background: var(--kpis-circle);
+  color: var(--kpis-icon);
+  overflow: hidden;
+}
+.icon {
+  flex: none;
+}
+
+.label {
+  color: var(--kpis-text);
+  white-space: nowrap;
+}

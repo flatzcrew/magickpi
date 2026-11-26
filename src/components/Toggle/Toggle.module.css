@@ -1,0 +1,162 @@
+/*
+ * Toggle — Figma `10023:1125`. Сверено через Figma (variables / effect styles), 2026-11-25.
+ * Корень (без Auto Layout): sm 40×28 · md 48×28 · lg 56×32 · mobile 64×40 (Space/12xl·14xl·16xl·18xl × 9xl·9xl·10xl·12xl).
+ * Base: padding 3px, Radius/small-component/md (mobile — lg), заливка Surface/s3 -> Surface/s1 (только off/on;
+ * у disabled и pressed заливки нет). Track: sm 32×18 · md 40×22 · lg 48×26 · mobile 56×32, радиус xs·sm·sm·md,
+ * padding по горизонтали Space/xxs (lg 3px, mobile Space/xs); off — Surface/s4, бегунок слева;
+ * on — Surface/primary-med-em, справа. Pressed — Pressed/primary на Track. Disabled — Surface/disabled-med-em.
+ * Pointer: sm 18×14 · md 22×18 · lg 26×20 · mobile 32×24, радиус xxs (sm) / xs, padding Space/xxs,
+ * заливка Surface/special/dark-s0-light-s3 -> light-s0-dark-s4, обводка 2px INSIDE
+ * Surface/special/light-s0-dark-s3 -> Surface/s3, тень Small-dark-shadow.
+ * Знак в бегунке: on — галочка Text/primary-med-em; off — нет; disabled — галочка / минус Text/base-em.
+ * Без токена: padding Base 3px и Track lg 3px; обводка 2px; размеры знаков (8×6…9×7, минус 8×2…12×3).
+ */
+.root {
+  --tg-w: var(--space-12xl);
+  --tg-h: var(--space-9xl);
+  --tg-base-radius: var(--radius-small-component-md);
+  --tg-track-w: var(--space-10xl);
+  --tg-track-h: var(--space-4xl);
+  --tg-track-radius: var(--radius-small-component-xs);
+  --tg-track-pad: var(--space-xxs);
+  --tg-ptr-w: var(--space-4xl);
+  --tg-ptr-h: var(--space-2xl);
+  --tg-ptr-radius: var(--radius-small-component-xxs);
+  --tg-check-w: 8px;
+  --tg-check-h: 6px;
+  --tg-dash-w: 8px;
+  --tg-dash-h: 2px;
+
+  --tg-base-bg: linear-gradient(180deg, var(--surface-s3) 0%, var(--surface-s1) 100%);
+  --tg-track-bg: var(--surface-s4);
+  --tg-track-effect: none;
+  --tg-justify: flex-start;
+  --tg-glyph: var(--text-primary-med-em);
+
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--tg-w);
+  height: var(--tg-h);
+}
+
+/* sm — значения по умолчанию в .root */
+.md {
+  --tg-w: var(--space-14xl);
+  --tg-track-w: var(--space-12xl);
+  --tg-track-h: var(--space-6xl);
+  --tg-track-radius: var(--radius-small-component-sm);
+  --tg-ptr-w: var(--space-6xl);
+  --tg-ptr-h: var(--space-4xl);
+  --tg-ptr-radius: var(--radius-small-component-xs);
+}
+.lg {
+  --tg-w: var(--space-16xl);
+  --tg-h: var(--space-10xl);
+  --tg-track-w: var(--space-14xl);
+  --tg-track-h: var(--space-8xl);
+  --tg-track-radius: var(--radius-small-component-sm);
+  --tg-track-pad: 3px;
+  --tg-ptr-w: var(--space-8xl);
+  --tg-ptr-h: var(--space-5xl);
+  --tg-ptr-radius: var(--radius-small-component-xs);
+  --tg-check-w: 9px;
+  --tg-check-h: 7px;
+  --tg-dash-w: 10px;
+}
+.mobile {
+  --tg-w: var(--space-18xl);
+  --tg-h: var(--space-12xl);
+  --tg-base-radius: var(--radius-small-component-lg);
+  --tg-track-w: var(--space-16xl);
+  --tg-track-h: var(--space-10xl);
+  --tg-track-radius: var(--radius-small-component-md);
+  --tg-track-pad: var(--space-xs);
+  --tg-ptr-w: var(--space-10xl);
+  --tg-ptr-h: var(--space-7xl);
+  --tg-ptr-radius: var(--radius-small-component-xs);
+  --tg-check-w: 9px;
+  --tg-check-h: 7px;
+  --tg-dash-w: 12px;
+  --tg-dash-h: 3px;
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.input:disabled { cursor: not-allowed; }
+
+.base {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: var(--tg-base-radius);
+  background: var(--tg-base-bg);
+}
+
+.track {
+  display: inline-flex;
+  align-items: center;
+  justify-content: var(--tg-justify);
+  box-sizing: border-box;
+  width: var(--tg-track-w);
+  height: var(--tg-track-h);
+  padding-inline: var(--tg-track-pad);
+  border-radius: var(--tg-track-radius);
+  background: var(--tg-track-bg);
+  box-shadow: var(--tg-track-effect);
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pointer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--tg-ptr-w);
+  height: var(--tg-ptr-h);
+  padding: var(--space-xxs);
+  border: 2px solid transparent;
+  border-radius: var(--tg-ptr-radius);
+  background:
+    linear-gradient(180deg, var(--surface-special-dark-s0-light-s3) 0%, var(--surface-special-light-s0-dark-s4) 100%) padding-box,
+    linear-gradient(180deg, var(--surface-special-light-s0-dark-s3) 0%, var(--surface-s3) 100%) border-box;
+  box-shadow: var(--small-dark-shadow);
+  color: var(--tg-glyph);
+}
+
+.check,
+.dash { display: none; flex: none; }
+.check { width: var(--tg-check-w); height: var(--tg-check-h); }
+.dash { width: var(--tg-dash-w); height: var(--tg-dash-h); }
+
+/* on */
+.input:checked + .base {
+  --tg-track-bg: var(--surface-primary-med-em);
+  --tg-justify: flex-end;
+}
+.input:checked + .base .check { display: block; }
+
+/* pressed / фокус */
+.input:active:not(:disabled) + .base,
+.root[data-state='switch-on-pressed'] .base {
+  --tg-base-bg: none;
+  --tg-track-effect: var(--pressed-primary);
+}
+.input:focus-visible + .base {
+  --tg-track-effect: var(--pressed-primary);
+}
+
+/* disabled */
+.input:disabled + .base {
+  --tg-base-bg: none;
+  --tg-track-bg: var(--surface-disabled-med-em);
+  --tg-glyph: var(--text-base-em);
+}
+.input:disabled:not(:checked) + .base .dash { display: block; }

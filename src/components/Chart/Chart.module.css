@@ -1,0 +1,126 @@
+/*
+ * Chart — Figma `16187:3670` (одиночный, без свойств), сверено get_design_context 2026-11-26.
+ * Корень: ширина 400, обводка Outline/base-em, Radius/big-component/lg, Elevation/e1, clip.
+ * Wrap: Surface/special/light-s0-dark-s2 + Blur/96; pt Space/3xl, pb Space/md, gap Space/3xl.
+ * Header: px Space/3xl. Label: Icons / Info 16 + UI/body-1/medium Text/low-em, gap Space/xs.
+ *   Primary (H, gap Space/md): значение UI/heading-2/medium Text/high-em; изменение UI/title-1/semibold Text/success-med-em.
+ *   Feature-icon tertiary xs, Icons / Arrow-right-up.
+ * Chart-wrap: px Space/md. Chart: Surface/s1, обводка Outline/base-em, padding / gap Space/3xl, Radius/big-component/sm.
+ *   Линия: высота 160 (Space/26xl), stroke 3, round caps, цвет #B5AEFF = Color/brand-300 → Outline/primary-med-em.
+ *   Nav-wrap: px Space/7xl, py Space/md; Top-nav sm, gap Space/xs, пункты fill (кроме последнего «All»).
+ * Без токена: ширина 400 (--chart-width), 1px обводок, толщина линии 3.
+ * Не сверено: к какой Variable привязан цвет вектора в ките (снят hex, подобран семантический токен с тем же примитивом).
+ */
+.root {
+  --chart-width: 400px;
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--chart-width);
+  max-width: 100%;
+  border: 1px solid var(--outline-base-em);
+  border-radius: var(--radius-big-component-lg);
+  box-shadow: var(--elevation-e1);
+  overflow: hidden;
+}
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xl);
+  padding: var(--space-3xl) var(--space-zero) var(--space-md);
+  background: var(--surface-special-light-s0-dark-s2);
+  backdrop-filter: var(--blur-96);
+}
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-zero) var(--space-3xl);
+}
+.textWrap {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  gap: var(--space-xs);
+}
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--text-low-em);
+  white-space: nowrap;
+}
+.primary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  white-space: nowrap;
+}
+.value {
+  color: var(--text-high-em);
+}
+.change {
+  color: var(--text-success-med-em);
+}
+.action {
+  display: inline-flex;
+  flex: none;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: none;
+  border-radius: var(--radius-small-component-xs);
+  cursor: pointer;
+}
+.action:focus-visible {
+  outline: none;
+  box-shadow: var(--pressed-primary);
+}
+
+.chartWrap {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-zero) var(--space-md);
+}
+.chart {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  gap: var(--space-3xl);
+  padding: var(--space-3xl);
+  border: 1px solid var(--outline-base-em);
+  border-radius: var(--radius-big-component-sm);
+  background: var(--surface-s1);
+}
+.plot {
+  display: block;
+  width: 100%;
+  height: var(--space-26xl);
+  overflow: visible;
+}
+.stop {
+  stop-color: var(--outline-primary-med-em);
+}
+.line {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.navWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-md) var(--space-7xl);
+}
+.nav {
+  width: 100%;
+}
+.nav > :not(:last-child) {
+  flex: 1 1 0;
+  min-width: 0;
+}

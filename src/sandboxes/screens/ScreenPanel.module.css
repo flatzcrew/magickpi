@@ -1,0 +1,177 @@
+/*
+ * Панель экрана — по макетам kpi-bro · web: локальный TaskCreatePanel (карточка задачи 276:19771, закрытие 290:14897,
+ * карточка показателя 272:17842). Это композиция экранов, не компонент ДС (решение 2026-11-25: панели остаются локальными).
+ * Слой: Modal-overlay на весь экран + панель справа, отступ Space/7xl (24) сверху, справа и снизу.
+ * Панель: ширина 480, Surface/s2, обводка Surface/s3 внутрь, Radius/7xl, по бокам 1px, секции через Space/md (8).
+ * Секция: Surface/s0, Radius/7xl, padding Space/5xl (20), gap Space/xl (12).
+ * Шапка: заголовок UI/heading-2 medium Text/high-em, справа Icon-button tertiary sm (крестик), gap Space/7xl.
+ * Значения: Surface/s1, Radius/big-component/xs, px Space/3xl · py Space/xl, gap Space/xl; подпись UI/caption-2/normal
+ *   Text/low-em, значение UI/body-2/medium Text/high-em, gap Space/xxs.
+ * Низ: кнопки lg (48) primary-gradient + tertiary, поровну, gap Space/md; закреплён внизу панели.
+ * Появление (в Figma анимации нет): подложка проявляется, панель въезжает справа на Space/7xl, 0.25s ease-out.
+ * Без токена: ширина 480 (--screen-panel-width), 1px обводки и боковые поля панели.
+ */
+.layer {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+}
+.panel {
+  --screen-panel-width: 480px;
+
+  position: absolute;
+  top: var(--space-7xl);
+  right: var(--space-7xl);
+  bottom: var(--space-7xl);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--screen-panel-width);
+  max-width: calc(100% - 2 * var(--space-7xl));
+  gap: var(--space-md);
+  padding: 0 1px;
+  border-radius: var(--radius-7xl);
+  background: var(--surface-s2);
+  box-shadow: inset 0 0 0 1px var(--surface-s3);
+  overflow: hidden;
+  animation: screen-panel-in 0.25s ease-out;
+}
+@keyframes screen-panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(var(--space-7xl));
+  }
+}
+.body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  gap: var(--space-md);
+  overflow: auto;
+}
+.body > :last-child {
+  flex: 1 0 auto;
+}
+.section {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  gap: var(--space-xl);
+  padding: var(--space-5xl);
+  border-radius: var(--radius-7xl);
+  background: var(--surface-s0);
+}
+.section h3,
+.section p {
+  margin: 0;
+}
+.header {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-7xl);
+}
+.title {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  color: var(--text-high-em);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sectionTitle {
+  color: var(--text-high-em);
+}
+.text {
+  color: var(--text-med-em);
+}
+.values {
+  display: grid;
+  grid-template-columns: repeat(var(--values-cols, 3), minmax(0, 1fr));
+  gap: var(--space-xl);
+  padding: var(--space-xl) var(--space-3xl);
+  border-radius: var(--radius-big-component-xs);
+  background: var(--surface-s1);
+}
+.pair {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xxs);
+  min-width: 0;
+}
+.pairLabel {
+  color: var(--text-low-em);
+}
+.pairValue {
+  color: var(--text-high-em);
+  overflow-wrap: anywhere;
+}
+.person {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+.personText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.personRole {
+  color: var(--text-med-em);
+}
+.footer {
+  flex: none;
+  flex-direction: row;
+  gap: var(--space-md);
+  margin-bottom: 1px;
+}
+.footer > * {
+  flex: 1 1 0;
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
+}
+
+/*
+ * Значения строки списком (решение дизайнера 2026-11-26: показатели строки — не в горизонталь):
+ * строка «подпись — значение», подпись UI/body-1/normal Text/med-em слева, значение UI/body-2/medium Text/high-em справа,
+ * py Space/xl, разделитель Outline/low-em между строками.
+ */
+.list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.listRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  padding: var(--space-xl) var(--space-zero);
+  box-shadow: inset 0 -1px 0 var(--outline-low-em);
+}
+.listRow:last-child {
+  box-shadow: none;
+}
+.listLabel {
+  color: var(--text-med-em);
+}
+.listValue {
+  margin: 0;
+  color: var(--text-high-em);
+  text-align: right;
+}

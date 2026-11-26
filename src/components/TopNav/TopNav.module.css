@@ -1,0 +1,31 @@
+/*
+ * Top-nav — Figma `10004:2719` (Size xs…xl). Auto Layout H, без отступов, фон Transparent-inverse,
+ * Radius/small-component/<size>. Gap: xs Space/xxs · sm Space/xs · md / lg / xl Space/sm.
+ * Текущий пункт — Top-nav-item active-primary-light, остальные inactive; Size пунктов = Size панели.
+ */
+.root {
+  display: flex;
+  align-items: center;
+  background: var(--transparent-inverse);
+}
+
+.xs {
+  gap: var(--space-xxs);
+  border-radius: var(--radius-small-component-xs);
+}
+.sm {
+  gap: var(--space-xs);
+  border-radius: var(--radius-small-component-sm);
+}
+.md {
+  gap: var(--space-sm);
+  border-radius: var(--radius-small-component-md);
+}
+.lg {
+  gap: var(--space-sm);
+  border-radius: var(--radius-small-component-lg);
+}
+.xl {
+  gap: var(--space-sm);
+  border-radius: var(--radius-small-component-xl);
+}

@@ -1,0 +1,244 @@
+/*
+ * Top-nav-item — Figma `10092:4521` (8 типов × 5 размеров × default · hover).
+ * Корень: Auto Layout H, center, py Space/xs; слоты Left (image + icon) · Text-wrap (Primary + Secondary) · Right.
+ * active-primary: Surface/primary-med-em, обводка-градиент Outline/primary-button-*, Component-effect/primary-default;
+ *   hover + Surface/hover-overlay, Component-effect/primary-hover. Текст Text/primary-on-primary · secondary-on-primary.
+ * active: Surface/special/light-s0-dark-s3, градиент Outline/secondary-button-*, Elevation/e2; hover + Surface/hover-overlay, e3.
+ * active-secondary: Surface/component/secondary-alpha-base, градиент secondary, Component-effect/secondary-default;
+ *   hover + Surface/hover-overlay-inverse, Component-effect/secondary-hover.
+ * active-primary-light: Surface/primary-base-em-alpha, без обводки и тени; hover + второй слой primary-base-em-alpha,
+ *   Component-effect/secondary-hover. Текст Text/primary-high-em.
+ * active-neutral: Inverse-white/alpha-88, градиент primary, Component-effect/primary-default (hover — как active-primary);
+ *   текст Text/text-on-neutral.
+ * active-naked: без фона; hover Surface/special/light-s0-dark-s1 + Surface/hover-overlay, Elevation/e4. Текст Text/high-em.
+ * inactive: Transparent-inverse, текст Text/med-em; hover Surface/hover-overlay-inverse, Text/high-em.
+ * inactive-outlined: как inactive, обводка 1px Outline/low-em, текст Text/low-em.
+ * Размер: высота Space/7xl·10xl·12xl·14xl·16xl; px Space/sm·md·lg·xl·2xl; радиус Radius/small-component/<size>;
+ *   иконка 14·16·18·20·24, картинка 12·16·20·24·28.
+ * Без токена: 1px обводки, маска linear-gradient(#000 0 0), стоп 48%.
+ * Не сверено: Secondary-text у не-primary типов (взят Text/low-em; у active-neutral — Text/text-on-neutral;
+ *   у active-primary-light — Text/primary-med-em); md-слоты (выведены из ряда sm / lg).
+ */
+.root {
+  --tni-bg: var(--surface-primary-med-em);
+  --tni-overlay: var(--surface-hover-overlay);
+  --tni-text: var(--text-primary-on-primary);
+  --tni-text-hover: var(--tni-text);
+  --tni-text-2: var(--text-secondary-on-primary);
+  --tni-stroke-top: var(--outline-primary-button-top);
+  --tni-stroke-bottom: var(--outline-primary-button-bottom);
+  --tni-stroke-display: block;
+  --tni-shadow: var(--component-effect-primary-default);
+  --tni-shadow-hover: var(--component-effect-primary-hover);
+  --tni-backdrop: var(--component-effect-primary-default-backdrop);
+
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  padding-block: var(--space-xs);
+  gap: var(--space-xxs);
+  background: var(--tni-bg);
+  color: var(--tni-text);
+  box-shadow: var(--tni-shadow);
+  backdrop-filter: var(--tni-backdrop);
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.root::before {
+  content: '';
+  display: var(--tni-stroke-display);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--tni-stroke-top) 48%, var(--tni-stroke-bottom) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+/* ---------- Type ---------- */
+.active-primary {
+  --tni-bg: var(--surface-primary-med-em);
+}
+.active {
+  --tni-bg: var(--surface-special-light-s0-dark-s3);
+  --tni-text: var(--text-high-em);
+  --tni-text-2: var(--text-low-em);
+  --tni-stroke-top: var(--outline-secondary-button-top);
+  --tni-stroke-bottom: var(--outline-secondary-button-bottom);
+  --tni-shadow: var(--elevation-e2);
+  --tni-shadow-hover: var(--elevation-e3);
+  --tni-backdrop: none;
+}
+.active-secondary {
+  --tni-bg: var(--surface-component-secondary-alpha-base);
+  --tni-overlay: var(--surface-hover-overlay-inverse);
+  --tni-text: var(--text-high-em);
+  --tni-text-2: var(--text-low-em);
+  --tni-stroke-top: var(--outline-secondary-button-top);
+  --tni-stroke-bottom: var(--outline-secondary-button-bottom);
+  --tni-shadow: var(--component-effect-secondary-default);
+  --tni-shadow-hover: var(--component-effect-secondary-hover);
+  --tni-backdrop: var(--component-effect-secondary-default-backdrop);
+}
+.active-primary-light {
+  --tni-bg: var(--surface-primary-base-em-alpha);
+  --tni-overlay: var(--surface-primary-base-em-alpha);
+  --tni-text: var(--text-primary-high-em);
+  --tni-text-2: var(--text-primary-med-em);
+  --tni-stroke-display: none;
+  --tni-shadow: none;
+  --tni-shadow-hover: var(--component-effect-secondary-hover);
+  --tni-backdrop: none;
+}
+.active-neutral {
+  --tni-bg: var(--inverse-white-alpha-88);
+  --tni-text: var(--text-text-on-neutral);
+  --tni-text-2: var(--text-text-on-neutral);
+}
+.active-naked {
+  --tni-bg: transparent;
+  --tni-text: var(--text-high-em);
+  --tni-text-2: var(--text-low-em);
+  --tni-stroke-display: none;
+  --tni-shadow: none;
+  --tni-shadow-hover: var(--elevation-e4);
+  --tni-backdrop: none;
+}
+.inactive,
+.inactive-outlined {
+  --tni-bg: var(--transparent-inverse);
+  --tni-overlay: var(--surface-hover-overlay-inverse);
+  --tni-text: var(--text-med-em);
+  --tni-text-hover: var(--text-high-em);
+  --tni-text-2: var(--text-low-em);
+  --tni-stroke-display: none;
+  --tni-shadow: none;
+  --tni-shadow-hover: none;
+  --tni-backdrop: none;
+}
+.inactive-outlined {
+  --tni-text: var(--text-low-em);
+  --tni-stroke-top: var(--outline-low-em);
+  --tni-stroke-bottom: var(--outline-low-em);
+  --tni-stroke-display: block;
+}
+
+/* ---------- State ---------- */
+.root:hover:not(:disabled),
+.root[data-state='hover'] {
+  background: linear-gradient(var(--tni-overlay), var(--tni-overlay)), var(--tni-bg);
+  box-shadow: var(--tni-shadow-hover);
+  color: var(--tni-text-hover);
+}
+.active-naked:hover:not(:disabled),
+.active-naked[data-state='hover'] {
+  background: linear-gradient(var(--surface-hover-overlay), var(--surface-hover-overlay)),
+    var(--surface-special-light-s0-dark-s1);
+}
+.root:focus-visible {
+  box-shadow: var(--pressed-primary);
+}
+.root:disabled {
+  cursor: not-allowed;
+}
+
+/* ---------- Size ---------- */
+.xs {
+  --icon-size: var(--space-2xl);
+  --tni-image: var(--space-xl);
+  --tni-left-gap: var(--space-xs);
+  --tni-text-pad: var(--space-xs);
+  --tni-text-gap: var(--space-xs);
+  height: var(--space-7xl);
+  padding-inline: var(--space-sm);
+  gap: var(--space-zero);
+  border-radius: var(--radius-small-component-xs);
+}
+.sm {
+  --icon-size: var(--space-3xl);
+  --tni-image: var(--space-3xl);
+  --tni-left-gap: var(--space-sm);
+  --tni-text-pad: var(--space-xs);
+  --tni-text-gap: var(--space-xs);
+  height: var(--space-10xl);
+  padding-inline: var(--space-md);
+  border-radius: var(--radius-small-component-sm);
+}
+.md {
+  --icon-size: var(--space-4xl);
+  --tni-image: var(--space-5xl);
+  --tni-left-gap: var(--space-sm);
+  --tni-text-pad: var(--space-xs);
+  --tni-text-gap: var(--space-xs);
+  height: var(--space-12xl);
+  padding-inline: var(--space-lg);
+  border-radius: var(--radius-small-component-md);
+}
+.lg {
+  --icon-size: var(--space-5xl);
+  --tni-image: var(--space-7xl);
+  --tni-left-gap: var(--space-md);
+  --tni-text-pad: var(--space-xs);
+  --tni-text-gap: var(--space-xs);
+  height: var(--space-14xl);
+  padding-inline: var(--space-xl);
+  border-radius: var(--radius-small-component-lg);
+}
+.xl {
+  --icon-size: var(--space-7xl);
+  --tni-image: var(--space-9xl);
+  --tni-left-gap: var(--space-md);
+  --tni-text-pad: var(--space-sm);
+  --tni-text-gap: var(--space-sm);
+  height: var(--space-16xl);
+  padding-inline: var(--space-2xl);
+  border-radius: var(--radius-small-component-xl);
+}
+
+/* ---------- Слоты ---------- */
+.left,
+.right {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+}
+.left {
+  gap: var(--tni-left-gap);
+}
+.image {
+  width: var(--tni-image);
+  height: var(--tni-image);
+  border-radius: var(--radius-round);
+  object-fit: cover;
+  box-shadow: var(--elevation-e1);
+}
+.text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  gap: var(--tni-text-gap);
+  padding-inline: var(--tni-text-pad);
+}
+.primaryText,
+.secondaryText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.secondaryText {
+  color: var(--tni-text-2);
+}

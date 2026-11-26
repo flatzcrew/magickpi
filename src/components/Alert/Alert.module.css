@@ -1,0 +1,79 @@
+/*
+ * Alert — Figma `12074:6202`. Сверено через Figma (дамп вариантов), 2026-11-26.
+ * Корень: V, p Space/xl, gap xl, Radius/big-component/lg, Inverse-white/alpha-2, Blur/24 (фоновое размытие) — «стеклянная» рамка.
+ * List-wrap: V, p Space/xl, gap xl, Radius/big-component/xs, Surface/special/light-s0-dark-s2, Elevation/e5
+ *   (обводка-градиент в ките толщиной 0 — не рисуем).
+ * Text-wrap: gap Space/xs, pb xs; заголовок UI/body-2 medium Text/high-em, описание UI/para normal Text/low-em.
+ * CTAs: H, gap Space/xl; Left gap xl; Right — Fill, gap md. Крестик — 12 · 12 от правого верхнего угла (Space/xl).
+ * Ширина — по контейнеру (в ките 400).
+ */
+.root {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-xl);
+  gap: var(--space-xl);
+  border-radius: var(--radius-big-component-lg);
+  background: var(--inverse-white-alpha-2);
+  backdrop-filter: var(--blur-24);
+}
+
+.wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: var(--space-xl);
+  gap: var(--space-xl);
+  border-radius: var(--radius-big-component-xs);
+  background: var(--surface-special-light-s0-dark-s2);
+  box-shadow: var(--elevation-e5);
+}
+.withClose .textWrap {
+  padding-right: var(--space-7xl);
+}
+
+.textWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-bottom: var(--space-xs);
+}
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--text-high-em);
+}
+.description {
+  margin: 0;
+  color: var(--text-low-em);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xl);
+}
+.left {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-xl);
+}
+.right {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.close {
+  position: absolute;
+  top: var(--space-xl);
+  right: var(--space-xl);
+  display: flex;
+}

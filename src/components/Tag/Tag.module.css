@@ -1,0 +1,220 @@
+/*
+ * Tag — Figma `10106:4651`. Как Button, но компактнее: py Space/xs, gap Space/xxs.
+ * primary / neutral: обводка 1px градиентом Outline/primary-button-*, Component-effect/primary-*.
+ * tertiary: обводка Outline/secondary-button-*, Component-effect/secondary-*.
+ * secondary: без обводки и тени. primary-light / info / success / warning / danger: фон *-base-em-alpha,
+ * hover — тот же alpha вторым слоем + Component-effect/secondary-hover; текст *-high-em / *-med-em.
+ * Disabled: Surface/disabled-base-em, Text/base-em, без обводки и тени.
+ * Без токена: 1px обводки, маска linear-gradient(#000 0 0), стоп 48%.
+ */
+.root {
+  /* Живой переход между состояниями — как у Button (0.15s ease; motion-токенов в ките нет) */
+  transition: background 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+  --tag-bg: var(--surface-primary-med-em);
+  --tag-overlay: var(--surface-hover-overlay);
+  --tag-text: var(--text-primary-on-primary);
+  --tag-text-hover: var(--tag-text);
+  --tag-text-2: var(--text-secondary-on-primary);
+  --tag-stroke-top: var(--outline-primary-button-top);
+  --tag-stroke-bottom: var(--outline-primary-button-bottom);
+  --tag-stroke-display: block;
+  --tag-shadow: var(--component-effect-primary-default);
+  --tag-shadow-hover: var(--component-effect-primary-hover);
+  --tag-backdrop: var(--component-effect-primary-default-backdrop);
+
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  padding-block: var(--space-xs);
+  gap: var(--space-xxs);
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  box-shadow: var(--tag-shadow);
+  backdrop-filter: var(--tag-backdrop);
+  white-space: nowrap;
+  outline: none;
+}
+
+.root::before {
+  content: '';
+  display: var(--tag-stroke-display);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--tag-stroke-top) 48%, var(--tag-stroke-bottom) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+button.root {
+  cursor: pointer;
+}
+
+/* ---------- Type ---------- */
+.primary {
+  --tag-bg: var(--surface-primary-med-em);
+}
+.neutral {
+  --tag-bg: var(--surface-inverse-white);
+  --tag-text: var(--text-inverse-black);
+  --tag-text-2: var(--inverse-black-alpha-72);
+}
+.secondary {
+  --tag-bg: var(--surface-component-secondary-alpha-base);
+  --tag-overlay: var(--surface-hover-overlay-inverse);
+  --tag-text: var(--text-high-em);
+  --tag-text-2: var(--text-low-em);
+  --tag-stroke-display: none;
+  --tag-shadow: none;
+  --tag-shadow-hover: none;
+  --tag-backdrop: none;
+}
+.tertiary {
+  --tag-bg: var(--surface-component-tertiary-alpha-base);
+  --tag-overlay: var(--surface-hover-overlay-inverse);
+  --tag-text: var(--text-med-em);
+  --tag-text-hover: var(--text-high-em);
+  --tag-text-2: var(--text-low-em);
+  --tag-stroke-top: var(--outline-secondary-button-top);
+  --tag-stroke-bottom: var(--outline-secondary-button-bottom);
+  --tag-shadow: var(--component-effect-secondary-default);
+  --tag-shadow-hover: var(--component-effect-secondary-hover);
+  --tag-backdrop: var(--component-effect-secondary-default-backdrop);
+}
+.primary-light,
+.info,
+.success,
+.warning,
+.danger {
+  --tag-stroke-display: none;
+  --tag-shadow: none;
+  --tag-shadow-hover: var(--component-effect-secondary-hover);
+  --tag-backdrop: none;
+}
+.primary-light {
+  --tag-bg: var(--surface-primary-base-em-alpha);
+  --tag-overlay: var(--surface-primary-base-em-alpha);
+  --tag-text: var(--text-primary-high-em);
+  --tag-text-2: var(--text-primary-med-em);
+}
+.info {
+  --tag-bg: var(--surface-info-base-em-alpha);
+  --tag-overlay: var(--surface-info-base-em-alpha);
+  --tag-text: var(--text-info-high-em);
+  --tag-text-2: var(--text-info-med-em);
+}
+.success {
+  --tag-bg: var(--surface-success-base-em-alpha);
+  --tag-overlay: var(--surface-success-base-em-alpha);
+  --tag-text: var(--text-success-high-em);
+  --tag-text-2: var(--text-success-med-em);
+}
+.warning {
+  --tag-bg: var(--surface-warning-base-em-alpha);
+  --tag-overlay: var(--surface-warning-base-em-alpha);
+  --tag-text: var(--text-warning-high-em);
+  --tag-text-2: var(--text-warning-med-em);
+}
+.danger {
+  --tag-bg: var(--surface-danger-base-em-alpha);
+  --tag-overlay: var(--surface-danger-base-em-alpha);
+  --tag-text: var(--text-danger-high-em);
+  --tag-text-2: var(--text-danger-med-em);
+}
+
+/* ---------- State ---------- */
+button.root:hover:not(:disabled),
+.root[data-state='hover'] {
+  background: linear-gradient(var(--tag-overlay), var(--tag-overlay)), var(--tag-bg);
+  box-shadow: var(--tag-shadow-hover);
+  color: var(--tag-text-hover);
+}
+
+button.root:focus-visible {
+  box-shadow: var(--pressed-primary);
+}
+
+.root[data-state='disabled'] {
+  --tag-text-2: var(--text-base-em);
+  background: var(--surface-disabled-base-em);
+  color: var(--text-base-em);
+  box-shadow: none;
+  backdrop-filter: none;
+  cursor: not-allowed;
+}
+.root[data-state='disabled']::before {
+  display: none;
+}
+
+/* ---------- Size ---------- */
+.xs {
+  --icon-size: var(--space-xl);
+  --tag-image: var(--space-xl);
+  --tag-left-gap: var(--space-xs);
+  --tag-text-pad: var(--space-xxs);
+  height: var(--space-5xl);
+  padding-inline: var(--space-xs);
+  border-radius: var(--radius-small-component-xs);
+}
+.sm {
+  --icon-size: var(--space-2xl);
+  --tag-image: var(--space-2xl);
+  --tag-left-gap: var(--space-sm);
+  --tag-text-pad: var(--space-xxs);
+  height: var(--space-7xl);
+  padding-inline: var(--space-sm);
+  border-radius: var(--radius-small-component-sm);
+}
+.md {
+  --icon-size: var(--space-3xl);
+  --tag-image: var(--space-3xl);
+  --tag-left-gap: var(--space-sm);
+  --tag-text-pad: var(--space-xs);
+  height: var(--space-9xl);
+  padding-inline: var(--space-sm);
+  border-radius: var(--radius-small-component-sm);
+}
+
+/* ---------- Слоты ---------- */
+.left,
+.right {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+}
+.left {
+  gap: var(--tag-left-gap);
+}
+.image {
+  width: var(--tag-image);
+  height: var(--tag-image);
+  border-radius: var(--radius-round);
+  object-fit: cover;
+  box-shadow: var(--elevation-e1);
+}
+.text {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  gap: var(--space-xxs);
+  padding-inline: var(--tag-text-pad);
+}
+.primaryText,
+.secondaryText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.secondaryText {
+  color: var(--tag-text-2);
+}

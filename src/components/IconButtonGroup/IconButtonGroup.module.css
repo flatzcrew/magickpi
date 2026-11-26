@@ -1,0 +1,6 @@
+/*
+ * Icon-button-group — Figma `12147:7934` (Size xs…xl; видимость кнопок 2–5).
+ * В ките — 6 Icon-button tertiary того же Size, только слитно (как Button-group combined):
+ * раскладка и слияние обводок — из ButtonGroup/ButtonGroup.module.css (.root.combined, .item).
+ * Своих стилей нет; файл оставлен, чтобы структура папок была одинаковой.
+ */

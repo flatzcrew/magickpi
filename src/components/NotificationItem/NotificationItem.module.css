@@ -1,0 +1,56 @@
+/*
+ * NotificationItem — Figma kpi-bro · web `227:1038` (Read × State = 4 ячейки), сверено get_design_context 2026-11-26.
+ * Корень H, start, Radius/5xl, padding и gap Space/xl, без обводки; ширина мастера 560, на экране FILL.
+ * Fill: прочитанное Surface/s0 (hover Surface/s1), непрочитанное Surface/s1 (hover Surface/s2).
+ * Feature-icon tertiary xs (32) · Content V FILL, gap Space/zero, clip: Text UI/para/medium Text/high-em, до 3 строк с «…» ·
+ * Time UI/caption-2/normal Text/med-em, 1 строка · NavDot 8 (только Read=false).
+ * Без токена: ширина 560 (--notification-item-width).
+ */
+.root {
+  /* Живой переход между состояниями — как у Button (0.15s ease; motion-токенов в ките нет) */
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+  --notification-item-width: 560px;
+  --ni-bg: var(--surface-s1);
+  --ni-bg-hover: var(--surface-s2);
+
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: var(--notification-item-width);
+  max-width: 100%;
+  padding: var(--space-xl);
+  gap: var(--space-xl);
+  border-radius: var(--radius-5xl);
+  background: var(--ni-bg);
+}
+.read {
+  --ni-bg: var(--surface-s0);
+  --ni-bg-hover: var(--surface-s1);
+}
+.root:hover,
+.root[data-state='hover'] {
+  background: var(--ni-bg-hover);
+}
+
+.content {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  gap: var(--space-zero);
+  overflow: hidden;
+}
+.text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  width: 100%;
+  overflow: hidden;
+  color: var(--text-high-em);
+}
+.time {
+  color: var(--text-med-em);
+  white-space: nowrap;
+}

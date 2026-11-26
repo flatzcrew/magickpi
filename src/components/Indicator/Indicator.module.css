@@ -1,0 +1,40 @@
+/*
+ * Indicator — Figma `14225:4055`. Сверено через Figma (variables / effect styles), 2026-11-25.
+ * Рамка высотой 16 (Space/3xl), форма 8 (Space/md) по высоте, Radius/round, по центру.
+ * active-1: рамка 24 (Space/7xl), форма 20 (Space/5xl), градиент Surface/component/primary-gradient-top ->
+ *   Surface/primary-med-em (56%) -> primary-gradient-bottom.
+ * active-2: рамка/форма 8, Inverse-white/alpha-88. inactive: 8, Inverse-white/alpha-18, Blur/24.
+ * Без токена: позиция стопа градиента 56% (как у Button primary-gradient).
+ */
+.root {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-md);
+  height: var(--space-3xl);
+}
+
+.shape {
+  width: var(--space-md);
+  height: var(--space-md);
+  border-radius: var(--radius-round);
+}
+
+.active-1 { width: var(--space-7xl); }
+.active-1 .shape {
+  width: var(--space-5xl);
+  background: linear-gradient(
+    180deg,
+    var(--surface-component-primary-gradient-top) 0%,
+    var(--surface-primary-med-em) 56%,
+    var(--surface-component-primary-gradient-bottom) 100%
+  );
+}
+
+.active-2 .shape { background: var(--inverse-white-alpha-88); }
+
+.inactive .shape {
+  background: var(--inverse-white-alpha-18);
+  backdrop-filter: var(--blur-24);
+}

@@ -1,0 +1,223 @@
+/*
+ * Sidebar-item — Figma `12018:6386` (7 типов × Size sm · md · lg · xl × default · hover).
+ * Корень H, align start / center, ширина fill, py Space/xs; слоты Left (icon) · Text-wrap (fill) · Right · Tag.
+ * active-primary: Surface/primary-med-em, обводка-градиент Outline/primary-button-*, Component-effect/primary-default;
+ *   hover + Surface/hover-overlay, Component-effect/primary-hover; текст Text/primary-on-primary · secondary-on-primary.
+ * active: Surface/special/light-s0-dark-s3, градиент Outline/secondary-button-*, Elevation/e2; hover + Surface/hover-overlay, e3.
+ * active-tertiary: Surface/special/light-s0-dark-s2, градиент secondary, Component-effect/secondary-default;
+ *   hover + Surface/hover-overlay-inverse, Component-effect/secondary-hover.
+ * active-secondary: Surface/component/secondary-alpha-base, градиент secondary, без тени; hover + overlay-inverse,
+ *   Component-effect/secondary-hover.
+ * active-primary-light: Surface/primary-base-em-alpha; hover + второй слой primary-base-em-alpha, Component-effect/secondary-hover;
+ *   текст Text/primary-high-em.
+ * active-neutral: Inverse-white/alpha-88, градиент primary, эффекты как у active-primary; текст Text/text-on-neutral.
+ * inactive: Transparent-inverse, текст Text/med-em; hover Surface/hover-overlay-inverse (текст не меняется).
+ * Размер: высота sm 32 · md 40 · lg 40 · xl 48 (Space/10xl · 12xl · 12xl · 14xl); px sm–lg Space/md, xl Space/lg;
+ *   gap sm Space/xs, остальные Space/xxs; радиус Radius/small-component/<size>; иконки 16 · 18 · 20 · 24.
+ *   Left pl: sm Space/zero · md Space/xxs · lg / xl Space/xs; Right pr — так же. Text-wrap px: sm Space/xs · md Space/sm ·
+ *   lg / xl Space/md; gap Space/xs (xl — Space/sm).
+ * Tag — Tag tertiary xs / sm / sm / md.
+ * Без токена: 1px обводки, маска linear-gradient(#000 0 0), стоп 48%.
+ * Не сверено: Secondary-text у не-primary типов (Text/low-em; active-neutral — Text/text-on-neutral;
+ *   active-primary-light — Text/primary-med-em).
+ */
+.root {
+  --sbi-bg: var(--surface-primary-med-em);
+  --sbi-overlay: var(--surface-hover-overlay);
+  --sbi-text: var(--text-primary-on-primary);
+  --sbi-text-2: var(--text-secondary-on-primary);
+  --sbi-stroke-top: var(--outline-primary-button-top);
+  --sbi-stroke-bottom: var(--outline-primary-button-bottom);
+  --sbi-stroke-display: block;
+  --sbi-shadow: var(--component-effect-primary-default);
+  --sbi-shadow-hover: var(--component-effect-primary-hover);
+  --sbi-backdrop: var(--component-effect-primary-default-backdrop);
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  border: 0;
+  padding-block: var(--space-xs);
+  gap: var(--space-xxs);
+  background: var(--sbi-bg);
+  color: var(--sbi-text);
+  box-shadow: var(--sbi-shadow);
+  backdrop-filter: var(--sbi-backdrop);
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.root::before {
+  content: '';
+  display: var(--sbi-stroke-display);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--sbi-stroke-top) 48%, var(--sbi-stroke-bottom) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+/* ---------- Type ---------- */
+.active {
+  --sbi-bg: var(--surface-special-light-s0-dark-s3);
+  --sbi-text: var(--text-high-em);
+  --sbi-text-2: var(--text-low-em);
+  --sbi-stroke-top: var(--outline-secondary-button-top);
+  --sbi-stroke-bottom: var(--outline-secondary-button-bottom);
+  --sbi-shadow: var(--elevation-e2);
+  --sbi-shadow-hover: var(--elevation-e3);
+  --sbi-backdrop: none;
+}
+.active-tertiary {
+  --sbi-bg: var(--surface-special-light-s0-dark-s2);
+  --sbi-overlay: var(--surface-hover-overlay-inverse);
+  --sbi-text: var(--text-high-em);
+  --sbi-text-2: var(--text-low-em);
+  --sbi-stroke-top: var(--outline-secondary-button-top);
+  --sbi-stroke-bottom: var(--outline-secondary-button-bottom);
+  --sbi-shadow: var(--component-effect-secondary-default);
+  --sbi-shadow-hover: var(--component-effect-secondary-hover);
+  --sbi-backdrop: var(--component-effect-secondary-default-backdrop);
+}
+.active-secondary {
+  --sbi-bg: var(--surface-component-secondary-alpha-base);
+  --sbi-overlay: var(--surface-hover-overlay-inverse);
+  --sbi-text: var(--text-high-em);
+  --sbi-text-2: var(--text-low-em);
+  --sbi-stroke-top: var(--outline-secondary-button-top);
+  --sbi-stroke-bottom: var(--outline-secondary-button-bottom);
+  --sbi-shadow: none;
+  --sbi-shadow-hover: var(--component-effect-secondary-hover);
+  --sbi-backdrop: none;
+}
+.active-primary-light {
+  --sbi-bg: var(--surface-primary-base-em-alpha);
+  --sbi-overlay: var(--surface-primary-base-em-alpha);
+  --sbi-text: var(--text-primary-high-em);
+  --sbi-text-2: var(--text-primary-med-em);
+  --sbi-stroke-display: none;
+  --sbi-shadow: none;
+  --sbi-shadow-hover: var(--component-effect-secondary-hover);
+  --sbi-backdrop: none;
+}
+.active-neutral {
+  --sbi-bg: var(--inverse-white-alpha-88);
+  --sbi-text: var(--text-text-on-neutral);
+  --sbi-text-2: var(--text-text-on-neutral);
+}
+.inactive {
+  --sbi-bg: var(--transparent-inverse);
+  --sbi-overlay: var(--surface-hover-overlay-inverse);
+  --sbi-text: var(--text-med-em);
+  --sbi-text-2: var(--text-low-em);
+  --sbi-stroke-display: none;
+  --sbi-shadow: none;
+  --sbi-shadow-hover: none;
+  --sbi-backdrop: none;
+}
+
+/* ---------- State ---------- */
+.root:hover:not(:disabled),
+.root[data-state='hover'] {
+  background: linear-gradient(var(--sbi-overlay), var(--sbi-overlay)), var(--sbi-bg);
+  box-shadow: var(--sbi-shadow-hover);
+}
+.root:focus-visible {
+  box-shadow: var(--pressed-primary);
+}
+.root:disabled {
+  cursor: not-allowed;
+}
+
+/* ---------- Size ---------- */
+.sm {
+  --icon-size: var(--space-3xl);
+  --sbi-side-pad: var(--space-zero);
+  --sbi-left-gap: var(--space-sm);
+  --sbi-text-pad: var(--space-xs);
+  --sbi-text-gap: var(--space-xs);
+  height: var(--space-10xl);
+  padding-inline: var(--space-md);
+  gap: var(--space-xs);
+  border-radius: var(--radius-small-component-sm);
+}
+.md {
+  --icon-size: var(--space-4xl);
+  --sbi-side-pad: var(--space-xxs);
+  --sbi-left-gap: var(--space-sm);
+  --sbi-text-pad: var(--space-sm);
+  --sbi-text-gap: var(--space-xs);
+  height: var(--space-12xl);
+  padding-inline: var(--space-md);
+  border-radius: var(--radius-small-component-md);
+}
+.lg {
+  --icon-size: var(--space-5xl);
+  --sbi-side-pad: var(--space-xs);
+  --sbi-left-gap: var(--space-md);
+  --sbi-text-pad: var(--space-md);
+  --sbi-text-gap: var(--space-xs);
+  height: var(--space-12xl);
+  padding-inline: var(--space-md);
+  border-radius: var(--radius-small-component-lg);
+}
+.xl {
+  --icon-size: var(--space-7xl);
+  --sbi-side-pad: var(--space-xs);
+  --sbi-left-gap: var(--space-md);
+  --sbi-text-pad: var(--space-md);
+  --sbi-text-gap: var(--space-sm);
+  height: var(--space-14xl);
+  padding-inline: var(--space-lg);
+  border-radius: var(--radius-small-component-xl);
+}
+
+/* ---------- Слоты ---------- */
+.left,
+.right {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+}
+.left {
+  gap: var(--sbi-left-gap);
+  padding-left: var(--sbi-side-pad);
+}
+.right {
+  padding-right: var(--sbi-side-pad);
+}
+.text {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+  gap: var(--sbi-text-gap);
+  padding-inline: var(--sbi-text-pad);
+}
+.primaryText,
+.secondaryText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.secondaryText {
+  flex: none;
+  color: var(--sbi-text-2);
+}
+.tag {
+  flex: none;
+}

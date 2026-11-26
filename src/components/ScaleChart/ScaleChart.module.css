@@ -1,0 +1,112 @@
+/*
+ * ScaleChart — Figma kpi-bro · web `209:1144` (Marker: show · hide), сверено get_design_context 2026-11-26 по 209:1097.
+ * Корень V, gap Space/xs, padding Space/zero, ширина 560. YTitle «Результат, %» — UI/caption-1/medium Text/low-em.
+ * Plot 560 × 224 без Auto Layout: сетка 80 и 117,5 и пороги 80 / 105 (пунктир 4/4) — Outline/low-em; оси X / Y — Outline/med-em;
+ * Step — Surface/primary-high-em 2px; подписи осей — UI/caption-1/medium Text/low-em.
+ * Marker: Drop — пунктир 2/3 Outline/primary-high-em до оси X; Dot 12 Surface/primary-high-em, обводка Surface/s0 2px снаружи;
+ * Label — Surface/primary-high-em, Radius/small-component/sm, padding Space/xxs × Space/sm, UI/caption-2/medium Text/inverse-black,
+ * над и слева от точки с зазором Space/xs.
+ * Без токена: ширина 560, высота Plot 224, координаты, толщины 1 / 2 px, пунктир 4/4 и 2/3, ширины колонок подписей 36 / 40 / 200.
+ */
+.root {
+  --scale-chart-width: 560px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: var(--scale-chart-width);
+  max-width: 100%;
+  gap: var(--space-xs);
+  padding: var(--space-zero);
+}
+.axisTitle {
+  color: var(--text-low-em);
+  white-space: nowrap;
+}
+.plot {
+  position: relative;
+  width: 560px;
+  height: 224px;
+  flex: none;
+}
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.grid,
+.threshold {
+  stroke: var(--outline-low-em);
+  stroke-width: 1px;
+}
+.threshold {
+  stroke-dasharray: 4 4;
+}
+.axis {
+  stroke: var(--outline-med-em);
+  stroke-width: 1px;
+}
+.step {
+  fill: none;
+  stroke: var(--surface-primary-high-em);
+  stroke-width: 2px;
+  stroke-linejoin: round;
+}
+.drop {
+  stroke: var(--outline-primary-high-em);
+  stroke-width: 1px;
+  stroke-dasharray: 2 3;
+}
+.dot {
+  fill: var(--surface-primary-high-em);
+  stroke: var(--surface-s0);
+  stroke-width: 2px;
+}
+
+.yTick,
+.xTick,
+.xTickEnd,
+.xTitle {
+  position: absolute;
+  color: var(--text-low-em);
+  white-space: nowrap;
+}
+.yTick {
+  left: 0;
+  top: calc(var(--sc-y) - 8px);
+  width: 36px;
+  text-align: right;
+}
+.xTick {
+  left: var(--sc-x);
+  top: 186px;
+  width: 40px;
+  text-align: center;
+  transform: translateX(-50%);
+}
+.xTickEnd {
+  right: 0;
+  top: 186px;
+  text-align: right;
+}
+.xTitle {
+  right: 0;
+  top: 206px;
+  text-align: right;
+}
+
+.label {
+  position: absolute;
+  /* правый нижний угол плашки — на Space/xs левее и выше точки 12 (радиус 6) */
+  right: calc(100% - var(--sc-x) + 6px + var(--space-xs));
+  bottom: calc(100% - var(--sc-y) + 6px + var(--space-xs));
+  padding: var(--space-xxs) var(--space-sm);
+  border-radius: var(--radius-small-component-sm);
+  background: var(--surface-primary-high-em);
+  color: var(--text-inverse-black);
+  white-space: nowrap;
+  overflow: hidden;
+}

@@ -1,0 +1,118 @@
+/*
+ * Avatar — Figma `10010:1415`. Круг (Radius/round), Blur/24.
+ * image: картинка cover; text: градиент Surface/primary-med-em -> Surface/primary-low-em-alpha,
+ * обводка 1px INSIDE Outline/base-em, текст Text/primary-on-primary; icon: фон Surface/primary-med-em,
+ * иконка по центру. Verification-tick — сверху справа с выносом, Elevation/e2; Status (Outline) — снизу справа.
+ * Без токена: 1px обводки; выносы значка -7/-5/-3px и отступ точки 3px (lg) — геометрия из Figma;
+ * направление градиента text (сверху вниз) — по умолчанию, в Figma не сверено.
+ */
+.root {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: var(--radius-round);
+  backdrop-filter: var(--blur-24);
+  color: var(--text-primary-on-primary);
+}
+
+/* Без src — нейтральная подложка Surface/s2 (в Figma слот картинки) */
+.image {
+  background: var(--surface-s2);
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.text {
+  background: linear-gradient(180deg, var(--surface-primary-med-em), var(--surface-primary-low-em-alpha));
+  box-shadow: inset 0 0 0 1px var(--outline-base-em);
+}
+.initials {
+  color: var(--text-primary-on-primary);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.icon {
+  background: var(--surface-primary-med-em);
+}
+.mainIcon {
+  --icon-size: var(--avatar-icon);
+}
+
+.tick {
+  --icon-size: var(--avatar-tick);
+  position: absolute;
+  top: var(--avatar-tick-top);
+  right: var(--avatar-tick-right);
+  box-shadow: var(--elevation-e2);
+}
+
+.status {
+  --status-size: var(--avatar-status);
+  position: absolute;
+  right: var(--avatar-status-offset);
+  bottom: var(--avatar-status-offset);
+}
+
+/* Size: размер · иконка · значок · вынос значка · точка · отступ точки */
+.xl {
+  --avatar-size: var(--space-16xl);
+  --avatar-icon: var(--space-9xl);
+  --avatar-tick: var(--space-9xl);
+  --avatar-tick-top: calc(-1 * var(--space-xs));
+  --avatar-tick-right: -7px;
+  --avatar-status: var(--space-md);
+  --avatar-status-offset: var(--space-xs);
+}
+.lg {
+  --avatar-size: var(--space-14xl);
+  --avatar-icon: var(--space-7xl);
+  --avatar-tick: var(--space-7xl);
+  --avatar-tick-top: calc(-1 * var(--space-xs));
+  --avatar-tick-right: -5px;
+  --avatar-status: var(--space-md);
+  --avatar-status-offset: 3px;
+}
+.md {
+  --avatar-size: var(--space-12xl);
+  --avatar-icon: var(--space-5xl);
+  --avatar-tick: var(--space-5xl);
+  --avatar-tick-top: calc(-1 * var(--space-xxs));
+  --avatar-tick-right: -5px;
+  --avatar-status: var(--space-md);
+  --avatar-status-offset: var(--space-xxs);
+}
+.sm {
+  --avatar-size: var(--space-10xl);
+  --avatar-icon: var(--space-4xl);
+  --avatar-tick: var(--space-3xl);
+  --avatar-tick-top: calc(-1 * var(--space-xxs));
+  --avatar-tick-right: -3px;
+  --avatar-status: var(--space-sm);
+  --avatar-status-offset: var(--space-xxs);
+}
+.xs {
+  --avatar-size: var(--space-7xl);
+  --avatar-icon: var(--space-2xl);
+  --avatar-tick: var(--space-xl);
+  --avatar-tick-top: calc(-1 * var(--space-xxs));
+  --avatar-tick-right: -3px;
+  --avatar-status: var(--space-xs);
+  --avatar-status-offset: var(--space-xxs);
+}
+.xxs {
+  --avatar-size: var(--space-5xl);
+  --avatar-icon: var(--space-2xl);
+  --avatar-status: var(--space-xs);
+  --avatar-status-offset: var(--space-xxs);
+}

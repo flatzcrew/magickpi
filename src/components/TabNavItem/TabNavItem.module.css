@@ -1,0 +1,129 @@
+/*
+ * Tab-nav-item — Figma `10048:1068` (Type inactive · active-primary × Size xs…xl × default · hover).
+ * Корень H, center, без px, pb Space/md, без радиуса; gap xs Space/zero, остальные Space/xxs.
+ * active-primary: нижняя обводка 2px INSIDE Outline/inverse-white; текст и иконки Text/high-em, Secondary-text Text/low-em.
+ * inactive: Transparent-inverse, без обводки; текст и иконки Text/low-em, hover Text/med-em (фон не меняется).
+ * Left pr Space/xs, gap xs Space/xs · sm / md Space/sm · lg / xl Space/md. Right pl Space/xs. Text-wrap gap Space/xs (xl — Space/sm).
+ * Высота Space/7xl·10xl·12xl·14xl·16xl; иконка 14·16·18·20·24, картинка 12·16·20·24·28; типостили — как у Top-nav-item.
+ * Без токена: толщина подчёркивания 2px (у inactive прозрачная, чтобы пункт не прыгал).
+ */
+.root {
+  --tab-text: var(--text-high-em);
+  --tab-text-hover: var(--tab-text);
+  --tab-text-2: var(--text-low-em);
+  --tab-line: var(--outline-inverse-white);
+
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 0 var(--space-md);
+  gap: var(--space-xxs);
+  border: 0;
+  border-radius: var(--radius-zero);
+  background: none;
+  box-shadow: inset 0 -2px 0 0 var(--tab-line);
+  color: var(--tab-text);
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.15s ease;
+}
+
+/* ---------- Type ---------- */
+.inactive {
+  --tab-text: var(--text-low-em);
+  --tab-text-hover: var(--text-med-em);
+  --tab-line: transparent;
+  background: var(--transparent-inverse);
+}
+
+/* ---------- State ---------- */
+.root:hover:not(:disabled),
+.root[data-state='hover'] {
+  color: var(--tab-text-hover);
+}
+.root:focus-visible {
+  box-shadow: inset 0 -2px 0 0 var(--tab-line), var(--pressed-primary);
+}
+.root:disabled {
+  cursor: not-allowed;
+}
+
+/* ---------- Size ---------- */
+.xs {
+  --icon-size: var(--space-2xl);
+  --tab-image: var(--space-xl);
+  --tab-left-gap: var(--space-xs);
+  --tab-text-gap: var(--space-xs);
+  height: var(--space-7xl);
+  gap: var(--space-zero);
+}
+.sm {
+  --icon-size: var(--space-3xl);
+  --tab-image: var(--space-3xl);
+  --tab-left-gap: var(--space-sm);
+  --tab-text-gap: var(--space-xs);
+  height: var(--space-10xl);
+}
+.md {
+  --icon-size: var(--space-4xl);
+  --tab-image: var(--space-5xl);
+  --tab-left-gap: var(--space-sm);
+  --tab-text-gap: var(--space-xs);
+  height: var(--space-12xl);
+}
+.lg {
+  --icon-size: var(--space-5xl);
+  --tab-image: var(--space-7xl);
+  --tab-left-gap: var(--space-md);
+  --tab-text-gap: var(--space-xs);
+  height: var(--space-14xl);
+}
+.xl {
+  --icon-size: var(--space-7xl);
+  --tab-image: var(--space-9xl);
+  --tab-left-gap: var(--space-md);
+  --tab-text-gap: var(--space-sm);
+  height: var(--space-16xl);
+}
+
+/* ---------- Слоты ---------- */
+.left,
+.right {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+}
+.left {
+  gap: var(--tab-left-gap);
+  padding-right: var(--space-xs);
+}
+.right {
+  padding-left: var(--space-xs);
+}
+.image {
+  width: var(--tab-image);
+  height: var(--tab-image);
+  border-radius: var(--radius-round);
+  object-fit: cover;
+  box-shadow: var(--elevation-e1);
+}
+.text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  gap: var(--tab-text-gap);
+}
+.primaryText,
+.secondaryText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.secondaryText {
+  color: var(--tab-text-2);
+}

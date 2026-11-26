@@ -1,0 +1,8 @@
+/*
+ * TaskStatus — Figma kpi-bro · web `164:707`. Обёртка Space/zero, без заливки; плашка — Tag кита sm (Surface/<type>-base-em-alpha,
+ * Text/<type>-high-em; tertiary — Surface/component/tertiary-alpha-base, Text/med-em), иконка 14, UI/caption-2/medium, 1 строка.
+ * Своих значений нет: корень только не сжимается в строках.
+ */
+.root {
+  flex: none;
+}

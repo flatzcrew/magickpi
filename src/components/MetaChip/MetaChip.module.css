@@ -1,0 +1,26 @@
+/*
+ * MetaChip — Figma kpi-bro · web `164:732` (Icon: none · calendar · users).
+ * Auto Layout H, center; fill Surface/s2, Radius/small-component/sm, padding Space/md, gap Space/xs.
+ * Иконка 16 (Space/3xl); Label UI/caption-2/normal, Text/high-em, 1 строка.
+ */
+.root {
+  --icon-size: var(--space-3xl);
+
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: var(--space-md);
+  gap: var(--space-xs);
+  border-radius: var(--radius-small-component-sm);
+  background: var(--surface-s2);
+  color: var(--text-high-em);
+}
+.icon {
+  flex: none;
+}
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

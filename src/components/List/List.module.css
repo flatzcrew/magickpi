@@ -1,0 +1,173 @@
+/*
+ * List — Figma `10063:2066`. Сверено через Figma (дамп вариантов), 2026-11-26.
+ * Корень: Auto Layout H, center, без фона; обводка Outline/base-em толщиной 0 — не рисуем.
+ * sm: p Space/sm · md, gap lg; md: p lg · md, gap xl; lg: p xl · md, gap xl; xl: p 2xl · xl, gap 3xl.
+ * Left gap: sm/md Space/sm, lg/xl Space/md. Иконка слева 16 · 18 · 20 · 24; картинки (Lead-item sm/md/lg):
+ *   sm 18/24/32 · md 20/28/36 · lg 24/32/40 · xl 28/36/44, Radius/round.
+ * Heading-top gap Space/xs (xl — Space/sm); Bottom gap Space/xs, иконка описания 14 (xl — 18).
+ * Right gap: sm/md Space/sm, lg Space/md, xl Space/lg; иконки справа как слева.
+ * Цвета: Primary Text/med-em, Secondary и Description Text/low-em.
+ * hover: фон Inverse-white/alpha-2, Primary Text/high-em, Secondary Text/med-em.
+ * active: фон Inverse-white/alpha-4, Primary Text/high-em. Трейлинг-Primary остаётся Text/med-em.
+ */
+.root {
+  --list-pad-y: var(--space-sm);
+  --list-pad-x: var(--space-md);
+  --list-gap: var(--space-lg);
+  --list-left-gap: var(--space-sm);
+  --list-icon: var(--space-3xl);
+  --list-img-sm: var(--space-4xl);
+  --list-img-md: var(--space-7xl);
+  --list-img-lg: var(--space-10xl);
+  --list-head-gap: var(--space-xs);
+  --list-desc-icon: var(--space-2xl);
+  --list-right-gap: var(--space-sm);
+  --list-bg: none;
+  --list-primary: var(--text-med-em);
+  --list-secondary: var(--text-low-em);
+
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: var(--list-pad-y) var(--list-pad-x);
+  gap: var(--list-gap);
+  background: var(--list-bg);
+  transition: background 0.15s ease;
+}
+
+.sm {
+  --list-pad-y: var(--space-sm);
+  --list-gap: var(--space-lg);
+}
+.md {
+  --list-pad-y: var(--space-lg);
+  --list-gap: var(--space-xl);
+  --list-icon: var(--space-4xl);
+  --list-img-sm: var(--space-5xl);
+  --list-img-md: var(--space-9xl);
+  --list-img-lg: var(--space-11xl);
+}
+.lg {
+  --list-pad-y: var(--space-xl);
+  --list-gap: var(--space-xl);
+  --list-left-gap: var(--space-md);
+  --list-icon: var(--space-5xl);
+  --list-img-sm: var(--space-7xl);
+  --list-img-md: var(--space-10xl);
+  --list-img-lg: var(--space-12xl);
+  --list-right-gap: var(--space-md);
+}
+.xl {
+  --list-pad-y: var(--space-2xl);
+  --list-pad-x: var(--space-xl);
+  --list-gap: var(--space-3xl);
+  --list-left-gap: var(--space-md);
+  --list-icon: var(--space-7xl);
+  --list-img-sm: var(--space-9xl);
+  --list-img-md: var(--space-11xl);
+  --list-img-lg: var(--space-13xl);
+  --list-head-gap: var(--space-sm);
+  --list-desc-icon: var(--space-4xl);
+  --list-right-gap: var(--space-lg);
+}
+
+/* ---------- State ---------- */
+.root:hover,
+.root[data-state='hover'] {
+  --list-bg: var(--inverse-white-alpha-2);
+  --list-primary: var(--text-high-em);
+  --list-secondary: var(--text-med-em);
+}
+.root[data-state='active'] {
+  --list-bg: var(--inverse-white-alpha-4);
+  --list-primary: var(--text-high-em);
+  --list-secondary: var(--text-low-em);
+}
+
+/* ---------- Слоты ---------- */
+.left,
+.right {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+}
+.left {
+  gap: var(--list-left-gap);
+  color: var(--text-med-em);
+}
+.right {
+  gap: var(--list-right-gap);
+  color: var(--text-med-em);
+}
+.leftIcon,
+.rightIcon {
+  --icon-size: var(--list-icon);
+}
+.image {
+  flex: none;
+  border-radius: var(--radius-round);
+  object-fit: cover;
+}
+.image-sm {
+  width: var(--list-img-sm);
+  height: var(--list-img-sm);
+}
+.image-md {
+  width: var(--list-img-md);
+  height: var(--list-img-md);
+}
+.image-lg {
+  width: var(--list-img-lg);
+  height: var(--list-img-lg);
+}
+
+.textWrap {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.trail {
+  flex: none;
+}
+.headingTop,
+.bottom {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.headingTop {
+  gap: var(--list-head-gap);
+}
+.bottom {
+  gap: var(--space-xs);
+  color: var(--text-low-em);
+}
+.descIcon {
+  --icon-size: var(--list-desc-icon);
+}
+.primary,
+.secondary,
+.trailPrimary,
+.description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.primary {
+  color: var(--list-primary);
+}
+.trailPrimary {
+  color: var(--text-med-em);
+}
+.secondary {
+  flex: none;
+  color: var(--list-secondary);
+}
+.description {
+  min-width: 0;
+  color: var(--text-low-em);
+}

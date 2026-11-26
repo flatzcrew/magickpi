@@ -1,0 +1,37 @@
+/*
+ * PlanPerEmployeeRow — Figma kpi-bro · web `176:2659` (State: default · error — 2 ячейки, 432 × 76), сверено get_design_context 2026-11-26 по 176:2665.
+ * Корень V, gap Space/xs, padding Space/md × Space/zero, без заливки (на фоне панели).
+ * Row H, center, gap Space/xl: Name FILL UI/body-2/normal Text/high-em, 1 строка + «…» · Plan — Input-field 96 (Input-cell md, State filled | danger, без label / hint).
+ * Hint — Hint-label sm без иконки и Support-text; при error — Text/danger-high-em (tone danger).
+ * Без токена: ширина 432 (--plan-row-width), ширина поля 96 (--plan-row-input-width; = Space/22xl, но это размер поля, а не отступ).
+ */
+.root {
+  --plan-row-width: 432px;
+  --plan-row-input-width: var(--space-22xl);
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--plan-row-width);
+  max-width: 100%;
+  padding: var(--space-md) var(--space-zero);
+  gap: var(--space-xs);
+}
+.row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: var(--space-xl);
+}
+.name {
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-high-em);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.plan {
+  flex: none;
+  width: var(--plan-row-input-width);
+}

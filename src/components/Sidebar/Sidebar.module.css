@@ -1,0 +1,336 @@
+/*
+ * Sidebar — Figma `12171:3030` (State: expanded 304×1040 · collapsed-compact 64×1040), сверено get_design_context 2026-11-26.
+ * Корень V, space-between, обводка 1px Surface/s3; expanded Radius/7xl, collapsed Radius/3xl; эффект Liquid-glass.
+ * expanded:
+ *   Header: padding / gap Space/md → блок: Surface/special/light-s0-dark-s2, обводка Outline/base-em, gap Space/xl,
+ *     px Space/xl, py Space/lg, Radius/3xl; Logomark-KPI 36; название UI/para/medium Text/med-em, версия UI/caption-2/normal Text/low-em;
+ *     Icon-button tertiary sm.
+ *   CTAs: pt Space/3xl, pb Space/md, px Space/xl — Button primary md во всю ширину, иконка справа.
+ *   Top-section: px Space/xl; Section-heading pt Space/7xl, pb / px Space/md, UI/overline/normal uppercase Text/low-em;
+ *     Sidebar-nav gap 0 — Sidebar-item md (текущий active-tertiary, остальные inactive).
+ *   Bottom: pt Space/3xl, pb / px Space/md → блок Surface/special/dark-s0-light-s1 + Blur/8, padding / gap Space/md, Radius/3xl:
+ *     профиль (List md, картинка 36, Edit-note) · Тема (Surface/special/light-s2-dark-s3, padding Space/xs, gap Space/sm,
+ *     Radius/small-component/2xl; подпись UI/body-1/medium Text/med-em, px Space/xl; Switcher secondary sm) ·
+ *     пункты: List (padding Space/md, Radius/small-component/lg), «Уведомления» — Sidebar-item md с Tag.
+ * collapsed-compact:
+ *   Header px Space/md, py Space/xl; Logomark 28 по центру. CTAs — Icon-button primary md.
+ *   Top-section pt Space/15xl, px Space/md; Sidebar-nav-compact gap Space/md — Sidebar-item-compact md (текущий active-primary-light).
+ *   Bottom: pt Space/3xl, pb Space/7xl, gap Space/3xl; секция px Space/md, gap Space/3xl — пункты-иконки, Тема
+ *     (Surface/special/light-s0-dark-s4, Radius/small-component/2xl, Switcher default sm с одним пунктом); Avatar text md при showProfile.
+ * Приближение: Liquid-glass (GLASS r8) не переносится — backdrop-filter Blur/16 без преломления и дисперсии.
+ * Без токена: ширина 304 (--sidebar-width), высота 1040 из кита не задаётся — 100% родителя; 1px обводок.
+ */
+.root {
+  --sidebar-width: 304px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: var(--sidebar-width);
+  max-width: 100%;
+  height: 100%;
+  padding: var(--space-zero);
+  /* Обводка INSIDE, как в Figma: не занимает места в раскладке (border сдвигал содержимое на 1px) */
+  box-shadow: inset 0 0 0 1px var(--surface-s3);
+  backdrop-filter: var(--blur-16);
+  overflow: hidden auto;
+}
+.expanded {
+  border-radius: var(--radius-7xl);
+}
+.collapsed-compact {
+  --sidebar-width: var(--space-18xl);
+  align-items: center;
+  border-radius: var(--radius-3xl);
+}
+
+.top,
+.bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* ---------- Header ---------- */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+}
+.collapsed-compact .header {
+  padding: var(--space-xl) var(--space-md);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  gap: var(--space-xl);
+  padding: var(--space-lg) var(--space-xl);
+  /* Обводка INSIDE (как в Figma): блок 56 по высоте, а не 58 */
+  box-shadow: inset 0 0 0 1px var(--outline-base-em);
+  border-radius: var(--radius-3xl);
+  background: var(--surface-special-light-s0-dark-s2);
+}
+.collapsed-compact .brand {
+  justify-content: center;
+}
+.brandLeft {
+  display: inline-flex;
+  flex: none;
+  gap: var(--space-sm);
+}
+.brandText {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.brandTitle {
+  color: var(--text-med-em);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.brandSubtitle {
+  color: var(--text-low-em);
+}
+
+/* ---------- CTAs ---------- */
+.ctas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-3xl) var(--space-xl) var(--space-md);
+}
+.ctas .ctaButton {
+  width: 100%;
+  justify-content: space-between;
+}
+
+/* ---------- Top-section ---------- */
+/* Top: gap Space/3xl между Header и Top-section (экраны kpi-bro · web, Sidebar 91:969); при CTA отступ даёт сам блок CTAs */
+.header + .topSection {
+  margin-top: var(--space-3xl);
+}
+.topSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-zero);
+  padding: var(--space-zero) var(--space-xl);
+}
+.collapsed-compact .topSection {
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-15xl) var(--space-md) var(--space-zero);
+}
+.section {
+  display: flex;
+  flex-direction: column;
+}
+.sectionHeading {
+  padding: var(--space-7xl) var(--space-md) var(--space-md);
+  color: var(--text-low-em);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.nav,
+.navCompact {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--space-zero);
+  border-radius: var(--radius-small-component-md);
+  background: var(--transparent-inverse);
+}
+.navCompact {
+  gap: var(--space-md);
+}
+.navSlot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ---------- Bottom ---------- */
+.bottom {
+  padding: var(--space-3xl) var(--space-md) var(--space-md);
+}
+.collapsed-compact .bottom {
+  align-items: center;
+  gap: var(--space-3xl);
+  padding: var(--space-3xl) var(--space-zero) var(--space-7xl);
+}
+.bottomSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  gap: var(--space-3xl);
+  padding: var(--space-zero) var(--space-md);
+}
+.bottomCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-radius: var(--radius-3xl);
+  background: var(--surface-special-dark-s0-light-s1);
+  backdrop-filter: var(--blur-8);
+}
+.bottomCard .profile {
+  --list-primary: var(--text-high-em);
+  border-radius: var(--radius-xl);
+}
+.bottomList {
+  display: flex;
+  flex-direction: column;
+}
+.bottomList .bottomRow {
+  --list-pad-y: var(--space-md);
+  --list-pad-x: var(--space-md);
+  border-radius: var(--radius-small-component-lg);
+  cursor: pointer;
+}
+
+/* ---------- Тема ---------- */
+.theme {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  gap: var(--space-sm);
+  padding: var(--space-xs);
+  border-radius: var(--radius-small-component-2xl);
+  background: var(--surface-special-light-s2-dark-s3);
+}
+.collapsed-compact .theme {
+  justify-content: center;
+  background: var(--surface-special-light-s0-dark-s4);
+}
+.themeLabel {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: var(--space-zero) var(--space-xl);
+  color: var(--text-med-em);
+  white-space: nowrap;
+}
+
+/* ---------- Свёрнутая панель — по макету экранов (kpi-bro · web, инстанс 83:730), 2026-11-26 ----------
+ * Не по collapsed-compact кита (там пункты с подписями): решение дизайнера — как на экранах.
+ * Ширина Space/18xl (64), Radius/3xl, обводка Surface/s3 внутрь.
+ * Header: px Space/md · py Space/xl → блок 48×56: Surface/special/light-s0-dark-s2, обводка Outline/base-em внутрь,
+ *   p Space/xl, Radius/3xl, Logomark-KPI 32 по центру. Клик по блоку — headerAction (развернуть).
+ * Top-section: pt Space/3xl · px Space/md; Sidebar-nav-compact gap Space/md; пункт 48×38: px Space/md · py Space/lg,
+ *   Radius/md, только иконка 18 по центру, Text/med-em; hover — Surface/hover-overlay-inverse;
+ *   текущий — Inverse-white/alpha-88, иконка Text/text-on-neutral, обводка Outline/primary-button-top,
+ *   внутренний блик Elevation/highlight-med, тень Elevation/shadow-base.
+ * Bottom: pt Space/3xl · pb Space/7xl, gap Space/3xl; секция px Space/md; NavDot — top Space/md, left 24 (середина пункта);
+ *   Avatar 40 (md). Тема в свёрнутом виде на экранах скрыта — не показывается.
+ * Без токена: 1px обводок.
+ */
+.cHeader {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-md);
+}
+.cBrand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--space-16xl);
+  padding: var(--space-xl);
+  border: 0;
+  border-radius: var(--radius-3xl);
+  background: var(--surface-special-light-s0-dark-s2);
+  box-shadow: inset 0 0 0 1px var(--outline-base-em);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.cBrand:disabled {
+  cursor: default;
+}
+.cBrand:not(:disabled):hover {
+  background: linear-gradient(var(--surface-hover-overlay-inverse), var(--surface-hover-overlay-inverse)),
+    var(--surface-special-light-s0-dark-s2);
+}
+.cBrand:focus-visible,
+.cItem:focus-visible {
+  outline: 2px solid var(--outline-primary-high-em);
+  outline-offset: 0;
+}
+.cSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-zero) var(--space-md);
+}
+.top > .cSection {
+  padding-top: var(--space-3xl);
+}
+.cNav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.cSlot {
+  position: relative;
+  display: flex;
+}
+.cItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--space-10xl);
+  padding: var(--space-lg) var(--space-md);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--transparent-inverse);
+  color: var(--text-med-em);
+  cursor: pointer;
+  transition: background 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+}
+.cItem:not(:disabled):hover {
+  background: var(--surface-hover-overlay-inverse);
+}
+.cItem[data-active] {
+  background: var(--inverse-white-alpha-88);
+  color: var(--text-text-on-neutral);
+  box-shadow:
+    inset 0 0 0 1px var(--outline-primary-button-top),
+    inset 0 3px 3px 0 var(--elevation-highlight-med),
+    0 1px 1px 0 var(--elevation-shadow-base);
+}
+.cItem:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.cBadge {
+  position: absolute;
+  top: var(--space-md);
+  left: 50%;
+  display: flex;
+  pointer-events: none;
+}
+.cBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: var(--space-3xl);
+  padding: var(--space-3xl) var(--space-zero) var(--space-7xl);
+}

@@ -1,0 +1,62 @@
+/*
+ * Table — Figma `12123:12697`. Сверено через Figma (дамп), 2026-11-26.
+ * Корень: Auto Layout V, p Space/md · zero · xl · zero, gap Space/md, Radius/big-component/sm,
+ *   Surface/special/light-s0-dark-s2, Elevation/e3.
+ * Sheet: колонки Fill, заливка колонок transparent-inverse (прозрачная) — не рисуем.
+ * Scroller vertical — поверх справа (ABSOLUTE в ките). Pagination first — снизу, на всю ширину.
+ * Упрощено: в ките Sheet — колонки (Col), у нас сетка по строкам; высоту строки задаёт самая высокая ячейка.
+ */
+.root {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-md) var(--space-zero) var(--space-xl);
+  gap: var(--space-md);
+  border-radius: var(--radius-big-component-sm);
+  background: var(--surface-special-light-s0-dark-s2);
+  box-shadow: var(--elevation-e3);
+}
+
+.sheetWrap {
+  position: relative;
+  min-width: 0;
+}
+
+.sheet {
+  display: grid;
+  grid-template-columns: var(--table-columns);
+  min-width: 0;
+}
+
+.row {
+  display: contents;
+}
+
+.scroller {
+  position: absolute;
+  top: var(--space-zero);
+  right: var(--space-zero);
+  height: 100%;
+}
+
+/*
+ * Открываемая строка (onRowClick, 2026-11-26): курсор-указатель, наведение — Surface/hover-overlay-inverse поверх ячеек,
+ * фокус с клавиатуры — кольцо 2px Outline/primary-high-em внутрь (как FocusRing у карточек). Без токена: 2px кольца.
+ */
+.clickable {
+  /* у обычной строки display: contents (нет своей коробки) — открываемой нужна коробка под наведение и фокус: subgrid */
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.clickable:hover {
+  background: var(--surface-hover-overlay-inverse);
+}
+.clickable:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--outline-primary-high-em);
+}

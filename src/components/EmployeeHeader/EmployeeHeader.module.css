@@ -1,0 +1,61 @@
+/*
+ * EmployeeHeader — Figma kpi-bro · web `171:1491` (одна ячейка), сверено get_design_context 2026-11-26.
+ * Корень H, center, без заливки, Liquid-glass, обводка Surface/s3 1px, Radius/5xl, padding Space/xl, gap Space/xl, ширина 469.
+ * Content V FILL, gap Space/xs, clip · Row H, gap Space/md, clip · Avatar md (40) · Texts V, gap Space/xxs, clip:
+ * Name UI/body-2/medium Text/high-em · Role UI/caption-2/normal Text/med-em. Info — Icons / Info 20.
+ * Приближение: Liquid-glass (GLASS r8) не переносится — backdrop-filter Blur/16 без преломления и дисперсии.
+ * Не сверено: цвет Icons / Info (в Figma зашит в вектор) — взят Text/med-em.
+ * Расхождение Figma, не перенесено: во вложенном Avatar стиль сброшен (tracking −1px) — в коде стиль мастера Avatar.
+ * Без токена: ширина 469 (--employee-header-width), обводка 1px.
+ */
+.root {
+  --employee-header-width: 469px;
+
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--employee-header-width);
+  max-width: 100%;
+  padding: var(--space-xl);
+  gap: var(--space-xl);
+  border: 1px solid var(--surface-s3);
+  border-radius: var(--radius-5xl);
+  backdrop-filter: var(--blur-16);
+}
+.content {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  gap: var(--space-xs);
+  overflow: hidden;
+}
+.row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: var(--space-md);
+  overflow: hidden;
+}
+.texts {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  gap: var(--space-xxs);
+  overflow: hidden;
+}
+.name {
+  width: 100%;
+  color: var(--text-high-em);
+}
+.role {
+  width: 100%;
+  color: var(--text-med-em);
+}
+.info {
+  flex: none;
+  color: var(--text-med-em);
+}

@@ -1,0 +1,304 @@
+<!-- Токены ДС для интерфейса Storybook: те же файлы, что у приложения (src/tokens, раздаются через staticDirs) -->
+<link rel="stylesheet" href="./ds/tokens/primitives.css" />
+<link rel="stylesheet" href="./ds/tokens/semantics.css" />
+<link rel="stylesheet" href="./ds/tokens/typography.css" />
+
+<!--
+  Левая колонка Storybook под Sidebar ДС (кит `Sidebar` 12171:3030, как на экранах kpi-bro · web — инстанс 91:969):
+  шапка — блок Header (Logomark-KPI 36 + название + версия); пункты дерева — Sidebar-item md; заголовки разделов —
+  Section-heading (UI/overline). Только токены; классы Storybook (.sidebar-item, .sidebar-subheading, .search-field) —
+  стабильные, emotion-хэши не используются. Без токена: 1px обводок (inset box-shadow, как в компонентах).
+-->
+<style>
+  /* Колонка — панель Sidebar: фон как у панели на экранах (Surface/s1), обводка Surface/s3 внутрь, Radius/7xl */
+  #storybook-sidebar-region {
+    background: var(--surface-s1);
+    box-shadow: inset 0 0 0 1px var(--surface-s3);
+    border-radius: var(--radius-7xl);
+    font-family: var(--typeface-family-body), system-ui, sans-serif;
+  }
+
+  /* Header: padding Space/md → блок Surface/special/light-s0-dark-s2, обводка Outline/base-em, px xl · py lg, gap xl, Radius/3xl */
+  .sidebar-header {
+    padding: var(--space-md) !important;
+    margin: 0 !important;
+  }
+  .sidebar-header > div:has(.ds-brand) {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .sidebar-header a:has(.ds-brand) {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    text-decoration: none;
+  }
+  .ds-brand {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    gap: var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
+    border-radius: var(--radius-3xl);
+    background: var(--surface-special-light-s0-dark-s2);
+    box-shadow: inset 0 0 0 1px var(--outline-base-em);
+  }
+  .ds-brand-logo {
+    display: block;
+    flex: none;
+    align-self: flex-start;
+    width: var(--space-11xl); /* Logomark-KPI 36 */
+    height: auto;
+  }
+  .ds-brand-text {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+  }
+  .ds-brand-name {
+    color: var(--text-med-em);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ds-brand-version {
+    color: var(--text-low-em);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Онбординг Storybook («Get started») — не часть ДС, в колонке не показываем */
+  #storybook-checklist-widget,
+  div:has(> div > #storybook-checklist-widget) {
+    display: none !important;
+  }
+
+  /* Поиск — Input-cell md: высота Space/12xl, Radius/small-component/md, обводка Outline/med-em */
+  .search-field {
+    min-height: var(--space-12xl);
+    border-radius: var(--radius-small-component-md) !important;
+    background: var(--surface-s0) !important;
+    box-shadow: inset 0 0 0 1px var(--outline-med-em) !important;
+    border: 0 !important;
+  }
+  .search-field input {
+    font-family: var(--typeface-family-body);
+    font-size: var(--typeface-size-body-1);
+    color: var(--text-high-em);
+  }
+
+  /* Section-heading: pt Space/7xl · px / pb Space/md, UI/overline/normal, Text/low-em */
+  .sidebar-subheading {
+    padding-top: var(--space-7xl) !important;
+    padding-bottom: var(--space-md) !important;
+  }
+  .sidebar-subheading button {
+    font-family: var(--typeface-family-body) !important;
+    font-size: var(--typeface-size-overline) !important;
+    font-weight: var(--typeface-weight-body-normal) !important;
+    line-height: var(--typeface-line-height-overline) !important;
+    letter-spacing: var(--typeface-letter-spacing-spaced-out) !important;
+    text-transform: uppercase;
+    color: var(--text-low-em) !important;
+  }
+
+  /* Пункт — Sidebar-item md: высота Space/12xl (40), Radius/small-component/md, UI/body-1/medium */
+  .sidebar-item {
+    min-height: var(--space-12xl);
+    border-radius: var(--radius-small-component-md);
+    background: var(--transparent-inverse) !important;
+    transition: background 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+  }
+  .sidebar-item,
+  .sidebar-item a,
+  .sidebar-item button {
+    color: var(--text-med-em) !important;
+    font-family: var(--typeface-family-body) !important;
+    font-size: var(--typeface-size-body-1) !important;
+    font-weight: var(--typeface-weight-body-medium) !important;
+    line-height: var(--typeface-line-height-body-1) !important;
+    letter-spacing: var(--typeface-letter-spacing-none) !important;
+  }
+  .sidebar-item a,
+  .sidebar-item > button {
+    min-height: var(--space-12xl);
+    align-items: center;
+  }
+  .sidebar-item svg {
+    color: inherit !important;
+  }
+  /* inactive hover: + Surface/hover-overlay-inverse, текст не меняется */
+  .sidebar-item:hover {
+    background: var(--surface-hover-overlay-inverse) !important;
+  }
+  /* Текущая страница — active-neutral, как текущий пункт на экранах: Inverse-white/alpha-88, Text/text-on-neutral */
+  .sidebar-item[data-selected='true'] {
+    background: var(--inverse-white-alpha-88) !important;
+    box-shadow:
+      inset 0 0 0 1px var(--outline-primary-button-top),
+      inset 0 3px 3px 0 var(--elevation-highlight-med),
+      0 1px 1px 0 var(--elevation-shadow-base);
+  }
+  .sidebar-item[data-selected='true'],
+  .sidebar-item[data-selected='true'] a,
+  .sidebar-item[data-selected='true'] button,
+  .sidebar-item[data-selected='true'] svg {
+    color: var(--text-text-on-neutral) !important;
+  }
+
+  /* Нижний блок (тесты) — как Bottom у Sidebar: Surface/special/dark-s0-light-s1, Radius/3xl */
+  #sidebar-bottom-wrapper > div {
+    border-radius: var(--radius-3xl);
+    background: var(--surface-special-dark-s0-light-s1);
+  }
+</style>
+
+<style>
+  /*
+   * Раскладка интерфейса (решение дизайнера 2026-11-26): все области — скруглённые панели, между ними Space/md (8).
+   * Фон окна — Surface/s1; превью и панель настроек — Surface/s0, обводка Surface/s3 внутрь, Radius/7xl.
+   * Области Storybook размещаются явной шириной/высотой — поэтому размеры пересчитаны с учётом отступов.
+   */
+  body {
+    background: var(--surface-s1);
+  }
+  #storybook-sidebar-region {
+    margin: var(--space-md) 0 var(--space-md) var(--space-md);
+    height: calc(100% - 2 * var(--space-md)) !important;
+    width: calc(100% - var(--space-md)) !important;
+  }
+  div:has(> main[role='main']) {
+    margin: var(--space-md) var(--space-md) var(--space-xs) var(--space-md);
+    height: calc(100% - var(--space-md) - var(--space-xs)) !important;
+    width: calc(100% - 2 * var(--space-md)) !important;
+    border-radius: var(--radius-7xl);
+    overflow: hidden;
+    background: var(--surface-s0);
+    box-shadow: inset 0 0 0 1px var(--surface-s3);
+  }
+  div:has(> aside#storybook-panel-region) {
+    margin: var(--space-xs) var(--space-md) var(--space-md) var(--space-md);
+    height: calc(100% - var(--space-md) - var(--space-xs)) !important;
+    width: calc(100% - 2 * var(--space-md)) !important;
+    border-radius: var(--radius-7xl);
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px var(--surface-s3);
+  }
+
+  /*
+   * Кнопка настроек Storybook в шапке — кнопка-иконка во всю высоту блока логотипа (квадрат),
+   * оформлена как сам блок: Surface/special/light-s0-dark-s2, обводка Outline/base-em, Radius/3xl.
+   */
+  .sidebar-header {
+    align-items: stretch !important;
+    gap: var(--space-md);
+  }
+  .sidebar-header > button[aria-label='Settings'] {
+    /* квадрат во всю высоту блока логотипа: 36 + 2 × Space/lg = Space/16xl (56) */
+    flex: none;
+    align-self: center;
+    width: var(--space-16xl) !important;
+    height: var(--space-16xl) !important;
+    min-width: var(--space-16xl);
+    margin: 0 !important;
+    border-radius: var(--radius-3xl) !important;
+    background: var(--surface-special-light-s0-dark-s2) !important;
+    box-shadow: inset 0 0 0 1px var(--outline-base-em) !important;
+    color: var(--text-med-em) !important;
+    transition: background 0.15s ease;
+  }
+  .sidebar-header > button[aria-label='Settings']:hover {
+    background: linear-gradient(var(--surface-hover-overlay-inverse), var(--surface-hover-overlay-inverse)),
+      var(--surface-special-light-s0-dark-s2) !important;
+  }
+
+  /* «+» (новая story) — той же высоты, что поиск: квадрат Space/12xl (40), Radius/small-component/md, обводка Outline/med-em */
+  div:has(> .search-field) {
+    align-items: stretch !important;
+    gap: var(--space-md);
+  }
+  div:has(> .search-field) > button {
+    flex: none;
+    width: var(--space-12xl) !important;
+    height: var(--space-12xl) !important;
+    min-height: var(--space-12xl);
+    margin: 0 !important;
+    border-radius: var(--radius-small-component-md) !important;
+    background: var(--surface-s0) !important;
+    box-shadow: inset 0 0 0 1px var(--outline-med-em) !important;
+    border: 0 !important;
+    color: var(--text-med-em) !important;
+  }
+</style>
+
+<style>
+  /*
+   * Шапка, уточнение дизайнера 2026-11-26: блок логотипа тянется до кнопки настроек, между ними Space/md (8),
+   * чтобы текст помещался; значок настроек крупнее — Space/5xl (20).
+   * Ссылка «Skip to content» Storybook (видна только с клавиатуры) убрана из потока, чтобы не давать лишний зазор.
+   */
+  .sidebar-header {
+    justify-content: flex-start !important;
+    gap: var(--space-md) !important;
+  }
+  .sidebar-header > a:first-child {
+    position: absolute !important;
+  }
+  .sidebar-header > div:has(.ds-brand) {
+    flex: 1 1 0 !important;
+    max-width: none !important;
+    min-width: 0;
+    margin: 0 !important;
+  }
+  .sidebar-header a:has(.ds-brand),
+  .ds-brand {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .sidebar-header a:has(.ds-brand) {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .sidebar-header > button[aria-label='Settings'] svg {
+    width: var(--space-5xl) !important;
+    height: var(--space-5xl) !important;
+  }
+</style>
+
+<!--
+  Favicon и заголовок вкладки (решение дизайнера 2026-11-26): значок — Logomark-KPI без текста,
+  название — «Magic UI - KPI by Pitonize Design System». Storybook ставит свой значок и пишет в title «… ⋅ Storybook» —
+  поэтому значок подменяется, а заголовок удерживается наблюдателем.
+-->
+<script>
+  ;(function () {
+    var TITLE = 'Magic UI - KPI by Pitonize Design System'
+    var ICON = './ds/logo/logomark.svg'
+    function applyIcon() {
+      document.querySelectorAll('link[rel~="icon"]').forEach(function (l) {
+        if (l.getAttribute('href') !== ICON) l.setAttribute('href', ICON)
+        l.setAttribute('type', 'image/svg+xml')
+      })
+      if (!document.querySelector('link[rel~="icon"]')) {
+        var l = document.createElement('link')
+        l.rel = 'icon'
+        l.type = 'image/svg+xml'
+        l.href = ICON
+        document.head.appendChild(l)
+      }
+    }
+    function applyTitle() {
+      if (document.title !== TITLE) document.title = TITLE
+    }
+    applyIcon()
+    applyTitle()
+    new MutationObserver(function () {
+      applyTitle()
+      applyIcon()
+    }).observe(document.head, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['href'] })
+  })()
+</script>

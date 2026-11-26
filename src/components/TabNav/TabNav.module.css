@@ -1,0 +1,32 @@
+/*
+ * Tab-nav — Figma `10048:1249` (Type default × Size xs…xl × State default). Auto Layout H, align start / center,
+ * без отступов, фон Transparent-inverse, Radius/small-component/<size>.
+ * Gap: xs Space/5xl · sm Space/7xl · md Space/8xl · lg Space/9xl · xl Space/10xl.
+ * Выбранная вкладка — Tab-nav-item active-primary, остальные inactive; Size вкладок = Size панели.
+ */
+.root {
+  display: flex;
+  align-items: center;
+  background: var(--transparent-inverse);
+}
+
+.xs {
+  gap: var(--space-5xl);
+  border-radius: var(--radius-small-component-xs);
+}
+.sm {
+  gap: var(--space-7xl);
+  border-radius: var(--radius-small-component-sm);
+}
+.md {
+  gap: var(--space-8xl);
+  border-radius: var(--radius-small-component-md);
+}
+.lg {
+  gap: var(--space-9xl);
+  border-radius: var(--radius-small-component-lg);
+}
+.xl {
+  gap: var(--space-10xl);
+  border-radius: var(--radius-small-component-xl);
+}

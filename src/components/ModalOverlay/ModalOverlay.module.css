@@ -1,0 +1,26 @@
+/*
+ * Modal-overlay — Figma `12048:20`. Сверено через Figma (variables / effect styles), 2026-11-25.
+ * Заливка Overlay/med-em, Blur/16 (фоновое размытие). Ширина в Figma — Width/artboard (1728),
+ * в вебе — весь вьюпорт.
+ */
+.root {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-med-em);
+  backdrop-filter: var(--blur-16);
+}
+
+/* Появление (2026-11-26): подложка проявляется из прозрачности, 0.2s ease-out; выключено при prefers-reduced-motion. */
+@keyframes overlay-appear {
+  from {
+    opacity: 0;
+  }
+}
+.root {
+  animation: overlay-appear 0.2s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    animation: none;
+  }
+}

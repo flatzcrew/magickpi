@@ -1,0 +1,182 @@
+/*
+ * Foundation в Storybook — только семантика, --space-*, --radius-* и типоклассы ui-*.
+ * Без токена: 1px обводок (как в соглашениях кода), моноширинный шрифт подписей.
+ */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10xl);
+  padding: var(--space-7xl);
+  color: var(--text-high-em);
+}
+.page h2,
+.page h3,
+.page p {
+  margin: 0;
+}
+
+.muted {
+  color: var(--text-med-em);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5xl);
+}
+
+.family {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.code {
+  font-family: ui-monospace, monospace;
+  color: var(--text-med-em);
+  word-break: break-all;
+}
+
+/* Свотчи */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-26xl) * 1.5), 1fr));
+  gap: var(--space-xl);
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--surface-s0);
+  border: 1px solid var(--outline-low-em);
+  border-radius: var(--radius-lg);
+}
+
+.chip {
+  height: var(--space-18xl);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--outline-low-em);
+  /* шахматка под альфа-цвета */
+  background-image:
+    linear-gradient(45deg, var(--surface-s2) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--surface-s2) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--surface-s2) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--surface-s2) 75%);
+  background-size: var(--space-3xl) var(--space-3xl);
+  background-position: 0 0, 0 var(--space-md), var(--space-md) calc(-1 * var(--space-md)), calc(-1 * var(--space-md)) 0;
+  overflow: hidden;
+}
+
+.chipFill {
+  width: 100%;
+  height: 100%;
+}
+
+/* Таблица строк */
+.rows {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-s0);
+  border: 1px solid var(--outline-low-em);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 2fr) minmax(0, 3fr);
+  align-items: center;
+  gap: var(--space-5xl);
+  padding: var(--space-xl) var(--space-5xl);
+  border-bottom: 1px solid var(--outline-low-em);
+}
+.row:last-child {
+  border-bottom: none;
+}
+
+.rowSemantic {
+  grid-template-columns: var(--space-18xl) minmax(0, 2fr) minmax(0, 2fr) minmax(0, 2fr);
+}
+
+.head {
+  background: var(--surface-s1);
+  color: var(--text-med-em);
+}
+
+.mini {
+  width: var(--space-18xl);
+  height: var(--space-10xl);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--outline-low-em);
+}
+
+/* Превью размеров */
+.bar {
+  height: var(--space-xl);
+  background: var(--surface-primary-med-em);
+  border-radius: var(--radius-xxs);
+}
+
+.radiusBox {
+  width: var(--space-18xl);
+  height: var(--space-18xl);
+  background: var(--surface-primary-low-em);
+  border: 1px solid var(--outline-primary-med-em);
+}
+
+.shadowBox {
+  width: calc(var(--space-18xl) * 2);
+  height: var(--space-18xl);
+  background: var(--surface-s0);
+  border-radius: var(--radius-lg);
+}
+
+.shadowStage {
+  padding: var(--space-7xl);
+  background: var(--surface-s1);
+  border-radius: var(--radius-lg);
+}
+
+.blurStage {
+  position: relative;
+  width: calc(var(--space-18xl) * 2);
+  height: var(--space-18xl);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--surface-primary-med-em), var(--surface-success-med-em), var(--surface-danger-med-em));
+}
+
+.blurGlass {
+  position: absolute;
+  inset: var(--space-xl) var(--space-3xl);
+  border-radius: var(--radius-md);
+  background: var(--overlay-med-em-inverse);
+}
+
+.sample {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Типографика */
+.typeRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  align-items: baseline;
+  gap: var(--space-5xl);
+  padding: var(--space-xl) var(--space-5xl);
+  border-bottom: 1px solid var(--outline-low-em);
+}
+.typeRow:last-child {
+  border-bottom: none;
+}
+
+.typeMeta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xxs);
+  min-width: 0;
+}

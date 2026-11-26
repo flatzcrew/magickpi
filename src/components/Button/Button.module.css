@@ -1,0 +1,285 @@
+/*
+ * Button — Figma `8003:300`. Сверено через Figma (variables / effect styles), 2026-11-25.
+ * Корень: Auto Layout H, center; py Space/xs; обводка 1px INSIDE градиентом Outline/*-button-top -> -bottom
+ * (стопы 48% -> 100%). Hover = второй слой заливки (Surface/hover-overlay*). Pressed = Pressed/* (кольцо 3px).
+ * Disabled = Surface/disabled-base-em, тексты Text/base-em, без обводки и тени, Blur/24.
+ * Классы Type и State этого модуля переиспользует IconButton.
+ * Без токена: 1px обводки; маска обводки linear-gradient(#000 0 0) — служебная, не цвет;
+ * позиции стопов градиентов 48% / 56% (из Figma).
+ */
+.root {
+  /* переменные Type (по умолчанию — primary) */
+  --btn-bg: var(--surface-primary-med-em);
+  --btn-overlay: var(--surface-hover-overlay);
+  --btn-text: var(--text-primary-on-primary);
+  --btn-text-hover: var(--btn-text);
+  --btn-text-2: var(--text-secondary-on-primary);
+  --btn-stroke-top: var(--outline-primary-button-top);
+  --btn-stroke-bottom: var(--outline-primary-button-bottom);
+  --btn-stroke-display: block;
+  --btn-shadow: var(--component-effect-primary-default);
+  --btn-shadow-hover: var(--component-effect-primary-hover);
+  --btn-backdrop: var(--component-effect-primary-default-backdrop);
+  --btn-pressed: var(--pressed-primary);
+  --btn-bg-pressed: var(--btn-bg);
+  --btn-bg-disabled: var(--surface-disabled-base-em);
+
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  padding-block: var(--space-xs);
+  gap: var(--space-xxs);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  box-shadow: var(--btn-shadow);
+  backdrop-filter: var(--btn-backdrop);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  outline: none;
+  transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+
+/* Градиентная обводка 1px INSIDE */
+.root::before {
+  content: '';
+  display: var(--btn-stroke-display);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--btn-stroke-top) 48%, var(--btn-stroke-bottom) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+/* ---------- Type ---------- */
+.primary {
+  --btn-bg: var(--surface-primary-med-em);
+}
+
+.primary-gradient {
+  --btn-bg: linear-gradient(
+    180deg,
+    var(--surface-component-primary-gradient-top) 0%,
+    var(--surface-primary-med-em) 56%,
+    var(--surface-component-primary-gradient-bottom) 100%
+  );
+}
+
+.primary-light {
+  --btn-bg: var(--surface-primary-base-em-alpha);
+  --btn-overlay: var(--surface-primary-base-em-alpha);
+  --btn-text: var(--text-primary-on-primary-light);
+  --btn-text-2: var(--text-secondary-on-primary-light);
+  --btn-stroke-display: none;
+  --btn-shadow: none;
+  --btn-shadow-hover: var(--component-effect-secondary-hover);
+  --btn-backdrop: none;
+}
+
+.secondary {
+  --btn-bg: var(--surface-component-secondary-alpha-base);
+  --btn-overlay: var(--surface-hover-overlay-inverse);
+  --btn-text: var(--text-high-em);
+  --btn-text-2: var(--text-low-em);
+  --btn-stroke-top: var(--outline-secondary-button-top);
+  --btn-stroke-bottom: var(--outline-secondary-button-bottom);
+  --btn-shadow: var(--component-effect-secondary-default);
+  --btn-shadow-hover: var(--component-effect-secondary-hover);
+  --btn-backdrop: var(--component-effect-secondary-default-backdrop);
+  --btn-pressed: var(--pressed-gray);
+}
+
+.tertiary {
+  --btn-bg: var(--surface-component-tertiary-alpha-base);
+  --btn-overlay: var(--surface-hover-overlay-inverse);
+  --btn-text: var(--text-med-em);
+  --btn-text-hover: var(--text-high-em);
+  --btn-text-2: var(--text-low-em);
+  --btn-stroke-top: var(--outline-secondary-button-top);
+  --btn-stroke-bottom: var(--outline-secondary-button-bottom);
+  --btn-shadow: var(--component-effect-secondary-default);
+  --btn-shadow-hover: var(--component-effect-secondary-hover);
+  --btn-backdrop: var(--component-effect-secondary-default-backdrop);
+  --btn-pressed: var(--pressed-gray);
+}
+
+.quaternary {
+  --btn-bg: var(--transparent-inverse);
+  --btn-overlay: var(--surface-hover-overlay-inverse);
+  --btn-text: var(--text-med-em);
+  --btn-text-hover: var(--text-high-em);
+  --btn-text-2: var(--text-low-em);
+  --btn-stroke-display: none;
+  --btn-shadow: none;
+  --btn-shadow-hover: none;
+  --btn-backdrop: none;
+  --btn-pressed: var(--pressed-gray);
+  --btn-bg-pressed: var(--surface-s0);
+  --btn-bg-disabled: var(--transparent-inverse);
+}
+
+.neutral {
+  --btn-bg: var(--surface-inverse-white);
+  --btn-text: var(--text-text-on-neutral);
+  --btn-text-2: var(--inverse-black-alpha-72);
+  --btn-pressed: var(--pressed-gray);
+}
+
+.flat {
+  --btn-bg: var(--surface-special-light-s0-dark-s4);
+  --btn-overlay: var(--surface-hover-overlay-inverse);
+  --btn-text: var(--text-med-em);
+  --btn-text-hover: var(--text-high-em);
+  --btn-text-2: var(--text-low-em);
+  --btn-stroke-display: none;
+  --btn-shadow: none;
+  --btn-shadow-hover: none;
+  --btn-backdrop: none;
+  --btn-pressed: var(--pressed-gray);
+}
+
+.primary-flat {
+  --btn-bg: var(--surface-component-tertiary-alpha-base);
+  --btn-overlay: var(--surface-hover-overlay-inverse);
+  --btn-text: var(--text-secondary-on-primary-light);
+  --btn-text-2: var(--text-low-em);
+  --btn-stroke-display: none;
+  --btn-shadow: var(--component-effect-secondary-default);
+  --btn-shadow-hover: var(--component-effect-secondary-hover);
+  --btn-backdrop: var(--component-effect-secondary-default-backdrop);
+  --btn-pressed: var(--pressed-gray);
+}
+
+/* ---------- State ---------- */
+.root:hover:not(:disabled),
+.root[data-state='hover'] {
+  background: linear-gradient(var(--btn-overlay), var(--btn-overlay)), var(--btn-bg);
+  box-shadow: var(--btn-shadow-hover);
+  color: var(--btn-text-hover);
+}
+
+.root:active:not(:disabled),
+.root[data-state='pressed'] {
+  background: var(--btn-bg-pressed);
+  box-shadow: var(--btn-pressed);
+  color: var(--btn-text);
+}
+
+.root:focus-visible {
+  box-shadow: var(--btn-pressed);
+}
+
+.root:disabled,
+.root[data-state='disabled'] {
+  --btn-text-2: var(--text-base-em);
+  background: var(--btn-bg-disabled);
+  color: var(--text-base-em);
+  box-shadow: none;
+  backdrop-filter: var(--blur-24);
+  cursor: not-allowed;
+}
+.root:disabled::before,
+.root[data-state='disabled']::before {
+  display: none;
+}
+
+/* ---------- Size ---------- */
+.xs {
+  --icon-size: var(--space-2xl);
+  --btn-image: var(--space-xl);
+  --btn-left-gap: var(--space-xs);
+  --btn-text-pad: var(--space-xs);
+  --btn-text-gap: var(--space-xs);
+  height: var(--space-7xl);
+  padding-inline: var(--space-sm);
+  gap: var(--space-zero);
+  border-radius: var(--radius-small-component-xs);
+}
+.sm {
+  --icon-size: var(--space-3xl);
+  --btn-image: var(--space-3xl);
+  --btn-left-gap: var(--space-sm);
+  --btn-text-pad: var(--space-xs);
+  --btn-text-gap: var(--space-xs);
+  height: var(--space-10xl);
+  padding-inline: var(--space-md);
+  border-radius: var(--radius-small-component-sm);
+}
+.md {
+  --icon-size: var(--space-4xl);
+  --btn-image: var(--space-5xl);
+  --btn-left-gap: var(--space-sm);
+  --btn-text-pad: var(--space-xs);
+  --btn-text-gap: var(--space-xs);
+  height: var(--space-12xl);
+  padding-inline: var(--space-lg);
+  border-radius: var(--radius-small-component-md);
+}
+.lg {
+  --icon-size: var(--space-5xl);
+  --btn-image: var(--space-7xl);
+  --btn-left-gap: var(--space-md);
+  --btn-text-pad: var(--space-xs);
+  --btn-text-gap: var(--space-xs);
+  height: var(--space-14xl);
+  padding-inline: var(--space-xl);
+  border-radius: var(--radius-small-component-lg);
+}
+.xl {
+  --icon-size: var(--space-7xl);
+  --btn-image: var(--space-9xl);
+  --btn-left-gap: var(--space-md);
+  --btn-text-pad: var(--space-sm);
+  --btn-text-gap: var(--space-sm);
+  height: var(--space-16xl);
+  padding-inline: var(--space-2xl);
+  border-radius: var(--radius-small-component-xl);
+}
+
+/* ---------- Слоты ---------- */
+.left,
+.right {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+}
+.left {
+  gap: var(--btn-left-gap);
+}
+
+.image {
+  width: var(--btn-image);
+  height: var(--btn-image);
+  border-radius: var(--radius-round);
+  object-fit: cover;
+  box-shadow: var(--elevation-e1);
+}
+
+.text {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  gap: var(--btn-text-gap);
+  padding-inline: var(--btn-text-pad);
+}
+
+.primaryText,
+.secondaryText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.secondaryText {
+  color: var(--btn-text-2);
+}

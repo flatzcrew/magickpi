@@ -1,0 +1,109 @@
+/*
+ * Checkbox — Figma `10030:982`. Сверено через Figma (variables / effect styles), 2026-11-25.
+ * Корень: рамка 20/24/28 (Space/5xl·7xl·9xl), padding Space/xxs. Квадрат: 18/20/24 (Space/4xl·5xl·7xl),
+ * радиус Radius/small-component/xs, эффект Component-effect/primary-default.
+ * unchecked: заливка Surface/special/dark-s0-light-s2 -> light-s0-dark-s4, обводка 2px INSIDE Outline/med-em.
+ * hover: обводка Outline/primary-low-em-alpha. checked: Surface/primary-med-em, галочка Text/primary-on-primary.
+ * checked-pressed: + Pressed/primary. indeterminate: Surface/primary-low-em-alpha, минус Text/primary-med-em.
+ * disabled / indeterminate-disabled: Surface/disabled-med-em, знак Text/base-em.
+ * Без токена: обводка 2px; размеры знаков (галочка 9×7, lg 10×8; минус 8×2, lg 10×3) и толщина штриха галочки.
+ */
+.root {
+  --cb-box: var(--space-4xl);
+  --cb-check-w: 9px;
+  --cb-check-h: 7px;
+  --cb-dash-w: 8px;
+  --cb-dash-h: 2px;
+  --cb-bg: linear-gradient(180deg, var(--surface-special-dark-s0-light-s2) 0%, var(--surface-special-light-s0-dark-s4) 100%);
+  --cb-stroke: var(--outline-med-em);
+  --cb-glyph: var(--text-primary-on-primary);
+  --cb-effect: var(--component-effect-primary-default);
+
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: var(--space-xxs);
+}
+
+.sm { --cb-box: var(--space-4xl); height: var(--space-5xl); width: var(--space-5xl); }
+.md { --cb-box: var(--space-5xl); height: var(--space-7xl); width: var(--space-7xl); }
+.lg {
+  --cb-box: var(--space-7xl);
+  --cb-check-w: 10px;
+  --cb-check-h: 8px;
+  --cb-dash-w: 10px;
+  --cb-dash-h: 3px;
+  height: var(--space-9xl);
+  width: var(--space-9xl);
+}
+
+/* Нативный input поверх — кликабелен, невидим */
+.input {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.input:disabled { cursor: not-allowed; }
+
+.box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--cb-box);
+  height: var(--cb-box);
+  padding: var(--space-xxs);
+  border-radius: var(--radius-small-component-xs);
+  background: var(--cb-bg);
+  color: var(--cb-glyph);
+  box-shadow: inset 0 0 0 2px var(--cb-stroke), var(--cb-effect);
+  backdrop-filter: var(--component-effect-primary-default-backdrop);
+  transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.check,
+.dash { display: none; flex: none; }
+.check { width: var(--cb-check-w); height: var(--cb-check-h); }
+.dash { width: var(--cb-dash-w); height: var(--cb-dash-h); }
+
+/* hover (только неотмеченный) */
+.root:hover .input:not(:disabled):not(:checked):not(:indeterminate) + .box,
+.root[data-state='hover'] .box {
+  --cb-stroke: var(--outline-primary-low-em-alpha);
+}
+
+/* checked */
+.input:checked + .box {
+  --cb-bg: var(--surface-primary-med-em);
+  --cb-stroke: transparent;
+}
+.input:checked + .box .check { display: block; }
+
+/* indeterminate */
+.input:indeterminate + .box {
+  --cb-bg: var(--surface-primary-low-em-alpha);
+  --cb-stroke: transparent;
+  --cb-glyph: var(--text-primary-med-em);
+}
+.input:indeterminate + .box .check { display: none; }
+.input:indeterminate + .box .dash { display: block; }
+
+/* pressed / фокус */
+.input:active:not(:disabled) + .box,
+.input:focus-visible + .box,
+.root[data-state='checked-pressed'] .box {
+  --cb-effect: var(--pressed-primary);
+}
+
+/* disabled */
+.input:disabled + .box {
+  --cb-bg: var(--surface-disabled-med-em);
+  --cb-stroke: transparent;
+  --cb-glyph: var(--text-base-em);
+}

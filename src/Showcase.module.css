@@ -1,0 +1,291 @@
+/*
+ * Showcase — только семантика, --space-*, --radius-*, --elevation-* и типоклассы ui-*.
+ * Без токена: 1px обводок (как в соглашениях кода), размеры рамок — кратные --space-*.
+ */
+.page {
+  min-height: 100vh;
+  background: var(--surface-s1);
+  color: var(--text-high-em);
+  font-family: var(--typeface-family-body);
+}
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: var(--space-7xl);
+  padding: var(--space-xl) var(--space-10xl);
+  background: var(--surface-s0);
+  border-bottom: 1px solid var(--outline-low-em);
+  box-shadow: var(--elevation-e2);
+}
+
+.toc {
+  display: flex;
+  gap: var(--space-5xl);
+  margin-right: auto;
+}
+
+.tocLink {
+  color: var(--text-primary-high-em);
+  text-decoration: none;
+}
+.tocLink:hover {
+  text-decoration: underline;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-18xl);
+  padding: var(--space-10xl);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7xl);
+  scroll-margin-top: var(--space-26xl);
+}
+.section h2,
+.section h3,
+.section h4,
+.section p {
+  margin: 0;
+}
+
+.muted {
+  color: var(--text-med-em);
+}
+
+/* Палитра */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-26xl) * 1.5), 1fr));
+  gap: var(--space-xl);
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--surface-s0);
+  border: 1px solid var(--outline-low-em);
+  border-radius: var(--radius-lg);
+}
+
+.chip {
+  height: var(--space-18xl);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--outline-low-em);
+}
+
+.code {
+  font-family: ui-monospace, monospace;
+  color: var(--text-med-em);
+  word-break: break-all;
+}
+
+/* Шкала текста */
+.typeList {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-s0);
+  border: 1px solid var(--outline-low-em);
+  border-radius: var(--radius-xl);
+}
+
+.typeRow {
+  display: grid;
+  grid-template-columns: calc(var(--space-26xl) * 1.5) 1fr;
+  align-items: baseline;
+  gap: var(--space-7xl);
+  padding: var(--space-xl) var(--space-7xl);
+  border-bottom: 1px solid var(--outline-low-em);
+}
+.typeRow:last-child {
+  border-bottom: none;
+}
+
+.typeName {
+  white-space: nowrap;
+}
+
+/* Галерея */
+.galleryToc {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-26xl) * 1.25), 1fr));
+  gap: var(--space-7xl);
+  padding: var(--space-7xl);
+  background: var(--surface-s0);
+  border: 1px solid var(--outline-low-em);
+  border-radius: var(--radius-xl);
+}
+
+.tocBatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.batch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7xl);
+  scroll-margin-top: var(--space-26xl);
+}
+.batch h3 {
+  margin: 0;
+}
+
+.demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xl);
+  padding: var(--space-7xl);
+  background: var(--surface-s0);
+  border: 1px solid var(--outline-low-em);
+  border-radius: var(--radius-xl);
+  scroll-margin-top: var(--space-26xl);
+}
+.demo h4 {
+  margin: 0;
+}
+
+.demoBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7xl);
+  overflow-x: auto;
+}
+
+.matrix {
+  display: grid;
+  align-items: center;
+  justify-items: start;
+  gap: var(--space-xl) var(--space-7xl);
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+}
+
+.axis {
+  color: var(--text-low-em);
+  white-space: nowrap;
+}
+
+.rowWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-7xl);
+}
+
+.labeled {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+  min-width: 0;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5xl);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-26xl) * 2), 1fr));
+  gap: var(--space-7xl);
+}
+
+/* Рамки под размер содержимого */
+.hBox {
+  width: var(--space-26xl);
+}
+
+.vBox {
+  display: flex;
+  height: var(--space-18xl);
+}
+
+.cellBox {
+  width: calc(var(--space-26xl) * 2.25);
+}
+
+.cardBox {
+  width: calc(var(--space-26xl) * 2);
+}
+
+.wideBox {
+  width: 100%;
+  max-width: calc(var(--space-26xl) * 6);
+}
+
+.qrBox {
+  width: calc(var(--space-26xl) * 0.75);
+}
+
+.tooltipBox {
+  padding: var(--space-7xl);
+}
+
+/* Рамка для position: fixed — transform делает её containing block для фиксированных потомков */
+.frame {
+  position: relative;
+  transform: translateZ(0);
+  overflow: hidden;
+  display: flex;
+  width: calc(var(--space-26xl) * 2.5);
+  height: var(--space-26xl);
+  padding: var(--space-3xl);
+  background: var(--surface-s2);
+  border: 1px solid var(--outline-low-em);
+  border-radius: var(--radius-lg);
+}
+
+.tall {
+  height: calc(var(--space-26xl) * 5);
+  padding: 0;
+}
+
+.wide {
+  width: calc(var(--space-26xl) * 4);
+}
+
+.frame.wide.tall {
+  height: calc(var(--space-26xl) * 3);
+}
+
+/* Горизонтальный вылет: длинные матрицы прокручиваются внутри карточки, а не всей страницей */
+.main,
+.section,
+.batch,
+.demo,
+.demoBody,
+.typeList {
+  min-width: 0;
+}
+.typeRow {
+  grid-template-columns: calc(var(--space-26xl) * 1.5) minmax(0, 1fr);
+  overflow-x: auto;
+}

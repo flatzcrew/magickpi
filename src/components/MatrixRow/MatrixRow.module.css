@@ -1,0 +1,142 @@
+/*
+ * MatrixRow — Figma kpi-bro · web `176:1831` (Level × State × Expanded — 9 ячеек, 1040 × 49 / 57), сверено get_design_context 2026-11-26 по 176:1832, 176:2008.
+ * Корень H, center, padding Space/xl × Space/zero, gap Space/zero; Radius/5xl; низ 1px Outline/low-em; group Surface/s1, item Surface/s0; ширина 1040 (на экране FILL).
+ * StatusCell 144 (Space/25xl), padding L/R Space/xl, gap Space/md: Checkbox sm · KpiStatus без круга-иконки (решение 2026-11-21):
+ *   group — подпись статуса, padding Space/xs · Space/sm; item — значение «100%», padding Space/md · нет данных — KpiStatus nodata целиком.
+ * NameCell FILL, padding L/R Space/xl (item — слева Space/14xl), gap Space/xs: Name до 2 строк (group UI/body-1/semibold, item UI/body-1/normal) · TasksLink.
+ * Числовые ячейки Weight · Plan · Fact · Completion · Score · Weighted — по 96 (Space/22xl), выравнивание CENTER (мастер, 2026-11-25):
+ *   group — padding L/R Space/xl, UI/body-1/semibold Text/high-em (у Weight обёртка с padding L/R 4 — взято Space/xs);
+ *   item — padding L/R Space/sm, значение в плашке Surface/s3, Radius/md, padding Space/xs × Space/md, UI/body-1/normal Text/high-em.
+ *   Нет данных — «—» UI/body-1/normal Text/low-em без плашки. Completion: значение (showCompletion) и/или Button secondary xs «Оценить» (showAction).
+ * Последняя колонка 40 (Space/12xl): group — Icon-button secondary xs Chevron-down / Chevron-up, padding R Space/3xl; item — пустая.
+ * Состояния (patterns.md): hover item Surface/s1, group Surface/s2; focus FocusRing 2px Outline/primary-high-em.
+ * align='end' — проп-модификатор кода (ряды «Оценка руководителя», ручная правка на экранах, решение 2026-11-25), не вариант Figma.
+ * Без токена: ширина 1040 (--matrix-row-width), низ 1px, кольцо 2px.
+ */
+.root {
+  /* Живой переход между состояниями — как у Button (0.15s ease; motion-токенов в ките нет) */
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+  --matrix-row-width: 1040px;
+  --mr-bg: var(--surface-s0);
+  --mr-bg-hover: var(--surface-s1);
+  --mr-cell-pad: var(--space-sm);
+  --mr-justify: center;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--matrix-row-width);
+  max-width: 100%;
+  padding: var(--space-xl) var(--space-zero);
+  gap: var(--space-zero);
+  border-radius: var(--radius-5xl);
+  background: var(--mr-bg);
+  box-shadow: inset 0 -1px 0 var(--outline-low-em);
+  outline: none;
+}
+.group {
+  --mr-bg: var(--surface-s1);
+  --mr-bg-hover: var(--surface-s2);
+  --mr-cell-pad: var(--space-xl);
+}
+.root[data-align='end'] {
+  --mr-justify: flex-end;
+}
+.root::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.root:hover,
+.root[data-state='hover'] {
+  background: var(--mr-bg-hover);
+}
+.root[data-state='focus']::after,
+.root:focus-visible::after {
+  box-shadow: inset 0 0 0 2px var(--outline-primary-high-em);
+}
+
+.statusCell {
+  display: flex;
+  flex: none;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--space-25xl);
+  padding: var(--space-zero) var(--space-xl);
+  gap: var(--space-md);
+  overflow: hidden;
+}
+/* Бейдж KpiStatus без круга: классы KpiStatus.module.css; item — padding Space/md (специфичность 0,2,0 выше .badge). */
+.statusCell .itemBadge {
+  padding: var(--space-md);
+}
+
+.nameCell {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: var(--space-zero) var(--space-xl);
+  gap: var(--space-xs);
+  overflow: hidden;
+}
+.item .nameCell {
+  padding-left: var(--space-14xl);
+}
+.name {
+  display: -webkit-box;
+  flex: 1 0 0;
+  min-width: 0;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  color: var(--text-high-em);
+}
+.tasksLink {
+  flex: none;
+}
+
+.cell {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: var(--mr-justify);
+  box-sizing: border-box;
+  width: var(--space-22xl);
+  padding: var(--space-zero) var(--mr-cell-pad);
+  gap: var(--space-xs);
+  overflow: hidden;
+  white-space: nowrap;
+}
+.value {
+  color: var(--text-high-em);
+}
+.group .weightValue {
+  padding: var(--space-zero) var(--space-xs);
+}
+.item .value {
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--surface-s3);
+}
+.empty {
+  color: var(--text-low-em);
+}
+
+.expandCell {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: stretch;
+  box-sizing: border-box;
+  width: var(--space-12xl);
+}
+.group .expandCell {
+  padding-right: var(--space-3xl);
+}

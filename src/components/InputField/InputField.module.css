@@ -1,0 +1,31 @@
+/*
+ * Input-field — Figma `12022:7132`. Вертикально, gap Space/xs (digit-lg — Space/md).
+ * Состояния ячейки — в InputCell (оверрайды Input-cell); label / hint — тоны InputLabel / HintLabel.
+ * digit: ряд Digit-input, gap Space/md, разделитель «-» UI/heading-2/normal Text/low-em.
+ * digit-lg: Input-label lg, gap Space/lg, Digit-input lg, разделитель UI/heading-4/medium.
+ */
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: 100%;
+  min-width: 0;
+}
+
+.lg {
+  gap: var(--space-md);
+}
+
+.code {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+.lg .code {
+  gap: var(--space-lg);
+}
+
+.separator {
+  flex: none;
+  color: var(--text-low-em);
+}

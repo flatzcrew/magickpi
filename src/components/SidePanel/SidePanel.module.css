@@ -1,0 +1,43 @@
+/*
+ * SidePanel — Figma kpi-bro · web `209:997` (один компонент, 600 × 1024), сверено get_design_context 2026-11-26.
+ * Корень V, padding / gap Space/zero, clip; fill Surface/s0; тень Elevation/e5; Radius/8xl слева (TL, BL), справа Radius/zero.
+ * Header — Modal-header compact, Heading-sm (UI/title-1/semibold), Close-icon · Body — слот FILL, прокрутка по вертикали,
+ *   padding T Space/md, L/R Space/5xl, B Space/7xl, gap Space/10xl · Actions — Modal-actions/CTAs без Description (showActions).
+ * Заглушка Body в мастере — UI/body-1/normal Text/med-em.
+ * На экранах не используется (решение 2026-11-25), перенесён как есть.
+ * Без токена: ширина 600 (--side-panel-width); высота — по родителю (в мастере 1024 = высота кадра).
+ */
+.root {
+  --side-panel-width: 600px;
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--side-panel-width);
+  max-width: 100%;
+  height: 100%;
+  padding: var(--space-zero);
+  gap: var(--space-zero);
+  overflow: hidden;
+  border-radius: var(--radius-8xl) var(--radius-zero) var(--radius-zero) var(--radius-8xl);
+  background: var(--surface-s0);
+  box-shadow: var(--elevation-e5);
+}
+.header,
+.actions {
+  flex: none;
+}
+.body {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: 0;
+  padding: var(--space-md) var(--space-5xl) var(--space-7xl);
+  gap: var(--space-10xl);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.placeholder {
+  color: var(--text-med-em);
+}

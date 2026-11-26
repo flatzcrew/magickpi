@@ -1,0 +1,16 @@
+/*
+ * Input-field-mobile — Figma `53469:2117`. Вертикально, gap Space/xs; Hint-label md с px Space/xl.
+ * Состояния ячейки — оверрайды Input-cell-mobile (проп tone), см. InputCellMobile.module.css.
+ * filled в ките отличается только цветом значения (Text/med-em) — это и есть цвет введённого текста.
+ */
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: 100%;
+  min-width: 0;
+}
+
+.root .hint {
+  padding-inline: var(--space-xl);
+}

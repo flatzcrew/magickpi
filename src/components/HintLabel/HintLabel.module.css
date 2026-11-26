@@ -1,0 +1,34 @@
+/*
+ * Hint-label — Figma `12021:6331`. Строка H, align center, px Space/xxs, gap Space/xs.
+ * Иконка 16 слева, Primary-text Text/med-em (medium), Support-text Text/low-em (normal).
+ * В InputField: danger -> Primary-text Text/danger-med-em; disabled -> Text/base-em.
+ * Цвет иконки в Figma не сверен — следует за Primary-text.
+ */
+.root {
+  --hint-text: var(--text-med-em);
+  --hint-text-2: var(--text-low-em);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding-inline: var(--space-xxs);
+  min-width: 0;
+}
+
+.default {
+  --hint-text: var(--text-med-em);
+}
+.danger {
+  --hint-text: var(--text-danger-med-em);
+}
+.disabled {
+  --hint-text: var(--text-base-em);
+  --hint-text-2: var(--text-base-em);
+}
+
+.primaryText,
+.icon {
+  color: var(--hint-text);
+}
+.secondaryText {
+  color: var(--hint-text-2);
+}

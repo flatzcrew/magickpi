@@ -1,0 +1,13 @@
+/*
+ * Modal-dragger — Figma `16161:28428`. Сверено через Figma (variables / effect styles), 2026-11-25.
+ * 48 × 6 (Space/14xl × Space/sm), Radius/round, Inverse-white/alpha-12, Blur/48.
+ */
+.root {
+  display: block;
+  flex: none;
+  width: var(--space-14xl);
+  height: var(--space-sm);
+  border-radius: var(--radius-round);
+  background: var(--inverse-white-alpha-12);
+  backdrop-filter: var(--blur-48);
+}

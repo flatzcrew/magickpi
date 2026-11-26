@@ -1,0 +1,63 @@
+/*
+ * Info-note — Figma `12126:4670`. Сверено через Figma (variables / effect styles), 2026-11-25.
+ * Корень Figma (обёртка, Fill по ширине): Blur/48. Внутри List-wrap: Auto Layout H, align start/center,
+ * Elevation/e1; обводка в Figma 0px (не рисуется).
+ * sm: padding/gap Space/md, Radius/small-component/md, иконка 16, текст UI/caption-2/normal.
+ * md: padding/gap Space/xl, Radius/small-component/lg, иконка 20, текст UI/para/medium.
+ * lg: padding Space/xl × Space/3xl, gap Space/3xl, Radius/small-component/2xl, иконка 24, текст UI/body-2/medium.
+ * Фон по State: default Surface/s2 · brand Surface/primary-base-em-alpha · info/success/warning/danger
+ * Surface/<state>-base-em-alpha. Иконка и текст: Text/med-em · Text/primary-high-em · Text/<state>-high-em.
+ * Упрощено: обёртка и List-wrap слиты в один элемент; заливка обёртки Color/transparent/subtle (#00000003,
+ * примитив, семантики нет) не переносится.
+ */
+.root {
+  --in-bg: var(--surface-s2);
+  --in-fg: var(--text-med-em);
+
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  background: var(--in-bg);
+  color: var(--in-fg);
+  box-shadow: var(--elevation-e1);
+  backdrop-filter: var(--blur-48);
+}
+
+.icon { flex: none; }
+
+.text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+/* ---------- State ---------- */
+.default { /* значения по умолчанию в .root */ }
+.brand { --in-bg: var(--surface-primary-base-em-alpha); --in-fg: var(--text-primary-high-em); }
+.info { --in-bg: var(--surface-info-base-em-alpha); --in-fg: var(--text-info-high-em); }
+.success { --in-bg: var(--surface-success-base-em-alpha); --in-fg: var(--text-success-high-em); }
+.warning { --in-bg: var(--surface-warning-base-em-alpha); --in-fg: var(--text-warning-high-em); }
+.danger { --in-bg: var(--surface-danger-base-em-alpha); --in-fg: var(--text-danger-high-em); }
+
+/* ---------- Size ---------- */
+.sm {
+  --icon-size: var(--space-3xl);
+  padding: var(--space-md);
+  gap: var(--space-md);
+  border-radius: var(--radius-small-component-md);
+}
+.md {
+  --icon-size: var(--space-5xl);
+  padding: var(--space-xl);
+  gap: var(--space-xl);
+  border-radius: var(--radius-small-component-lg);
+}
+.lg {
+  --icon-size: var(--space-7xl);
+  padding: var(--space-xl) var(--space-3xl);
+  gap: var(--space-3xl);
+  border-radius: var(--radius-small-component-2xl);
+}

@@ -1,0 +1,88 @@
+/*
+ * Dashboard-info — Figma `16189:4286` (одиночный, без свойств), сверено get_design_context 2026-11-26.
+ * Корень: ширина 400, Radius/big-component/xs, Elevation/e2, clip; обводка Outline/base-em толщиной 0 — не рисуем.
+ * Wrap: Surface/special/light-s0-dark-s2 + Blur/96, py Space/3xl, gap Space/xl.
+ * Header: px Space/3xl, justify between. Text-wrap: gap Space/xs.
+ *   Label: gap Space/xs, Icons / Info 16 + UI/body-1/medium Text/low-em.
+ *   Primary (V, gap Space/xs): значение UI/heading-3/medium Text/high-em; Change: Icons / Up 24 + UI/body-1/semibold Text/success-med-em.
+ * Feature-icon tertiary xs (32) с Icons / Arrow-right-up.
+ * Без токена: ширина 400 (--dashboard-info-width; на экранах инстанс fill — передать width через className).
+ */
+.root {
+  --dashboard-info-width: 400px;
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--dashboard-info-width);
+  max-width: 100%;
+  border-radius: var(--radius-big-component-xs);
+  box-shadow: var(--elevation-e2);
+  overflow: hidden;
+}
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding: var(--space-3xl) var(--space-zero);
+  background: var(--surface-special-light-s0-dark-s2);
+  backdrop-filter: var(--blur-96);
+}
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-zero) var(--space-3xl);
+}
+.textWrap {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  gap: var(--space-xs);
+}
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--text-low-em);
+  white-space: nowrap;
+}
+.primary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+.value {
+  color: var(--text-high-em);
+  overflow-wrap: anywhere;
+}
+.change {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-zero);
+  white-space: nowrap;
+}
+.success {
+  color: var(--text-success-med-em);
+}
+.neutral {
+  color: var(--text-med-em);
+}
+.action {
+  display: inline-flex;
+  flex: none;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: none;
+  border-radius: var(--radius-small-component-xs);
+  cursor: pointer;
+}
+.action:focus-visible {
+  outline: none;
+  box-shadow: var(--pressed-primary);
+}

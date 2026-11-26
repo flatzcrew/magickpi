@@ -1,0 +1,20 @@
+/*
+ * QR-code — Figma `16158:27561` (Type: round · square). Квадрат 128, вектор Text/high-em (#0A0C11 в ките), без подложки.
+ * square — квадратные модули; round — круглые модули и скруглённые finder-паттерны (форма round упрощена, не сверена по точкам).
+ * Без токена: размер 128 — переменная --qr-code-width (токена на 128 нет).
+ */
+.root {
+  --qr-code-width: 128px;
+
+  display: block;
+  flex: none;
+  width: var(--qr-code-width);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  fill: var(--text-high-em);
+}
+.finderRing {
+  fill: none;
+  stroke: var(--text-high-em);
+}

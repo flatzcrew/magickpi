@@ -1,0 +1,84 @@
+/*
+ * Radio — Figma `10053:1943`. Сверено через Figma (variables / effect styles), 2026-11-25.
+ * Корень: рамка 20/24 (Space/5xl·7xl), padding Space/xxs. Круг 18/20 (Space/4xl·5xl), Radius/round,
+ * эффект Component-effect/primary-default. Точка 8×8 (Space/md), тень Small-dark-shadow.
+ * inactive: заливка Surface/special/dark-s0-light-s2 -> light-s0-dark-s4, обводка 2px INSIDE Outline/med-em.
+ * hover: обводка Outline/primary-low-em-alpha. active: Surface/primary-med-em, точка Text/primary-on-primary.
+ * active-pressed: + Pressed/primary. disabled: Surface/disabled-med-em, точка Surface/disabled-base-em.
+ * Без токена: обводка 2px.
+ */
+.root {
+  --rd-box: var(--space-4xl);
+  --rd-bg: linear-gradient(180deg, var(--surface-special-dark-s0-light-s2) 0%, var(--surface-special-light-s0-dark-s4) 100%);
+  --rd-stroke: var(--outline-med-em);
+  --rd-dot: var(--text-primary-on-primary);
+  --rd-effect: var(--component-effect-primary-default);
+
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: var(--space-xxs);
+}
+
+.sm { --rd-box: var(--space-4xl); width: var(--space-5xl); height: var(--space-5xl); }
+.md { --rd-box: var(--space-5xl); width: var(--space-7xl); height: var(--space-7xl); }
+
+.input {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.input:disabled { cursor: not-allowed; }
+
+.circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--rd-box);
+  height: var(--rd-box);
+  padding: var(--space-xxs);
+  border-radius: var(--radius-round);
+  background: var(--rd-bg);
+  box-shadow: inset 0 0 0 2px var(--rd-stroke), var(--rd-effect);
+  backdrop-filter: var(--component-effect-primary-default-backdrop);
+  transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.dot {
+  display: none;
+  width: var(--space-md);
+  height: var(--space-md);
+  border-radius: var(--radius-round);
+  background: var(--rd-dot);
+  box-shadow: var(--small-dark-shadow);
+}
+
+.root:hover .input:not(:disabled):not(:checked) + .circle,
+.root[data-state='hover'] .circle {
+  --rd-stroke: var(--outline-primary-low-em-alpha);
+}
+
+.input:checked + .circle {
+  --rd-bg: var(--surface-primary-med-em);
+  --rd-stroke: transparent;
+}
+.input:checked + .circle .dot { display: block; }
+
+.input:active:not(:disabled) + .circle,
+.input:focus-visible + .circle,
+.root[data-state='active-pressed'] .circle {
+  --rd-effect: var(--pressed-primary);
+}
+
+.input:disabled + .circle {
+  --rd-bg: var(--surface-disabled-med-em);
+  --rd-stroke: transparent;
+  --rd-dot: var(--surface-disabled-base-em);
+}

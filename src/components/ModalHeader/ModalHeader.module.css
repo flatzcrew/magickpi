@@ -1,0 +1,89 @@
+/*
+ * Modal-header — Figma `14160:29188`. Сверено через Figma (дамп вариантов), 2026-11-26.
+ * Корень: Auto Layout V, обводка снизу 1px Outline/base-em.
+ * compact: p Space/3xl · 5xl, gap md; icon-wrap py Space/xl; Feature-icon md (48).
+ * large: p Space/19xl · 5xl · 10xl · 5xl, gap 3xl; icon-wrap py Space/md; Feature-icon xl (64).
+ * Text-wrap gap Space/xs; заголовки Text/high-em: compact sm UI/title-1 semibold, md UI/title-2 semibold (+ иконка 20),
+ *   lg UI/heading-2 medium; large sm UI/title-2 medium, md UI/heading-1 medium (+ иконка 24), lg UI/heading-3 medium.
+ *   Heading-wrap gap Space/md. Description: H gap md, UI/para normal Text/low-em.
+ * Back-button — 12 · 12 от левого верхнего угла, Close-icon — 12 от правого верхнего (Space/xl).
+ * Modal-dragger — по центру, сверху compact 6 (Space/sm), large 4 (Space/xs).
+ * Без токена: 1px обводки.
+ */
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  box-shadow: inset 0 -1px 0 var(--outline-base-em);
+}
+
+.compact {
+  --mh-dragger-top: var(--space-sm);
+  --mh-icon-pad: var(--space-xl);
+  --mh-heading-icon: var(--space-5xl);
+  padding: var(--space-3xl) var(--space-5xl);
+  gap: var(--space-md);
+}
+.large {
+  --mh-dragger-top: var(--space-xs);
+  --mh-icon-pad: var(--space-md);
+  --mh-heading-icon: var(--space-7xl);
+  padding: var(--space-19xl) var(--space-5xl) var(--space-10xl);
+  gap: var(--space-3xl);
+}
+
+.back,
+.close,
+.dragger {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: var(--space-xl);
+}
+.back {
+  left: var(--space-xl);
+}
+.close {
+  right: var(--space-xl);
+}
+.dragger {
+  top: var(--mh-dragger-top);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.icon {
+  display: flex;
+  padding-block: var(--mh-icon-pad);
+}
+
+.textWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+.heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin: 0;
+  color: var(--text-high-em);
+}
+.headingIcon {
+  --icon-size: var(--mh-heading-icon);
+  flex: none;
+}
+.description {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+.descriptionText {
+  margin: 0;
+  color: var(--text-low-em);
+}

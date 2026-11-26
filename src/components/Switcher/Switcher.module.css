@@ -1,0 +1,51 @@
+/*
+ * Switcher — Figma `10004:1441` (Type default · secondary × Size xs…xl; State только default).
+ * Корень: Auto Layout H, center, gap Space/sm, обводка 1px INSIDE Outline/base-em.
+ * default: Surface/component/secondary-alpha-base; выбранный сегмент — Switcher-item active.
+ * secondary: Surface/special/light-s0-dark-s2 + Elevation/e1; выбранный сегмент — active-primary-light.
+ * Невыбранные сегменты — inactive. Сегменты того же Size, что и Switcher.
+ * Padding / радиус: xs Space/xs · small-component/md; md Space/sm · small-component/2xl (сверено).
+ * Не сверено (выведено из правила «радиус сегмента + padding»): sm Space/xs · lg, lg Space/sm · 3xl, xl Space/sm · 4xl.
+ * Без токена: 1px обводки.
+ */
+.root {
+  --sw-bg: var(--surface-component-secondary-alpha-base);
+  --sw-shadow: 0 0 0 0 transparent;
+
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  box-sizing: border-box;
+  gap: var(--space-sm);
+  background: var(--sw-bg);
+  box-shadow: inset 0 0 0 1px var(--outline-base-em), var(--sw-shadow);
+}
+
+.default {
+  --sw-bg: var(--surface-component-secondary-alpha-base);
+}
+.secondary {
+  --sw-bg: var(--surface-special-light-s0-dark-s2);
+  --sw-shadow: var(--elevation-e1);
+}
+
+.xs {
+  padding: var(--space-xs);
+  border-radius: var(--radius-small-component-md);
+}
+.sm {
+  padding: var(--space-xs);
+  border-radius: var(--radius-small-component-lg);
+}
+.md {
+  padding: var(--space-sm);
+  border-radius: var(--radius-small-component-2xl);
+}
+.lg {
+  padding: var(--space-sm);
+  border-radius: var(--radius-small-component-3xl);
+}
+.xl {
+  padding: var(--space-sm);
+  border-radius: var(--radius-small-component-4xl);
+}

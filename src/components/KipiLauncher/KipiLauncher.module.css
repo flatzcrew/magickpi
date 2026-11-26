@@ -1,0 +1,45 @@
+/*
+ * KipiLauncher — Figma kpi-bro · web `165:897` (State: idle · thinking · error · success), сверено get_design_context 2026-11-26.
+ * Круг Space/16xl (56), Radius/round, Surface/s0, Elevation/e3, padding/gap Space/zero, по центру KipiAvatar 36.
+ * hover / pressed в Figma не заведены — не добавлены. Focus — FocusRing по patterns.md (2px Outline/primary-high-em), снаружи.
+ * Без токена: 2px кольца фокуса.
+ */
+.root {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--space-16xl);
+  height: var(--space-16xl);
+  padding: var(--space-zero);
+  gap: var(--space-zero);
+  border: none;
+  border-radius: var(--radius-round);
+  background: var(--surface-s0);
+  box-shadow: var(--elevation-e3);
+  cursor: pointer;
+}
+.root:focus-visible {
+  outline: 2px solid var(--outline-primary-high-em);
+  outline-offset: 0;
+}
+
+/*
+ * Движение (2026-11-26, просьба дизайнера; в Figma не заведено): нажатие — круг чуть сжимается (scale 0.94), 0.15s;
+ * клик и смена State — KipiAvatar подпрыгивает (bounceKey). Выключено при prefers-reduced-motion.
+ */
+.root {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.root:active {
+  transform: scale(0.94);
+}
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    transition: none;
+  }
+  .root:active {
+    transform: none;
+  }
+}

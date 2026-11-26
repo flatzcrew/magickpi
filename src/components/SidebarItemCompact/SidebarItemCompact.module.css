@@ -1,0 +1,60 @@
+/*
+ * Sidebar-item-compact — Figma `42927:1227` (7 типов × Size md · lg × default · hover).
+ * Фон, обводка, эффекты и hover типов — из SidebarItem.module.css (те же токены, сверено по md).
+ * Здесь: Auto Layout V, center, 48 × 56 (Space/14xl × Space/16xl), Radius/md.
+ *   md: px Space/md, py Space/lg, gap Space/xxs, иконка 18, UI/caption-1/medium;
+ *   lg: padding Space/md, gap Space/xs, иконка 20, UI/caption-2/medium.
+ * Цвета подписи (отличаются от SidebarItem): active / active-tertiary / active-secondary — подпись Text/low-em
+ *   (hover Text/med-em), иконка Text/high-em; inactive — подпись Text/low-em (hover med-em), иконка Text/med-em;
+ *   active-primary-light hover — + Surface/hover-overlay-inverse (у SidebarItem — второй слой primary-base-em-alpha).
+ */
+.root.md,
+.root.lg {
+  flex-direction: column;
+  justify-content: center;
+  width: var(--space-14xl);
+  min-width: var(--space-14xl);
+  height: var(--space-16xl);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+.root.md {
+  --icon-size: var(--space-4xl);
+  padding: var(--space-lg) var(--space-md);
+  gap: var(--space-xxs);
+}
+.root.lg {
+  --icon-size: var(--space-5xl);
+  padding: var(--space-md);
+  gap: var(--space-xs);
+}
+
+.icon {
+  flex: none;
+}
+.label {
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--sbic-label, inherit);
+  text-overflow: ellipsis;
+}
+
+.root.active,
+.root.active-tertiary,
+.root.active-secondary,
+.root.inactive {
+  --sbic-label: var(--text-low-em);
+}
+.root.active:hover,
+.root.active-tertiary:hover,
+.root.active-secondary:hover,
+.root.inactive:hover,
+.root.active[data-state='hover'],
+.root.active-tertiary[data-state='hover'],
+.root.active-secondary[data-state='hover'],
+.root.inactive[data-state='hover'] {
+  --sbic-label: var(--text-med-em);
+}
+.root.active-primary-light {
+  --sbi-overlay: var(--surface-hover-overlay-inverse);
+}

@@ -1,0 +1,64 @@
+/*
+ * MonthProgress — Figma kpi-bro · web `174:1319` (20 ячеек), сверено get_design_context 2026-11-26 по 174:1290.
+ * Корень V, gap Space/xs, padding Space/zero; ширина мастера 469, на экране FILL.
+ * Top: space-between — Label UI/body-1/normal Text/high-em · Value UI/caption-2/normal Text/med-em, 1 строка.
+ * Track: высота Space/xs, Surface/s3, Radius/round, clip; 4 равных сегмента без зазора.
+ * Заливка: done Surface/success-high-em · progress Surface/warning-high-em · fail Surface/danger-high-em · nodata Surface/s4.
+ * Period: UI/caption-2/normal Text/med-em.
+ * Без токена: ширина 469 (--month-progress-width).
+ */
+.root {
+  --month-progress-width: 469px;
+  --mp-fill: var(--surface-success-high-em);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: var(--month-progress-width);
+  max-width: 100%;
+  gap: var(--space-xs);
+  padding: var(--space-zero);
+}
+.progress { --mp-fill: var(--surface-warning-high-em); }
+.fail { --mp-fill: var(--surface-danger-high-em); }
+.nodata { --mp-fill: var(--surface-s4); }
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  white-space: nowrap;
+}
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-high-em);
+}
+.value {
+  flex: none;
+  color: var(--text-med-em);
+}
+
+.track {
+  display: flex;
+  width: 100%;
+  height: var(--space-xs);
+  gap: var(--space-zero);
+  border-radius: var(--radius-round);
+  background: var(--surface-s3);
+  overflow: hidden;
+}
+.seg {
+  flex: 1 0 0;
+  height: 100%;
+}
+.filled {
+  background: var(--mp-fill);
+}
+
+.period {
+  width: 100%;
+  color: var(--text-med-em);
+}

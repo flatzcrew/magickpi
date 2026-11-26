@@ -1,0 +1,126 @@
+/*
+ * Feature-icon — Figma `12051:4447`. Сверено через Figma (variables / effect styles), 2026-11-25.
+ * Квадрат xs 32 · sm 40 · md 48 · lg 56 · xl 64 (Space/10xl·12xl·14xl·16xl·18xl),
+ * радиус Radius/small-component/<size>; иконка 20 · 22 · 28 · 32 · 36 (Space/5xl·6xl·9xl·10xl·11xl).
+ * Обводка 1px INSIDE градиентом Outline/*-button-top -> -bottom (стопы 48% -> 100%), как у Button.
+ * Без токена: 1px обводки; служебная маска linear-gradient(#000 0 0); позиции стопов 48%.
+ */
+.root {
+  --fi-bg: var(--surface-primary-med-em);
+  --fi-icon: var(--text-primary-on-primary);
+  --fi-stroke-top: var(--outline-primary-button-top);
+  --fi-stroke-bottom: var(--outline-primary-button-bottom);
+  --fi-stroke-display: block;
+  --fi-shadow: var(--component-effect-primary-default);
+  --fi-backdrop: var(--component-effect-primary-default-backdrop);
+
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: var(--fi-bg);
+  color: var(--fi-icon);
+  box-shadow: var(--fi-shadow);
+  backdrop-filter: var(--fi-backdrop);
+}
+
+.root::before {
+  content: '';
+  display: var(--fi-stroke-display);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--fi-stroke-top) 48%, var(--fi-stroke-bottom) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+/* ---------- Type ---------- */
+.primary { /* значения по умолчанию в .root */ }
+
+.primary-light {
+  --fi-bg: var(--surface-primary-base-em-alpha);
+  --fi-icon: var(--text-primary-on-primary-light);
+  --fi-stroke-display: none;
+  --fi-shadow: none;
+  --fi-backdrop: none;
+}
+
+.secondary {
+  --fi-bg: var(--surface-component-secondary-alpha-base);
+  --fi-icon: var(--text-high-em);
+  --fi-stroke-top: var(--outline-secondary-button-top);
+  --fi-stroke-bottom: var(--outline-secondary-button-bottom);
+  --fi-shadow: var(--component-effect-secondary-default);
+  --fi-backdrop: var(--component-effect-secondary-default-backdrop);
+}
+
+.tertiary {
+  --fi-bg: var(--surface-component-tertiary-alpha-base);
+  --fi-icon: var(--text-med-em);
+  --fi-stroke-top: var(--outline-secondary-button-top);
+  --fi-stroke-bottom: var(--outline-secondary-button-bottom);
+  --fi-shadow: var(--component-effect-secondary-default);
+  --fi-backdrop: var(--component-effect-secondary-default-backdrop);
+}
+
+.quaternary {
+  --fi-bg: var(--transparent-inverse);
+  --fi-icon: var(--text-med-em);
+  --fi-stroke-display: none;
+  --fi-shadow: none;
+  --fi-backdrop: none;
+}
+
+.neutral {
+  --fi-bg: var(--surface-inverse-white);
+  --fi-icon: var(--text-text-on-neutral);
+}
+
+.primary-flat {
+  --fi-bg: var(--surface-special-light-s0-dark-s1);
+  --fi-icon: var(--text-secondary-on-primary-light);
+  --fi-stroke-top: var(--outline-secondary-button-top);
+  --fi-stroke-bottom: var(--outline-secondary-button-bottom);
+  --fi-shadow: var(--component-effect-secondary-default);
+  --fi-backdrop: var(--component-effect-secondary-default-backdrop);
+}
+
+/* ---------- Size ---------- */
+.xs {
+  --icon-size: var(--space-5xl);
+  width: var(--space-10xl);
+  height: var(--space-10xl);
+  border-radius: var(--radius-small-component-xs);
+}
+.sm {
+  --icon-size: var(--space-6xl);
+  width: var(--space-12xl);
+  height: var(--space-12xl);
+  border-radius: var(--radius-small-component-sm);
+}
+.md {
+  --icon-size: var(--space-9xl);
+  width: var(--space-14xl);
+  height: var(--space-14xl);
+  border-radius: var(--radius-small-component-md);
+}
+.lg {
+  --icon-size: var(--space-10xl);
+  width: var(--space-16xl);
+  height: var(--space-16xl);
+  border-radius: var(--radius-small-component-lg);
+}
+.xl {
+  --icon-size: var(--space-11xl);
+  width: var(--space-18xl);
+  height: var(--space-18xl);
+  border-radius: var(--radius-small-component-xl);
+}

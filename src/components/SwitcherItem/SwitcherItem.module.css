@@ -1,0 +1,220 @@
+/*
+ * Switcher-item — Figma `10004:1260` (6 типов × 5 размеров × default · hover).
+ * Корень: Auto Layout H, center, py Space/xs; слоты Left (image + icon) · Text-wrap (Primary + Secondary) · Right.
+ * active-primary: Surface/primary-med-em, обводка Outline/primary (градиент Outline/primary-button-*),
+ *   Component-effect/primary-default; hover — + Surface/hover-overlay и Component-effect/primary-hover.
+ *   Текст Text/primary-on-primary · Text/secondary-on-primary.
+ * active: Surface/special/light-s0-dark-s5, Outline/secondary, Elevation/e3; текст Text/high-em · Text/low-em.
+ * active-neutral: Inverse-white/alpha-88, Outline/primary, Component-effect/primary-default;
+ *   текст Text/inverse-black · Inverse-black/alpha-72.
+ * active-primary-light: Surface/primary-base-em-alpha, без обводки и тени; текст Text/primary-high-em · primary-med-em.
+ * active-secondary: Surface/component/secondary-alpha-base, Outline/secondary, Elevation/e2; текст high-em · low-em.
+ * inactive: Transparent-inverse; текст Text/low-em · Text/base-em, hover — Text/med-em.
+ * Размер: xs 24 · sm 32 · md 36 · lg 44 · xl 52 (Space/7xl·10xl·11xl·13xl·15xl); радиус Radius/small-component/<size>.
+ * Без токена: 1px обводки, маска linear-gradient(#000 0 0), стоп 48%.
+ * Не сверено: hover у active / active-neutral / active-primary-light / active-secondary (взят слой
+ *   overlay, как у active-primary и Button).
+ */
+.root {
+  --si-bg: var(--surface-primary-med-em);
+  --si-overlay: var(--surface-hover-overlay);
+  --si-text: var(--text-primary-on-primary);
+  --si-text-hover: var(--si-text);
+  --si-text-2: var(--text-secondary-on-primary);
+  --si-stroke-top: var(--outline-primary-button-top);
+  --si-stroke-bottom: var(--outline-primary-button-bottom);
+  --si-stroke-display: block;
+  --si-shadow: var(--component-effect-primary-default);
+  --si-shadow-hover: var(--component-effect-primary-hover);
+  --si-backdrop: var(--component-effect-primary-default-backdrop);
+
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  padding-block: var(--space-xs);
+  gap: var(--space-xxs);
+  background: var(--si-bg);
+  color: var(--si-text);
+  box-shadow: var(--si-shadow);
+  backdrop-filter: var(--si-backdrop);
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.root::before {
+  content: '';
+  display: var(--si-stroke-display);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--si-stroke-top) 48%, var(--si-stroke-bottom) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+/* ---------- Type ---------- */
+.active-primary {
+  --si-bg: var(--surface-primary-med-em);
+}
+.active {
+  --si-bg: var(--surface-special-light-s0-dark-s5);
+  --si-overlay: var(--surface-hover-overlay-inverse);
+  --si-text: var(--text-high-em);
+  --si-text-2: var(--text-low-em);
+  --si-stroke-top: var(--outline-secondary-button-top);
+  --si-stroke-bottom: var(--outline-secondary-button-bottom);
+  --si-shadow: var(--elevation-e3);
+  --si-shadow-hover: var(--elevation-e3);
+  --si-backdrop: none;
+}
+.active-neutral {
+  --si-bg: var(--inverse-white-alpha-88);
+  --si-text: var(--text-inverse-black);
+  --si-text-2: var(--inverse-black-alpha-72);
+}
+.active-primary-light {
+  --si-bg: var(--surface-primary-base-em-alpha);
+  --si-overlay: var(--surface-primary-base-em-alpha);
+  --si-text: var(--text-primary-high-em);
+  --si-text-2: var(--text-primary-med-em);
+  --si-stroke-display: none;
+  --si-shadow: none;
+  --si-shadow-hover: none;
+  --si-backdrop: none;
+}
+.active-secondary {
+  --si-bg: var(--surface-component-secondary-alpha-base);
+  --si-overlay: var(--surface-hover-overlay-inverse);
+  --si-text: var(--text-high-em);
+  --si-text-2: var(--text-low-em);
+  --si-stroke-top: var(--outline-secondary-button-top);
+  --si-stroke-bottom: var(--outline-secondary-button-bottom);
+  --si-shadow: var(--elevation-e2);
+  --si-shadow-hover: var(--elevation-e2);
+  --si-backdrop: none;
+}
+.inactive {
+  --si-bg: var(--transparent-inverse);
+  --si-overlay: var(--transparent-inverse);
+  --si-text: var(--text-low-em);
+  --si-text-hover: var(--text-med-em);
+  --si-text-2: var(--text-base-em);
+  --si-stroke-display: none;
+  --si-shadow: none;
+  --si-shadow-hover: none;
+  --si-backdrop: none;
+}
+
+/* ---------- State ---------- */
+.root:hover:not(:disabled),
+.root[data-state='hover'] {
+  background: linear-gradient(var(--si-overlay), var(--si-overlay)), var(--si-bg);
+  box-shadow: var(--si-shadow-hover);
+  color: var(--si-text-hover);
+}
+.root:focus-visible {
+  box-shadow: var(--pressed-primary);
+}
+.root:disabled {
+  cursor: not-allowed;
+}
+
+/* ---------- Size ---------- */
+.xs {
+  --icon-size: var(--space-2xl);
+  --si-image: var(--space-xl);
+  --si-left-gap: var(--space-xs);
+  --si-text-pad: var(--space-xs);
+  --si-text-gap: var(--space-xs);
+  height: var(--space-7xl);
+  padding-inline: var(--space-sm);
+  gap: var(--space-zero);
+  border-radius: var(--radius-small-component-xs);
+}
+.sm {
+  --icon-size: var(--space-3xl);
+  --si-image: var(--space-3xl);
+  --si-left-gap: var(--space-sm);
+  --si-text-pad: var(--space-xs);
+  --si-text-gap: var(--space-xs);
+  height: var(--space-10xl);
+  padding-inline: var(--space-md);
+  border-radius: var(--radius-small-component-sm);
+}
+.md {
+  --icon-size: var(--space-4xl);
+  --si-image: var(--space-4xl);
+  --si-left-gap: var(--space-sm);
+  --si-text-pad: var(--space-xs);
+  --si-text-gap: var(--space-xs);
+  height: var(--space-11xl);
+  padding-inline: var(--space-lg);
+  border-radius: var(--radius-small-component-md);
+}
+.lg {
+  --icon-size: var(--space-5xl);
+  --si-image: var(--space-5xl);
+  --si-left-gap: var(--space-md);
+  --si-text-pad: var(--space-xs);
+  --si-text-gap: var(--space-xs);
+  height: var(--space-13xl);
+  padding-inline: var(--space-xl);
+  border-radius: var(--radius-small-component-lg);
+}
+.xl {
+  --icon-size: var(--space-7xl);
+  --si-image: var(--space-7xl);
+  --si-left-gap: var(--space-md);
+  --si-text-pad: var(--space-sm);
+  --si-text-gap: var(--space-sm);
+  height: var(--space-15xl);
+  padding-inline: var(--space-2xl);
+  border-radius: var(--radius-small-component-xl);
+}
+
+/* ---------- Слоты ---------- */
+.left,
+.right {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+}
+.left {
+  gap: var(--si-left-gap);
+}
+.image {
+  width: var(--si-image);
+  height: var(--si-image);
+  border-radius: var(--radius-round);
+  object-fit: cover;
+  box-shadow: var(--elevation-e1);
+}
+.text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  gap: var(--si-text-gap);
+  padding-inline: var(--si-text-pad);
+}
+.primaryText,
+.secondaryText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.secondaryText {
+  color: var(--si-text-2);
+}

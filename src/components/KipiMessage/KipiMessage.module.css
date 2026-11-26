@@ -1,0 +1,128 @@
+/*
+ * KipiMessage — Figma kpi-bro · web `174:1350` (Author: kipi × State 3 + user default), сверено get_design_context 2026-11-26.
+ * Корень H, gap Space/md, padding Space/zero, ширина 400; kipi — items start, user — items end, justify end.
+ * Bubble: V, padding Space/md × Space/xl, Radius/big-component/xs, clip; kipi — Surface/s3 + Liquid-glass, ширина 340;
+ *   user — Surface/primary-low-em, HUG, max-width 340, без эффекта. Text UI/body-2/normal Text/high-em, thinking — Text/med-em.
+ * Приближение: Liquid-glass (GLASS r8) не переносится — backdrop-filter Blur/16 без преломления и дисперсии.
+ * Без токена: ширина 400 (--kipi-message-width) и ширина пузыря 340 (--kipi-bubble-width).
+ */
+.root {
+  --kipi-message-width: 400px;
+  --kipi-bubble-width: 340px;
+
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: var(--kipi-message-width);
+  max-width: 100%;
+  gap: var(--space-md);
+  padding: var(--space-zero);
+}
+.user {
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.bubble {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: var(--space-md) var(--space-xl);
+  gap: var(--space-zero);
+  border-radius: var(--radius-big-component-xs);
+  overflow: hidden;
+}
+.kipi .bubble {
+  width: var(--kipi-bubble-width);
+  max-width: 100%;
+  flex-shrink: 1;
+  background: var(--surface-s3);
+  backdrop-filter: var(--blur-16);
+}
+.user .bubble {
+  max-width: var(--kipi-bubble-width);
+  flex-shrink: 1;
+  background: var(--surface-primary-low-em);
+}
+
+.text {
+  margin: 0;
+  width: 100%;
+  color: var(--text-high-em);
+  overflow-wrap: break-word;
+}
+.root[data-state='thinking'] .text {
+  color: var(--text-med-em);
+}
+
+/* Avatar sm в Figma на этом инстансе — 36 (Space/11xl), у кита sm = 32: перекрытие размера (0,2,0 против .sm 0,1,0). */
+.root .avatar {
+  --avatar-size: var(--space-11xl);
+}
+
+/*
+ * Движение (2026-11-26, просьба дизайнера; в Figma анимации нет, motion-токенов нет). Выключено при prefers-reduced-motion.
+ * — Отправка / новая реплика: появляется, въезжая на Space/md — Кипи слева, пользователь справа, 0.25s ease-out.
+ * — Кипи печатает (thinking): после текста три точки Space/sm, по очереди подскакивают, 1.2s по кругу, Text/low-em.
+ * — Смена State у Кипи: KipiAvatar подпрыгивает сам.
+ */
+@keyframes kipi-message-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(calc(-1 * var(--space-md)));
+  }
+}
+@keyframes kipi-message-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(var(--space-md));
+  }
+}
+.kipi {
+  animation: kipi-message-in-left 0.25s ease-out;
+}
+.user {
+  animation: kipi-message-in-right 0.25s ease-out;
+}
+
+.typing {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: var(--space-xxs);
+  height: 1em;
+  margin-left: var(--space-xs);
+  vertical-align: baseline;
+}
+.typing > span {
+  width: var(--space-sm);
+  height: var(--space-sm);
+  border-radius: var(--radius-round);
+  background: var(--text-low-em);
+  animation: kipi-typing 1.2s ease-in-out infinite;
+}
+.typing > span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.typing > span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes kipi-typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(calc(-1 * var(--space-xs)));
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kipi,
+  .user,
+  .typing > span {
+    animation: none;
+  }
+}

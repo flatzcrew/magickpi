@@ -1,0 +1,206 @@
+/*
+ * Песочницы каталога — раскладка вокруг реальных компонентов базы.
+ * Только семантика, --space-*, --radius-*, --elevation-* и типоклассы ui-*. Без токена: 1px обводок.
+ */
+.canvas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7xl);
+  padding: var(--space-7xl);
+  min-height: 100vh;
+  background: var(--surface-s1);
+  color: var(--text-high-em);
+}
+.canvas h2,
+.canvas h3,
+.canvas p {
+  margin: 0;
+}
+
+.muted {
+  color: var(--text-med-em);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5xl);
+  padding: var(--space-7xl);
+  background: var(--surface-s0);
+  border: 1px solid var(--outline-low-em);
+  border-radius: var(--radius-xl);
+}
+
+.narrow {
+  max-width: calc(var(--space-26xl) * 4);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.end {
+  justify-content: flex-end;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-26xl) * 1.5), 1fr));
+  gap: var(--space-5xl);
+}
+
+/* Модалка в «экране»: position: fixed окна и подложки остаётся внутри (transform = containing block) */
+.screen {
+  position: relative;
+  transform: translateZ(0);
+  overflow: hidden;
+  min-height: calc(var(--space-26xl) * 4);
+  border: 1px solid var(--outline-low-em);
+  border-radius: var(--radius-xl);
+  background: var(--surface-s0);
+}
+
+.screenBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5xl);
+  padding: var(--space-7xl);
+}
+
+/* Навигация: сайдбар + контент */
+.app {
+  display: flex;
+  min-height: calc(var(--space-26xl) * 4);
+  border: 1px solid var(--outline-low-em);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--surface-s0);
+}
+
+.appMain {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5xl);
+  padding: var(--space-7xl);
+}
+
+.dropAnchor {
+  position: relative;
+  width: 100%;
+}
+
+.dropMenu {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + var(--space-xs));
+  left: 0;
+  right: 0;
+}
+
+/* Подсказка у элемента: показывается при наведении и фокусе */
+.tipAnchor {
+  position: relative;
+  display: inline-flex;
+}
+
+.tip {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + var(--space-md));
+  left: calc(-1 * var(--space-md));
+  width: max-content;
+  max-width: calc(var(--space-26xl) * 1.75);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(calc(-1 * var(--space-xs)));
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+}
+
+.tipAnchor:hover .tip,
+.tipAnchor:focus-within .tip {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+/* Стопка уведомлений в правом нижнем углу рамки */
+.toasts {
+  position: absolute;
+  right: var(--space-7xl);
+  bottom: var(--space-7xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  z-index: 6;
+}
+
+.relative {
+  position: relative;
+}
+
+.batch {
+  position: sticky;
+  bottom: var(--space-5xl);
+}
+
+/* Экран 1440×1024 для окон из макетов: панели position: fixed остаются внутри (transform = containing block) */
+.desktop {
+  position: relative;
+  transform: translateZ(0);
+  overflow: hidden;
+  display: flex;
+  gap: var(--space-md);
+  height: calc(var(--space-26xl) * 6.4);
+  padding: var(--space-3xl) var(--space-zero) var(--space-zero) var(--space-3xl);
+  border: 1px solid var(--outline-low-em);
+  border-radius: var(--radius-xl);
+  background: var(--surface-s0);
+}
+.desktopNav {
+  flex: none;
+  width: calc(var(--space-26xl) * 1.5);
+  padding-bottom: var(--space-3xl);
+}
+.desktopMain {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5xl);
+  padding: var(--space-5xl) var(--space-7xl) var(--space-7xl);
+  overflow: auto;
+}
+.clickableRows > * {
+  cursor: pointer;
+}
+.pointer {
+  cursor: pointer;
+}
+/* KipiLauncher в правом нижнем углу экрана — Space/12xl от краёв (SCR-03), поверх содержимого, под окнами */
+.launcher {
+  position: absolute;
+  right: var(--space-12xl);
+  bottom: var(--space-12xl);
+  z-index: 10;
+}
+.pageSlot {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  padding-bottom: var(--space-3xl);
+}
+.pageSlot[hidden] {
+  display: none;
+}
