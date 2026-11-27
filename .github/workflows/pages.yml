@@ -1,4 +1,4 @@
-name: Publish Storybook
+name: Build Storybook
 
 on:
   push:
@@ -7,12 +7,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 jobs:
   build:
@@ -29,18 +23,8 @@ jobs:
         run: npm ci
       - name: Build Storybook
         run: npm run build-storybook
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload Storybook artifact
+        uses: actions/upload-artifact@v4
         with:
+          name: storybook-static
           path: storybook-static
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
